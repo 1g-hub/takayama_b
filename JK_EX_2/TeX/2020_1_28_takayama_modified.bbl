@@ -1,0 +1,22 @@
+\begin{thebibliography}{1}
+
+\bibitem{ueno_miki2018}
+上野 未貴.
+\newblock 創作者と人工知能:
+  共作実現に向けた創作過程とメタデータ付与 4
+  コマ漫画ストーリーデータセット構築.
+\newblock {\em 人工知能学会全国大会論文集}, 2018.
+
+\bibitem{word2vec}
+Greg~Corrado Tomas~Mikolov, Kai~Chen and Jeffrey Dean.
+\newblock Efficient estimation of word rep-resentations in vector space.
+\newblock {\em arXiv preprint arXiv:1301.3781}, 2013.
+
+\bibitem{word_net_jp}
+Richard~Fothergill Francis~Bond, Timothy~Baldwin and Kiyotaka Uchimoto.
+\newblock Japanese semcor: A sense-tagged corpus of japanese in the 6th
+  international conference of the global wordnet association (gwc-2012),
+  matsue.
+\newblock 2012.
+
+\end{thebibliography}
