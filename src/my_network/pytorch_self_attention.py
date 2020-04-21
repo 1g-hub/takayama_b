@@ -1,4 +1,4 @@
-# torchtext
+# coding: utf-8
 import torchtext
 from torchtext import data
 from torchtext import datasets
