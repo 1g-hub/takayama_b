@@ -1,20 +1,20 @@
 # Fdb version 3
-["bibtex 2020_0422_takayama"] 1587535186 "2020_0422_takayama.aux" "2020_0422_takayama.bbl" "2020_0422_takayama" 1587535194
-  "2020_0422_takayama.aux" 1587535189 2455 c959270b99f2dc2aaaffddade4523e99 "latex"
+["bibtex 2020_0422_takayama"] 1587535186 "2020_0422_takayama.aux" "2020_0422_takayama.bbl" "2020_0422_takayama" 1587535750
+  "2020_0422_takayama.aux" 1587535746 2455 c959270b99f2dc2aaaffddade4523e99 "latex"
   "c:/w32tex/share/texmf-dist/bibtex/bst/base/unsrt.bst" 711628419 16936 ccef3eeba627342727ad24949dd376ee ""
   "sankou.bib" 1587534010 231 12604098f944f1e87321d004478beba9 ""
   (generated)
-  "2020_0422_takayama.blg"
   "2020_0422_takayama.bbl"
-["dvipdf"] 1587535190 "2020_0422_takayama.dvi" "2020_0422_takayama.pdf" "2020_0422_takayama" 1587535194
-  "2020_0422_takayama.dvi" 1587535189 11980 f15064122fed4449c32bc4dd941d0682 "latex"
+  "2020_0422_takayama.blg"
+["dvipdf"] 1587535746 "2020_0422_takayama.dvi" "2020_0422_takayama.pdf" "2020_0422_takayama" 1587535750
+  "2020_0422_takayama.dvi" 1587535746 11928 bdae53f64d3f2b1c71cbec605c780cd8 "latex"
   (generated)
   "2020_0422_takayama.pdf"
-["latex"] 1587535186 "2020_0422_takayama.tex" "2020_0422_takayama.dvi" "2020_0422_takayama" 1587535194
-  "2020_0422_takayama.aux" 1587535189 2455 c959270b99f2dc2aaaffddade4523e99 "latex"
+["latex"] 1587535742 "2020_0422_takayama.tex" "2020_0422_takayama.dvi" "2020_0422_takayama" 1587535750
+  "2020_0422_takayama.aux" 1587535746 2455 c959270b99f2dc2aaaffddade4523e99 "latex"
   "2020_0422_takayama.bbl" 1587535186 247 328e7627d412be93cf704d81b939453a "bibtex 2020_0422_takayama"
-  "2020_0422_takayama.out" 1587535189 828 7f62b7a48c605371c678646cb6260b2c "latex"
-  "2020_0422_takayama.tex" 1587535164 7128 0863fd2cab8e9c2d8439441322904240 ""
+  "2020_0422_takayama.out" 1587535746 828 7f62b7a48c605371c678646cb6260b2c "latex"
+  "2020_0422_takayama.tex" 1587535729 7101 131d0e87c143579047b50f6828e2a701 ""
   "c:/w32tex/share/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm" 1519818042 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/goth6.tfm" 1519818042 1196 977af188465e721f1f65facb66282510 ""
@@ -102,7 +102,7 @@
   "c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt" 1570169253 4556572 a6c137fa42816e84ac5b2da246c5a25c ""
   "c:/w32tex/share/texmf-dist/web2c/texmf.cnf" 1569228113 36614 36bcba4138d21dc48ee03f08b1e2dd36 ""
   (generated)
-  "2020_0422_takayama.log"
-  "2020_0422_takayama.aux"
   "2020_0422_takayama.dvi"
+  "2020_0422_takayama.aux"
   "2020_0422_takayama.out"
+  "2020_0422_takayama.log"
