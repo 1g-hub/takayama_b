@@ -48,6 +48,7 @@
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{nidanfloat}
+\usepackage[dvipdfmx]{hyperref}
 
 \usepackage[normalem]{ulem}
 \useunder{\uline}{\ul}{}
@@ -73,15 +74,48 @@
 
 % \footnotesize
 \section{今週やったこと}
+
 \begin{itemize}
-  \item BERT の勉強.
+  \item BERT\cite{BERT} の勉強と動作確認.
   \item optuna の動作確認.
-  \item d2v モデル再構築.
-  \item 情報工学実験 II のコードの書き直し中.
+  \item d2v モデルの再構築.
+  \item B3 実験のコードの手直し.
 \end{itemize}
 
-\section{BERT まとめ}
+\section{BERT の勉強と動作確認}
+Transformer の構造から入って, 今は BERT のモデルの構造について勉強中.
+また, ``transformers" ライブラリ (元 ``pytorch-pretrained-bert") を元に簡単な動作確認を行った.
+モデルは日本語 Wikipedia から 全 1,800 万文を用いて事前学習させたモデル\footnote{http://nlp.ist.i.kyoto-u.ac.jp}を利用した.
 
+入力は, 4 コマ漫画データセットのセリフを Juman++ で分かち書きしたものに, ``[CLS]", ``[SEP]" トークンを付加したもの. 出力として, 入力文全体の特徴量を持っている ``[CLS]" トークンに対応する $768$ 次元のベクトルを得た.
+
+以下は自分用のメモである.
+
+\subsection{BERT の特徴}
+\subsubsection{文脈に依存した単語ベクトル表現が得られる}
+同じ単語であれば, 初めの Embedding によって同じベクトルとして表されるが, 12 段の Transformer を経る内に単語の位置情報ベクトルが変化していくため, 最終的には同じ単語であっても文脈によって異なる単語ベクトル表現が得られる.
+\subsubsection{自然言語処理タスクで fine-tuning が容易}
+BERT をベースに様々な自然言語処理タスクを行わせるためには, まず事前学習した重みパラメータをを設定し, BERT モデルから出力したテンソルを実施したいタスクに応じてアダプターモジュールを追加し, タスクに応じた出力を得る.
+
+例えば, 2 値分類の感情分析であれば, アダプターモジュールとしては 1 つの全結合層を付加するだけで, 文章の感情分析が可能となる. 学習時にはベースとなる BERT と付加した全結合層の両方を fine-tuning で学習させる.
+\subsubsection{Attension によって可視化と解釈が容易}
+ディープラーニングにおいて, モデルの出力についての解釈性・説明性が問われる昨今において, Attention による可視化によって我々が推論結果の説明について考えやすい.
+
+\subsection{BERT 次にやること}
+\begin{itemize}
+  \item BERT の fine-tuning
+  \item classification layer として 3層 MLP と Self-Attention を用いる.
+  \item 2 つの場合について 4 コマ漫画のセリフの感情推定を行う.
+\end{itemize}
+
+
+\section{d2v モデルの再構築}
+
+B3 実験で用いた Wikipedia, なろう, 青空文庫からなる大規模コーパスは, その大きさながらも良い識別結果が得られなかったので,
+一旦 約 10 分の 1 のサイズで Wikipedia のみのコーパスを用いたモデル (model wiki),
+前回報告した manga 109 のセリフコーパスを用いたモデル (model manga109),
+これら 2 つのコーパスを両方用いたモデル (model wiki + manga109),
+の計 3 つの Doc2Vec のモデルを作成した. 学習パラメータは表\ref{tab:d2v}で共通している.
 
 \begin{table}[htb]
 \begin{center}
@@ -100,116 +134,21 @@ workers   & 4     \\ \hline
 \end{center}
 \end{table}
 
-\section{d2v モデル}
+これらのモデルを用いて, B3 実験をやり直して結果をまとめることを課題とする.
 
-\begin{figure}[htb]
-  \begin{center} %センタリングする
-    \includegraphics[width=7.0cm]{fig.png}
-    \caption{Self-Attention} %タイトルをつける
-    \label{fig:sa} %ラベルをつけ図の参照を可能にする
-  \end{center}
-\end{figure}
+\section{B3 実験のコードの手直し}
+1 文を単語ごとに分散表現にしてから LSTM に入力する手法の追加. 入力列長は 1 セリフ内の単語数の最大値に合わせ,
+それ未満のセリフについては, 前側にゼロパディングする. また, 未知語の場合も, その分散表現をゼロベクトルとする $``<$unk$>"$ トークンに置き換える. (または, 予測値を用いる ?)
 
-ひとまずは情報工学実験 II での実験設定とおおよそ同じで, 図\ref{fig:sa}のように同一 4 コマに含まれているセリフを, 1 文ずつ
-Bidirectional LSTM に入力し, 各隠れ層での出力を Self-Attention 層で受け取り, Attention を計算し, タスクとしても同様に感情の 2 値分類 (喜楽 or その他) を解くことを目標とする. 学習パラメータは図\ref{tab:s-A}, ネットワークパラメータは図\ref{tab:net}である. クラス重みは設定していない. 時系列長を 2 - 6 として実験を行った.
-
-\begin{table}[htb]
-\begin{center}
-\caption{learning parameters}
-\begin{tabular}{|c|c|}
-\hline
-parameter & value \\ \hline
-epoch & 100   \\
-batch size    & 16    \\
-loss & CrossEntropyLoss     \\
-optimizer  & Adam     \\
-learning rate     & 0.00001  \\ \hline
-\end{tabular}
-\label{tab:s-A}
-\end{center}
-\end{table}
-
-\begin{table}[tbh]
-\begin{center}
-\caption{network parameters}
-\begin{tabular}{|c|c|}
-\hline
-parameter & value \\ \hline
-lstm\_in & 300   \\
-lstm\_hidden    & 128    \\
-self\_atten\_in & $128 \times 2$     \\
-atten\_num\_layers & 3     \\ \hline
-\end{tabular}
-\label{tab:net}
-\end{center}
-\end{table}
-
-\section{結果}
-学習時間については 1 つの時系列長, タッチにつき平均 7 分 / 100 epoch だった.
-
-実験結果を表\ref{tab:result}にまとめた. そして, 情報工学実験 II での LSTM + 3 層 MLP を用いた実験結果との比較を示したのが図\ref{tab:compare}である.
-
-\begin{table*}[!b]
-\begin{center}
-\caption{result}
-\scalebox{0.7}{
-\begin{tabular}{cccccccccccccccc|ccc}
-\hline
-\multirow{2}{*}{seq\_len} & \multicolumn{3}{c}{ギャグ} & \multicolumn{3}{c}{少女漫画} & \multicolumn{3}{c}{少年漫画} & \multicolumn{3}{c}{青年漫画} & \multicolumn{3}{c|}{萌え系} & \multicolumn{3}{c}{5タッチ平均} \\
- & Acc & Recall & F1 & Acc & Recall & F1 & Acc & Recall & F1 & Acc & Recall & F1 & Acc & Recall & F1 & Acc & Recall & F1 \\ \hline
-2 & 0.58 & 0.30 & {\ul 0.45} & 0.72 & 0.82 & {\ul 0.70} & 0.53 & 0.42 & 0.45 & 0.71 & 0.21 & 0.53 & 0.58 & 0.36 & 0.53 & 0.62 & 0.42 & {\ul 0.53} \\
-3 & 0.36 & 0.50 & 0.33 & 0.70 & 0.87 & 0.68 & 0.48 & 0.42 & 0.42 & 0.69 & 0.43 & 0.59 & 0.56 & 0.41 & 0.52 & 0.56 & 0.52 & 0.51 \\
-4 & 0.39 & 0.50 & 0.36 & 0.66 & 0.58 & 0.66 & 0.53 & 0.58 & {\ul 0.48} & 0.69 & 0.36 & 0.57 & 0.63 & 0.50 & {\ul 0.59} & 0.58 & 0.50 & {\ul 0.53} \\
-5 & 0.42 & 0.60 & 0.39 & 0.64 & 0.61 & 0.64 & 0.44 & 0.67 & 0.42 & 0.74 & 0.57 & {\ul 0.65} & 0.53 & 0.41 & 0.50 & 0.55 & 0.57 & 0.52 \\
-6 & 0.39 & 0.70 & 0.37 & 0.61 & 0.45 & 0.61 & 0.52 & 0.67 & {\ul 0.48} & 0.66 & 0.36 & 0.54 & 0.56 & 0.41 & 0.52 & 0.55 & 0.52 & 0.51 \\ \hline
-\multicolumn{1}{l}{ベースライン} & \multicolumn{1}{l}{0.85} & 0 & 0 & 0.43 & 0 & 0 & 0.81 & 0 & 0 & 0.78 & 0 & 0 & 0.66 & 0 & 0 & 0.71 & 0 & 0
-\end{tabular}
-\label{tab:result}
-}
-\end{center}
-\end{table*}
-
-
-\begin{figure}[htb]
-  \begin{center} %センタリングする
-    \includegraphics[width=7.0cm]{fig2.png}
-    \caption{compare LSTM and Self-Attention} %タイトルをつける
-    \label{tab:compare} %ラベルをつけ図の参照を可能にする
-  \end{center}
-\end{figure}
-
-\section{考察}
-
-どの場合も約 20 epoch 目付近から学習が進んでいない. (result ディレクトリ参照)
-
-LSTM + MLP と比べて, 正例 (喜楽ラベル) の recall は落ち込んだが, Accuracy, F1 値ともに向上した. しかし, 各タッチ ・ 時系列長ごとに見ると, 性能の増減の傾向に差がありその原因については今後詳しく考えていく必要がある.
-
-
-\section{その他 問題点}
+\section{課題 優先度準}
 \begin{itemize}
-  \item train データを train と validation に分ける際, test は　各タッチの 5 - 10 話を用い, train と validation は 1 - 5 話からランダムに分けているが, データセットの仕様上, 中身が似たようなものになる可能性が高く, 汎化性能に欠ける.
-  \item Data Augmentation の手法で日本語 WordNet を用いることで発生する, 意味の乖離.
-  \item optuna を用いたハイパーパラメータのチューニングをしていない.
-\end{itemize}
-
-\section{課題}
-\begin{itemize}
-  \item Attention の可視化.
-  \item 森先生と大工大の上野先生に 30 話まであるらしい追加データをお願いして, train と validation を話区切りで分けたい.
+  \item BERT の fine-tuning を行う.
+  \item 新しく作成した d2v モデルと手法を用いた B3 実験の再実験および結果の比較.
+  \item 森先生と大工大の上野先生に 30 話まであるらしい追加データをお願いする.
   \item Data Augmentation の手法の改善案.
-  \item optuna でチューニングできるようにする.
-  \item BERT の論文等で構造の理解.
-  \item 1 文を単語ごとに入力する推定方法も試す.
-  \item 現状タッチごとに異なるモデルを作っているので, タッチ情報を表す one-hot-vector 等を用いて 1 つのモデルで性能を確かめることも考える.
 \end{itemize}
 
-\section{質問}
-Attention 層を複数にする意味
-\section{次に読むべき論文}
-\begin{itemize}
-  \item BERT について書かれているもの.
-  \item pointer-generator network について書かれているもの.
-\end{itemize}
+
 
 
 \bibliographystyle{unsrt}

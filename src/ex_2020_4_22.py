@@ -43,6 +43,9 @@ def objective(X, y, trial):
     # モデルを作る
     model = SVC(**params)
 
+    # 自身の問題に合わせて
+    # クラス化した方が良い？？
+
     # 5-Fold CV / Accuracy でモデルを評価する
     kf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
     scores = cross_validate(model, X=X, y=y, cv=kf)

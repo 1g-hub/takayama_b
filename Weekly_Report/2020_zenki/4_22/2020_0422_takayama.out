@@ -1,0 +1,9 @@
+\BOOKMARK [1][-]{section.1}{今週やったこと}{}% 1
+\BOOKMARK [1][-]{section.2}{BERT の勉強と動作確認}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{BERT の特徴}{section.2}% 3
+\BOOKMARK [3][-]{subsubsection.2.1.1}{文脈に依存した単語ベクトル表現が得られる}{subsection.2.1}% 4
+\BOOKMARK [3][-]{subsubsection.2.1.2}{自然言語処理タスクで fine-tuning が容易}{subsection.2.1}% 5
+\BOOKMARK [3][-]{subsubsection.2.1.3}{Attension によって可視化と解釈が容易}{subsection.2.1}% 6
+\BOOKMARK [1][-]{section.3}{d2v モデルの再構築}{}% 7
+\BOOKMARK [1][-]{section.4}{B3 実験のコードの手直し}{}% 8
+\BOOKMARK [1][-]{section.5}{課題 優先度準}{}% 9
