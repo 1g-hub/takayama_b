@@ -221,7 +221,7 @@ def create_data_loader(x_t, x_v, y_t, y_v, batch_size=16, shuffle=True):
 
     return train_loader, valid_loader
 
-def create_miria(data, batch_size=16, shuffle=True):
+def create_seq(data, batch_size=16, shuffle=True):
     f_trains = data[(data.original)]
 
     x = []
