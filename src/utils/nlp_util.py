@@ -280,11 +280,11 @@ def eval_torch_net(model, model_name, test_loader):
 
 
 def save_torch_model(model, model_name):
-    with open('../../model/' + model_name + '.pkl', 'wb') as f:
+    with open('../models/' + model_name + '.pkl', 'wb') as f:
         cloudpickle.dump(model, f)
 
 
 def load_torch_model(model_name):
-    with open('../../model/' + model_name + '.pkl', 'rb') as f:
+    with open('../models/' + model_name + '.pkl', 'rb') as f:
         model = cloudpickle.load(f)
     return model

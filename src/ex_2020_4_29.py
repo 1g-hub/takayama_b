@@ -14,9 +14,8 @@ from torch.utils.data import TensorDataset
 from torch.utils.data import DataLoader
 
 TOUCH_NAME_ENG = ["gyagu", "shoujo", "shounen", "seinen", "moe"]
-EPOCHS = 10 # エポック数
-BATCH_SIZE = 16 # バッチサイズ
-
+EPOCHS = 30 # エポック数
+BATCH_SIZE = 128 # バッチサイズ
 config = BertConfig.from_json_file('../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/config.json')
 
 bert_model = BertModel.from_pretrained('../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/pytorch_model.bin', config=config)
@@ -24,9 +23,10 @@ classifier = ClassificationNet()
 criterion = torch.nn.CrossEntropyLoss()
 manga_data = manga4koma()
 
-for touch_name in TOUCH_NAME_ENG:
-    if touch_name != 'gyagu':
-        continue
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+torch.backends.cudnn.benchmark = True
+
+def get_data_loader(touch_name):
     test_data_set = manga_data.data[touch_name][
         (manga_data.data[touch_name].story_main_num >= 5) & (manga_data.data[touch_name].original)]
     train_valid_data_set = manga_data.data[touch_name][(manga_data.data[touch_name].story_main_num < 5)]
@@ -61,14 +61,18 @@ for touch_name in TOUCH_NAME_ENG:
     test = TensorDataset(X_test, y_test)
     test_loader = DataLoader(test, batch_size=1, shuffle=False)
 
+    return train_loader, valid_loader, test_loader
+
 class Manga4koma_Trainer():
-    def __init__(self, optimizer, criterion, train_loader, valid_loader):
+    def __init__(self, optimizer, criterion, train_loader, valid_loader, touch_name):
         self.EPOCHS = EPOCHS
         self.BATCH_SIZE = BATCH_SIZE
         self.optimizer = optimizer
         self.criterion = criterion
         self.train_loader = train_loader
         self.valid_loader = valid_loader
+
+        self.touch_name = touch_name
 
         self.train_loss_history = []
         self.train_acc_history = []
@@ -82,17 +86,15 @@ class Manga4koma_Trainer():
         self.reset_count()
 
     def manga4koma_train(self):
-        touch_name = 'gyagu'
-        print(touch_name + ": train start")
         for epoch in range(EPOCHS):
             # === Train ===
-
+            time_start = time.time()
             self.reset_count()
 
             for x_train, y_train in self.train_loader:
 
-                x_train = Variable(x_train)
-                y_train = Variable(y_train)
+                x_train = Variable(x_train).to(device)
+                y_train = Variable(y_train).to(device)
 
                 self.optimizer.zero_grad()
 
@@ -123,8 +125,8 @@ class Manga4koma_Trainer():
             with torch.no_grad():
                 for x_valid, y_valid in self.valid_loader:
 
-                    x_valid = Variable(x_valid)
-                    y_valid = Variable(y_valid)
+                    x_valid = Variable(x_valid).to(device)
+                    y_valid = Variable(y_valid).to(device)
 
                     self.optimizer.zero_grad()
 
@@ -155,14 +157,16 @@ class Manga4koma_Trainer():
 
             if valid_f1 > self.valid_best_f1:
                 self.valid_best_f1 = valid_f1
-                nlp.save_torch_model(classifier, touch_name + '_4_29_classifier_')
+                nlp.save_torch_model(classifier, self.touch_name + '_4_29_classifier_')
                 print('\nbest score updated, Pytorch model was saved!! f1:{}\n'.format(self.valid_best_f1))
                 train_best_acc = train_acc
                 train_best_f1 = self.train_f1_history[-1]
                 val_best_acc = valid_acc
 
+            time_finish = time.time() - time_start
             print("====================================")
             print("EPOCH : {0} / {1}".format(epoch + 1, self.EPOCHS))
+            print("残り時間 : {0}".format(time_finish * (EPOCHS - epoch)))
             print("VAL_LOSS : {} \nVAL_ACCURACY : {}".format(valid_mean_loss, valid_acc))
 
         return self.valid_best_f1
@@ -177,44 +181,57 @@ class Manga4koma_Trainer():
         c_precision = self.c_mat[0][0] / (1e-09 + self.c_mat[0][0] + self.c_mat[0][1])
         c_recall = self.c_mat[0][0] / (1e-09 + self.c_mat[0][0] + self.c_mat[1][0])
         c_f1 = (2 * c_recall * c_precision) / (1e-09 + c_recall + c_precision)
-        if f1_mode == 0:
-            return c_f1
-        nc_precision = self.c_mat[1][1] / (1e-09 + self.c_mat[1][1] + self.c_mat[1][0])
-        nc_recall = self.c_mat[1][1] / (1e-09 + self.c_mat[1][1] + self.c_mat[0][1])
-        nc_f1 = (2 * nc_recall * nc_precision) / (1e-09 + nc_recall + nc_precision)
-        if f1_mode == 1:
-            return nc_f1
+        return c_f1
+        #if f1_mode == 0:
+        #    return c_f1
+        #nc_precision = self.c_mat[1][1] / (1e-09 + self.c_mat[1][1] + self.c_mat[1][0])
+        #nc_recall = self.c_mat[1][1] / (1e-09 + self.c_mat[1][1] + self.c_mat[0][1])
+        #nc_f1 = (2 * nc_recall * nc_precision) / (1e-09 + nc_recall + nc_precision)
+        #if f1_mode == 1:
+        #    return nc_f1
 
-        if f1_mode == 2:
-            return (c_f1 + nc_f1) / 2
+        #if f1_mode == 2:
+        #    return (c_f1 + nc_f1) / 2
 
 
+def objective_variable(train_loader, valid_loader, touch_name):
 
-def objective(trial):
-    lr = trial.suggest_loguniform('lr', 1e-6, 1e-1)
-    optimizer = torch.optim.Adam(chain(bert_model.parameters(), classifier.parameters()), lr=lr)
-    trainer = Manga4koma_Trainer(optimizer, criterion, train_loader, valid_loader)
-    best_valid_f1 = trainer.manga4koma_train()
-    error = 1 - best_valid_f1
-    return error
+    def objective(trial):
+        lr = trial.suggest_loguniform('lr', 1e-6, 1e-3)
+        optimizer = torch.optim.Adam(chain(bert_model.parameters(), classifier.parameters()), lr=lr)
+        print("suggest lr = {}".format(lr))
+        trainer = Manga4koma_Trainer(optimizer, criterion, train_loader, valid_loader, touch_name)
+        best_valid_f1 = trainer.manga4koma_train()
+        error = 1 - best_valid_f1
+        return error
+
+    return objective
 
 
 
 def main():
-    print("experience start")
-    study = optuna.create_study()
-    study.optimize(objective, n_trials=100, timeout=600)
+    bert_model.to(device)
+    classifier.to(device)
+    print("experience start device:{}".format(device))
 
-    print('Number of finished trials: {}'.format(len(study.trials)))
+    for touch_name in TOUCH_NAME_ENG:
+        if touch_name != 'gyagu':
+            continue
+        print("touch: {}".format(touch_name))
+        train_loader, valid_loader, test_loader = get_data_loader(touch_name)
+        study = optuna.create_study()
+        study.optimize(objective_variable(train_loader, valid_loader, touch_name), n_trials=10)
 
-    print('Best trial:')
-    trial = study.best_trial
+        print('Number of finished trials: {}'.format(len(study.trials)))
 
-    print('  Value: {}'.format(trial.value))
+        print('Best trial:')
+        trial = study.best_trial
 
-    print('  Params: ')
-    for key, value in trial.params.items():
-        print('    {}: {}'.format(key, value))
+        print('  Value: {}'.format(trial.value))
+
+        print('  Params: ')
+        for key, value in trial.params.items():
+            print('    {}: {}'.format(key, value))
 
 if __name__ == '__main__':
     main()
