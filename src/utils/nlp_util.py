@@ -211,7 +211,7 @@ def load_d2v_model(model_name):
 
 def train_torch_net(model, train_loader, model_name, retrain=False):
     # モデルのセーブパス
-    save_path = 'model/' + model_name + '.pkl'
+    save_path = '../../model/' + model_name + '.pkl'
 
     if os.path.exists(save_path) and retrain is not True:
         m = load_torch_model(model_name)
@@ -280,11 +280,11 @@ def eval_torch_net(model, model_name, test_loader):
 
 
 def save_torch_model(model, model_name):
-    with open('model/' + model_name + '.pkl', 'wb') as f:
+    with open('../../model/' + model_name + '.pkl', 'wb') as f:
         cloudpickle.dump(model, f)
 
 
 def load_torch_model(model_name):
-    with open('model/' + model_name + '.pkl', 'rb') as f:
+    with open('../../model/' + model_name + '.pkl', 'rb') as f:
         model = cloudpickle.load(f)
     return model
