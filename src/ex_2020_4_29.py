@@ -1,27 +1,35 @@
-from utils import nlp_util
+# coding: utf-8
 from manga4koma import manga4koma
 from my_network.pytorch_mlp import ClassificationNet
 import torch
-from transformers import BertTokenizer, BertForMaskedLM, BertConfig, BertModel
+from transformers import BertConfig, BertModel
 import time
+import pandas as pd
 from sklearn.model_selection import train_test_split
 from torch.autograd import Variable
 import optuna
 from itertools import chain
+from sklearn.metrics import classification_report, accuracy_score
 import numpy as np
 from utils import nlp_util as nlp
+from utils.visualizer import Visualizer
 from torch.utils.data import TensorDataset
 from torch.utils.data import DataLoader
 
 TOUCH_NAME_ENG = ["gyagu", "shoujo", "shounen", "seinen", "moe"]
-EPOCHS = 30 # エポック数
-BATCH_SIZE = 128 # バッチサイズ
+EPOCHS = 20 # エポック数
+BATCH_SIZE = 32 # バッチサイズ
+
+manga_data = manga4koma()
+
 config = BertConfig.from_json_file('../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/config.json')
 
 bert_model = BertModel.from_pretrained('../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/pytorch_model.bin', config=config)
 classifier = ClassificationNet()
+
 criterion = torch.nn.CrossEntropyLoss()
-manga_data = manga4koma()
+
+w = None
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 torch.backends.cudnn.benchmark = True
@@ -61,10 +69,19 @@ def get_data_loader(touch_name):
     test = TensorDataset(X_test, y_test)
     test_loader = DataLoader(test, batch_size=1, shuffle=False)
 
-    return train_loader, valid_loader, test_loader
+    # === クラスの重み(必要であれば) ===
+    k_num = len(train_data_set[(train_data_set.emotion == '喜楽')])
+    other_num = len(train_data_set[(train_data_set.emotion != '喜楽')])
+    kiraku = other_num / (1e-09 + k_num + other_num)
+    others = k_num / (1e-09 + other_num + other_num)
+    w = torch.tensor([kiraku, others]).float()
+
+    criterion = torch.nn.CrossEntropyLoss(weight=w)
+
+    return train_loader, valid_loader, test_loader, test_data_set
 
 class Manga4koma_Trainer():
-    def __init__(self, optimizer, criterion, train_loader, valid_loader, touch_name):
+    def __init__(self, optimizer, criterion, train_loader, valid_loader, touch_name, is_study=False):
         self.EPOCHS = EPOCHS
         self.BATCH_SIZE = BATCH_SIZE
         self.optimizer = optimizer
@@ -74,18 +91,29 @@ class Manga4koma_Trainer():
 
         self.touch_name = touch_name
 
+        self.is_study = is_study
+
         self.train_loss_history = []
         self.train_acc_history = []
         self.train_f1_history = []
         self.valid_loss_history = []
         self.valid_acc_history = []
         self.valid_f1_history = []
-        self.valid_best_acc = 0
-        self.valid_best_f1 = 0
+        self.valid_best_acc = -1
+        self.valid_best_f1 = -1
+
+        self.log_path = './result_' + self.touch_name + '.txt'
 
         self.reset_count()
+        global log_f
+
+    def manga4koma_train_sequencial(self):
+        pass
 
     def manga4koma_train(self):
+        if self.is_study == False:
+            log_f = open(self.log_path, 'w', encoding='utf-8')
+            print("class weight : {}".format(w), file=log_f)
         for epoch in range(EPOCHS):
             # === Train ===
             time_start = time.time()
@@ -157,11 +185,13 @@ class Manga4koma_Trainer():
 
             if valid_f1 > self.valid_best_f1:
                 self.valid_best_f1 = valid_f1
-                nlp.save_torch_model(classifier, self.touch_name + '_4_29_classifier_')
-                print('\nbest score updated, Pytorch model was saved!! f1:{}\n'.format(self.valid_best_f1))
                 train_best_acc = train_acc
                 train_best_f1 = self.train_f1_history[-1]
                 val_best_acc = valid_acc
+
+                if self.is_study == False:
+                    self.save_model()
+
 
             time_finish = time.time() - time_start
             print("====================================")
@@ -169,7 +199,78 @@ class Manga4koma_Trainer():
             print("残り時間 : {0}".format(time_finish * (EPOCHS - epoch)))
             print("VAL_LOSS : {} \nVAL_ACCURACY : {}".format(valid_mean_loss, valid_acc))
 
+            if self.is_study == False:
+                print("EPOCH : {0} / {1}".format(epoch + 1, self.EPOCHS), file=log_f)
+                print("VAL_LOSS : {} \nVAL_ACCURACY : {}\nVAL_F1 : {}\n".format(valid_mean_loss, valid_acc, valid_f1), file=log_f)
+
+        if self.is_study == False:
+            v = Visualizer(self.touch_name, self.train_loss_history, self.train_acc_history, self.train_f1_history,
+                           self.valid_loss_history, self.valid_acc_history, self.valid_f1_history)
+            v.visualize()
+
+            log_f.close()
+
         return self.valid_best_f1
+
+    def manga4koma_test(self, test_loader, original_test):
+        log_f = open(self.log_path, 'w', encoding='utf-8')
+        self.load_model()
+        self.reset_count()
+        test_index = 0
+        label = []
+        pred = []
+        with torch.no_grad():
+            for x_test, y_test in test_loader:
+                x_test = Variable(x_test).to(device)
+                y_test = Variable(y_test).to(device)
+
+                self.optimizer.zero_grad()
+
+                out = bert_model(x_test)[0][:, 0, :]
+                y_pred = classifier(out)
+
+                _, predicted = torch.max(y_pred.data, 1)
+
+                self.correct += (predicted == torch.max(y_test.data, 1)[1]).sum().item()
+
+                self.total += y_test.size(0)
+
+                if (predicted[0] != torch.max(y_test.data, 1)[1][0]):
+                    print("# {}話-{}".format(original_test.iloc[test_index].story_main_num,
+                                            original_test.iloc[test_index].story_sub_num),
+                          file=log_f)
+                    print("# 文: {0}\n正解 : {1} , 予測 : {2} / 元クラス : {3}".format(original_test.iloc[test_index].what,
+                                                                              torch.max(y_test.data, 1)[1][0],
+                                                                              predicted[0],
+                                                                              original_test.iloc[test_index].emotion),
+                          file=log_f)
+
+                pred.append(predicted[0])
+                label.append(torch.max(y_test.data, 1)[1][0])
+
+                test_index = min(len(original_test) - 1, test_index + 1)
+
+            print("------------------------test acc------------------------", file=log_f)
+            print("Test Acc : %.4f" % (self.correct / self.total), file=log_f)
+            print("correct: {0}, total: {1}".format(self.correct, self.total), file=log_f)
+            print("------------------------------------------------", file=log_f)
+        d = classification_report([la.tolist() for la in label], [pr.tolist() for pr in pred],
+                                  target_names=['喜楽', 'その他'],
+                                  output_dict=True)
+        df = pd.DataFrame(d)
+        print(df, file=log_f)
+        log_f.close()
+
+    def save_model(self):
+        nlp.save_torch_model(classifier, self.touch_name + '_4_29_classifier_')
+        #BertModel.save_pretrained(bert_model, '../models/bert/My_Japanese_transformers/')
+        torch.save(bert_model.state_dict(), '../models/bert/My_Japanese_transformers/' + self.touch_name + '_model.bin')
+        print('\nbest score updated, Pytorch model was saved!! f1:{}\n'.format(self.valid_best_f1))
+
+    def load_model(self):
+        nlp.load_torch_model(self.touch_name + '_4_29_classifier_')
+        load_weights = torch.load('../models/bert/My_Japanese_transformers/' + self.touch_name + '_model.bin', map_location={'cuda:0': 'cpu'})
+        bert_model.load_state_dict(load_weights)
 
     def reset_count(self):
         self.total_loss = 0
@@ -194,20 +295,18 @@ class Manga4koma_Trainer():
         #    return (c_f1 + nc_f1) / 2
 
 
-def objective_variable(train_loader, valid_loader, touch_name):
+def objective_variable(train_loader, valid_loader, touch_name, is_study):
 
     def objective(trial):
         lr = trial.suggest_loguniform('lr', 1e-6, 1e-3)
         optimizer = torch.optim.Adam(chain(bert_model.parameters(), classifier.parameters()), lr=lr)
         print("suggest lr = {}".format(lr))
-        trainer = Manga4koma_Trainer(optimizer, criterion, train_loader, valid_loader, touch_name)
+        trainer = Manga4koma_Trainer(optimizer, criterion, train_loader, valid_loader, touch_name, is_study)
         best_valid_f1 = trainer.manga4koma_train()
         error = 1 - best_valid_f1
         return error
 
     return objective
-
-
 
 def main():
     bert_model.to(device)
@@ -215,12 +314,10 @@ def main():
     print("experience start device:{}".format(device))
 
     for touch_name in TOUCH_NAME_ENG:
-        if touch_name != 'gyagu':
-            continue
         print("touch: {}".format(touch_name))
-        train_loader, valid_loader, test_loader = get_data_loader(touch_name)
+        train_loader, valid_loader, test_loader, test_data_set = get_data_loader(touch_name)
         study = optuna.create_study()
-        study.optimize(objective_variable(train_loader, valid_loader, touch_name), n_trials=10)
+        study.optimize(objective_variable(train_loader, valid_loader, touch_name, is_study=True), n_trials=5)
 
         print('Number of finished trials: {}'.format(len(study.trials)))
 
@@ -232,6 +329,11 @@ def main():
         print('  Params: ')
         for key, value in trial.params.items():
             print('    {}: {}'.format(key, value))
+
+        optimizer = torch.optim.Adam(chain(bert_model.parameters(), classifier.parameters()), lr=trial.params['lr'])
+        ex = Manga4koma_Trainer(optimizer, criterion, train_loader, valid_loader, touch_name, is_study=False)
+        ex.manga4koma_train()
+        ex.manga4koma_test(test_loader, test_data_set)
 
 if __name__ == '__main__':
     main()
