@@ -112,7 +112,7 @@ class manga4koma():
         self.data[touch_name] = new_data_set.reset_index(drop=True)
 
 
-#amanga4koma = manga4koma(to_zero_pad=False)
+#amanga4koma = manga4koma(to_zero_pad=True)
 #print(amanga4koma.data['gyagu'].what)
 #print(amanga4koma.data['gyagu'].tokenized)
 #print(amanga4koma.data['gyagu'].bert_tokenized)

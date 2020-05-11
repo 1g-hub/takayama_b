@@ -6,15 +6,15 @@ import time
 import datetime
 
 class Visualizer():
-    def __init__(self, touch_name, t_loss, t_acc, t_f1, v_loss, v_acc, v_f1):
+    def __init__(self, touch_name, history):
         self.today, self.path = self.get_today()
         self.touch_name = touch_name
-        self.t_loss = t_loss
-        self.t_acc = t_acc
-        self.t_f1 = t_f1
-        self.v_loss = v_loss
-        self.v_acc = v_acc
-        self.v_f1 = v_f1
+        self.t_loss = history['train']['loss']
+        self.t_acc = history['train']['acc']
+        self.t_f1 = history['train']['f1']
+        self.v_loss = history['valid']['loss']
+        self.v_acc = history['valid']['acc']
+        self.v_f1 = history['valid']['f1']
         self.make_dir()
     def get_today(self):
         today = datetime.datetime.now()  # 今日の日付を取得

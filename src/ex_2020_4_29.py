@@ -17,7 +17,7 @@ from torch.utils.data import TensorDataset
 from torch.utils.data import DataLoader
 
 TOUCH_NAME_ENG = ["gyagu", "shoujo", "shounen", "seinen", "moe"]
-EPOCHS = 20 # エポック数
+EPOCHS = 200 # エポック数
 BATCH_SIZE = 32 # バッチサイズ
 
 manga_data = manga4koma()
@@ -81,9 +81,9 @@ def get_data_loader(touch_name):
     return train_loader, valid_loader, test_loader, test_data_set
 
 class Manga4koma_Trainer():
-    def __init__(self, optimizer, criterion, train_loader, valid_loader, touch_name, is_study=False):
+    def __init__(self, optimizer, criterion, train_loader, valid_loader, touch_name, is_study=False, batch_size=8):
         self.EPOCHS = EPOCHS
-        self.BATCH_SIZE = BATCH_SIZE
+        self.BATCH_SIZE = batch_size
         self.optimizer = optimizer
         self.criterion = criterion
         self.train_loader = train_loader
