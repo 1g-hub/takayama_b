@@ -94,10 +94,9 @@ def get_data_loader(touch_name, batch_size):
     return train_loader, valid_loader, test_loader, test_data_set, w
 
 class Manga4koma_Experiment():
-    def __init__(self, net, touch_name, batch_size=16, epochs=200):
+    def __init__(self, touch_name, batch_size=16, epochs=200):
         self.epochs = epochs
         self.batch_size = batch_size
-        self.net = net
 
         self.train_loader, self.valid_loader, self.test_loader, self.test_data_set, self.w = get_data_loader(touch_name,
                                                                                                      self.batch_size)
@@ -108,8 +107,6 @@ class Manga4koma_Experiment():
         print("class w : {}".format(self.w))
 
         self.touch_name = touch_name
-
-        self.history = History()
 
         self.log_path = './result_' + self.touch_name + '.txt'
         self.new_model_path = '../models/bert/My_Japanese_transformers/' + self.touch_name + '_model.bin'
@@ -123,6 +120,10 @@ class Manga4koma_Experiment():
 
     def manga4koma_train(self, lr, is_study=False):
         self.is_study = is_study
+
+        self.history = History()
+        self.net = Net().to(device)
+
         self.optimizer = torch.optim.Adam(self.net.parameters(), lr=lr)
 
         if self.is_study == False:
@@ -206,6 +207,7 @@ class Manga4koma_Experiment():
 
     def manga4koma_test(self):
         log_f = open(self.log_path, 'a', encoding='utf-8')
+        self.net = Net().to(device)
         self.load_model()
         self.reset_count()
         test_index = 0
@@ -300,8 +302,8 @@ def main():
 
     for touch_name in TOUCH_NAME_ENG:
         print("touch: {}".format(touch_name))
-        net = Net().to(device)
-        ex = Manga4koma_Experiment(net=net, touch_name=touch_name, batch_size=16, epochs=200)
+
+        ex = Manga4koma_Experiment(touch_name=touch_name, batch_size=16, epochs=200)
 
         trial = ex.optuna_optimize()
 

@@ -1,0 +1,9 @@
+\BOOKMARK [1][-]{section.1}{あらすじ}{}% 1
+\BOOKMARK [1][-]{section.2}{進捗}{}% 2
+\BOOKMARK [1][-]{section.3}{BERT fine-tuning}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{実装の手直し}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{optuna 目的関数}{section.3}% 5
+\BOOKMARK [1][-]{section.4}{実験設定}{}% 6
+\BOOKMARK [1][-]{section.5}{結果}{}% 7
+\BOOKMARK [1][-]{section.6}{今後の実験予定}{}% 8
+\BOOKMARK [1][-]{section.7}{その他 課題}{}% 9

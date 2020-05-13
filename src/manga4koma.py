@@ -41,7 +41,7 @@ class manga4koma():
 
         for touch_name in self.TOUCH_NAME_ENG:
             self.data[touch_name] = pd.read_csv(
-                '../dataset/' + touch_name + '_augmentation.csv',
+                'dataset/' + touch_name + '_augmentation.csv',
                 index_col=0,
                 dtype={'original': bool},
                 usecols=lambda x: x is not 'index'
