@@ -1,5 +1,4 @@
 # coding: utf-8
-from manga4koma import manga4koma
 from utils.history import History
 from my_network.pytorch_mlp import ClassificationNet, MLP3Net
 import torch
@@ -15,34 +14,38 @@ from utils.visualizer import Visualizer
 from torch.utils.data import TensorDataset
 from torch.utils.data import DataLoader
 import torch.nn as nn
-from numba import jit
-
+from transformers import BertTokenizer
 # ========
 # GLOBAL 変数
-TOUCH_NAME_ENG = ["gyagu", "shoujo", "shounen", "seinen", "moe"]
-
-manga_data = manga4koma()
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 torch.backends.cudnn.benchmark = True
+torch.cuda.empty_cache()
+
+bert_tokenizer = BertTokenizer('../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/vocab.txt',
+                                   do_lower_case=False, do_basic_tokenize=False,
+                                   config='../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/tokenizer_config.json')
+
 
 # ========
-
+# 最終層のみのfine-tuning
 class Net(nn.Module):
     config = BertConfig.from_json_file('../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/config.json')
-    bert_premodel = BertModel.from_pretrained('../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/pytorch_model.bin',
-                                              config=config)
 
     def __init__(self):
         super(Net, self).__init__()
-        self.bert = self.bert_premodel
+        self.bert = BertModel.from_pretrained('../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/pytorch_model.bin',
+                                              config=self.config)
         self.classifier = MLP3Net(in_dim=768)
 
-    def save_params(self):
-        pass
+        # Bertの1〜11段目は更新せず、12段目とSequenceClassificationのLayerのみトレーニングする。
+        # 一旦全部のパラメータのrequires_gradをFalseで更新
+        for name, param in self.bert.named_parameters():
+            param.requires_grad = False
 
-    def load_params(self):
-        pass
+        # Bert encoderの最終レイヤのrequires_gradをTrueで更新
+        for name, param in self.bert.encoder.layer[-1].named_parameters():
+            param.requires_grad = True
 
     def forward(self, x):
         bert_out = self.bert(x)[0] # 最後の隠れ層
@@ -50,10 +53,51 @@ class Net(nn.Module):
         return out
 
 
-def get_data_loader(touch_name, batch_size):
-    test_data_set = manga_data.data[touch_name][
-        (manga_data.data[touch_name].story_main_num >= 5) & (manga_data.data[touch_name].original)]
-    train_valid_data_set = manga_data.data[touch_name][(manga_data.data[touch_name].story_main_num < 5)]
+def get_data_loader(batch_size):
+    train_valid_data_set = pd.read_csv(
+        '../dataset/train_develop_ja.csv',
+        index_col=0
+    )
+
+    train_valid_data_set.wakati = [w.split(' ') for w in train_valid_data_set.wakati.tolist()]
+
+    i = 0
+    for index, row in train_valid_data_set.iterrows():
+        if len(row.wakati) > 510:
+            train_valid_data_set = train_valid_data_set.drop(i)
+
+        i += 1
+
+    s = train_valid_data_set.wakati.tolist()
+    train_valid_data_set['bert_tokenized'] = [b for b in bert_tokenizer.batch_encode_plus(s, pad_to_max_length=True,
+                                                                                           add_special_tokens=True,
+                                                                                           is_pretokenized=True)['input_ids']]
+
+
+    for index, row in train_valid_data_set.iterrows():
+        if len(row['bert_tokenized']) > 512:
+            print("WWWWWWWWW")
+
+
+    test_data_set = pd.read_csv(
+        '../dataset/test_develop_ja.csv',
+        index_col=0
+    )
+    test_data_set.wakati = [w.split(' ') for w in test_data_set.wakati.tolist()]
+
+    i = 0
+    for index, row in test_data_set.iterrows():
+        if len(row.wakati) > 510:
+            test_data_set = test_data_set.drop(i)
+
+        i += 1
+
+
+    s = test_data_set.wakati.tolist()
+    test_data_set['bert_tokenized'] = [b for b in bert_tokenizer.batch_encode_plus(s, pad_to_max_length=True,
+                                                                                          add_special_tokens=True,
+                                                                                          is_pretokenized=True)['input_ids']]
+    del s
     # train, valid に分ける
     train_data_set, valid_data_set = train_test_split(
         train_valid_data_set,
@@ -61,18 +105,18 @@ def get_data_loader(touch_name, batch_size):
         random_state=25,
         shuffle=True
     )
-    y_train = np.identity(2)[[0 if emo == '喜楽' else 1 for emo in train_data_set.emotion]]
-    y_valid = np.identity(2)[[0 if emo == '喜楽' else 1 for emo in valid_data_set.emotion]]
-    y_test = np.identity(2)[[0 if emo == '喜楽' else 1 for emo in test_data_set.emotion]]
+    y_train = np.identity(2)[[train_data_set.target]]
+    y_valid = np.identity(2)[[valid_data_set.target]]
+    y_test = np.identity(2)[[test_data_set.target]]
 
     # Tensor型へ (labelのデータ型はCrossEntrotyLoss:long ,others:float)
-    X_train = torch.tensor(train_data_set.bert_tokenized.values.tolist())
+    X_train = torch.tensor(train_data_set['bert_tokenized'].values.tolist())
     y_train = torch.tensor(y_train, requires_grad=True).long()
 
-    X_valid = torch.tensor(valid_data_set.bert_tokenized.values.tolist())
+    X_valid = torch.tensor(valid_data_set['bert_tokenized'].values.tolist())
     y_valid = torch.tensor(y_valid, requires_grad=True).long()
 
-    X_test = torch.tensor(test_data_set.bert_tokenized.values.tolist())
+    X_test = torch.tensor(test_data_set['bert_tokenized'].values.tolist())
     y_test = torch.tensor(y_test, requires_grad=True).long()
 
     # 各DataLoaderの準備
@@ -85,34 +129,26 @@ def get_data_loader(touch_name, batch_size):
     test = TensorDataset(X_test, y_test)
     test_loader = DataLoader(test, batch_size=1, shuffle=False)
 
-    # === クラスの重み(必要であれば) ===
-    k_num = len(train_data_set[(train_data_set.emotion == '喜楽')])
-    other_num = len(train_data_set[(train_data_set.emotion != '喜楽')])
-    kiraku = other_num / (1e-09 + k_num + other_num)
-    others = k_num / (1e-09 + other_num + other_num)
-    w = torch.tensor([kiraku, others]).float()
+    del X_train, X_valid, X_test, y_train, y_valid, y_test
 
-    return train_loader, valid_loader, test_loader, test_data_set, w
+    return train_loader, valid_loader, test_loader, test_data_set
 
 class Manga4koma_Experiment():
-    def __init__(self, touch_name, batch_size=16, epochs=200):
+    def __init__(self, batch_size=16, epochs=50):
         self.epochs = epochs
         self.batch_size = batch_size
 
-        self.train_loader, self.valid_loader, self.test_loader, self.test_data_set, self.w = get_data_loader(touch_name,
-                                                                                                     self.batch_size)
+        self.train_loader, self.valid_loader, self.test_loader, self.test_data_set = get_data_loader(self.batch_size)
 
         self.data_loaders = {'train': self.train_loader, 'valid': self.valid_loader}
 
-        self.criterion = torch.nn.CrossEntropyLoss(weight=self.w.to(device))
-        print("class w : {}".format(self.w))
+        self.criterion = torch.nn.CrossEntropyLoss()
 
-        self.touch_name = touch_name
-
-        self.log_path = './result_' + self.touch_name + '_add_mlp.txt'
-        self.new_model_path = '../models/bert/My_Japanese_transformers/' + self.touch_name + '_model_add_mlp.bin'
-
+        self.log_path = './result_okada_sensei_last_layer_2.txt'
+        self.new_model_path = '../models/bert/My_Japanese_transformers/okada_sensei_last_layer_2.bin'
+        self.touch_name = 'okada_sensei'
         self.reset_count()
+
 
         global log_f
 
@@ -129,7 +165,7 @@ class Manga4koma_Experiment():
 
         if self.is_study == False:
             log_f = open(self.log_path, 'a', encoding='utf-8')
-            print("class weight : {}".format(self.w), file=log_f)
+            print("best:lr {}".format(lr), file=log_f)
         for epoch in range(self.epochs):
             time_start = time.time()
 
@@ -171,18 +207,22 @@ class Manga4koma_Experiment():
                 acc = (self.correct / self.total)
                 f1 = self.cal_F1()
 
-                if (phase == 'valid') & (self.history.check(phase, f1)) & (self.is_study is False):
-                    self.save_model()
 
                 # Historyに追加
                 self.history.update(phase, mean_loss, acc, f1)
 
+                if (phase == 'valid') & (self.history.enable_save) & (self.is_study is False):
+                    self.save_model()
+
                 # Validation 結果
                 if phase == 'valid':
                     print("---Validation---")
-                    print(self.c_mat)
-                    print("Val Acc : %.4f" % acc)
-                    print("Val F1: {0}".format(f1))
+                else:
+                    print("---TRAIN---")
+                print(self.c_mat)
+                print("Acc : %.4f" % acc)
+                print("F1: {0}".format(f1))
+
 
 
             time_finish = time.time() - time_start
@@ -204,7 +244,7 @@ class Manga4koma_Experiment():
 
             log_f.close()
 
-        return self.history.best['valid']['f1']
+        return self.history.best['valid']['acc']
 
     def manga4koma_test(self):
         log_f = open(self.log_path, 'a', encoding='utf-8')
@@ -230,16 +270,6 @@ class Manga4koma_Experiment():
 
                 self.total += y_test.size(0)
 
-                if (predicted[0] != torch.max(y_test.data, 1)[1][0]):
-                    print("# {}話-{}".format(self.test_data_set.iloc[test_index].story_main_num,
-                                            self.test_data_set.iloc[test_index].story_sub_num),
-                          file=log_f)
-                    print("# 文: {0}\n正解 : {1} , 予測 : {2} / 元クラス : {3}".format(self.test_data_set.iloc[test_index].what,
-                                                                              torch.max(y_test.data, 1)[1][0],
-                                                                              predicted[0],
-                                                                              self.test_data_set.iloc[test_index].emotion),
-                          file=log_f)
-
                 pred.append(predicted[0])
                 label.append(torch.max(y_test.data, 1)[1][0])
                 # 2 x 2 matrix 更新
@@ -253,7 +283,7 @@ class Manga4koma_Experiment():
             print("correct: {0}, total: {1}".format(self.correct, self.total), file=log_f)
             print("------------------------------------------------", file=log_f)
         d = classification_report([la.tolist() for la in label], [pr.tolist() for pr in pred],
-                                  target_names=['喜楽', 'その他'],
+                                  target_names=['0', '1'],
                                   output_dict=True)
         df = pd.DataFrame(d)
         print(df, file=log_f)
@@ -262,7 +292,7 @@ class Manga4koma_Experiment():
 
     def save_model(self):
         torch.save(self.net.state_dict(), self.new_model_path)
-        print('\nbest score updated, Pytorch model was saved!! f1:{}\n'.format(self.history.best['valid']['f1']))
+        print('\nbest score updated, Pytorch model was saved!! acc:{}\n'.format(self.history.best['valid']['acc']))
 
     def load_model(self):
         load_weights = torch.load(self.new_model_path,
@@ -285,37 +315,34 @@ class Manga4koma_Experiment():
     def objective_variable(self):
 
         def objective(trial):
-            lr = trial.suggest_loguniform('lr', 1e-7, 1e-4)
+            lr = trial.suggest_loguniform('lr', 1e-6, 1e-5)
             print("suggest lr = {}".format(lr))
-            best_valid_f1 = self.manga4koma_train(lr=lr, is_study=True)
-            error = 1 - best_valid_f1
+            best_valid_acc = self.manga4koma_train(lr=lr, is_study=True)
+            error = 1 - best_valid_acc
             return error
 
         return objective
 
     def optuna_optimize(self):
         study = optuna.create_study()
-        study.optimize(self.objective_variable(), n_trials=5)
+        study.optimize(self.objective_variable(), n_trials=2)
         return study.best_trial
 
 def main():
     print("experience start device:{}".format(device))
 
-    for touch_name in TOUCH_NAME_ENG:
-        print("touch: {}".format(touch_name))
+    ex = Manga4koma_Experiment(batch_size=16, epochs=100)
 
-        ex = Manga4koma_Experiment(touch_name=touch_name, batch_size=16, epochs=200)
+    trial = ex.optuna_optimize()
 
-        trial = ex.optuna_optimize()
+    print('Best trial:')
+    print('  Value: {}'.format(trial.value))
+    print('  Params: ')
+    for key, value in trial.params.items():
+        print('    {}: {}'.format(key, value))
 
-        print('Best trial:')
-        print('  Value: {}'.format(trial.value))
-        print('  Params: ')
-        for key, value in trial.params.items():
-            print('    {}: {}'.format(key, value))
-
-        ex.manga4koma_train(lr=trial.params['lr'], is_study=False)
-        ex.manga4koma_test()
+    ex.manga4koma_train(lr=trial.params['lr'], is_study=False)
+    ex.manga4koma_test()
 
 if __name__ == '__main__':
     main()

@@ -27,22 +27,24 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 torch.backends.cudnn.benchmark = True
 
 # ========
-
+# 最終層のみのfine-tuning
 class Net(nn.Module):
     config = BertConfig.from_json_file('../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/config.json')
-    bert_premodel = BertModel.from_pretrained('../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/pytorch_model.bin',
-                                              config=config)
 
     def __init__(self):
         super(Net, self).__init__()
-        self.bert = self.bert_premodel
+        self.bert = BertModel.from_pretrained('../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/pytorch_model.bin',
+                                              config=self.config)
         self.classifier = MLP3Net(in_dim=768)
 
-    def save_params(self):
-        pass
+        # Bertの1〜11段目は更新せず、12段目とSequenceClassificationのLayerのみトレーニングする。
+        # 一旦全部のパラメータのrequires_gradをFalseで更新
+        for name, param in self.bert.named_parameters():
+            param.requires_grad = False
 
-    def load_params(self):
-        pass
+        # Bert encoderの最終レイヤのrequires_gradをTrueで更新
+        #for name, param in self.bert.encoder.layer[-1].named_parameters():
+        #    param.requires_grad = True
 
     def forward(self, x):
         bert_out = self.bert(x)[0] # 最後の隠れ層
@@ -109,8 +111,8 @@ class Manga4koma_Experiment():
 
         self.touch_name = touch_name
 
-        self.log_path = './result_' + self.touch_name + '_add_mlp.txt'
-        self.new_model_path = '../models/bert/My_Japanese_transformers/' + self.touch_name + '_model_add_mlp.bin'
+        self.log_path = './result_' + self.touch_name + '_bert_fixed.txt'
+        self.new_model_path = '../models/bert/My_Japanese_transformers/' + self.touch_name + '_bert_fixed.bin'
 
         self.reset_count()
 
@@ -171,11 +173,12 @@ class Manga4koma_Experiment():
                 acc = (self.correct / self.total)
                 f1 = self.cal_F1()
 
-                if (phase == 'valid') & (self.history.check(phase, f1)) & (self.is_study is False):
-                    self.save_model()
 
                 # Historyに追加
                 self.history.update(phase, mean_loss, acc, f1)
+
+                if (phase == 'valid') & (self.history.enable_save) & (self.is_study is False):
+                    self.save_model()
 
                 # Validation 結果
                 if phase == 'valid':
