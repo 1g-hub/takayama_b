@@ -1,0 +1,9 @@
+\begin{thebibliography}{1}
+
+\bibitem{BERT}
+Chang M.-W. Lee~K. Devlin, J. and K~Toutanova.
+\newblock Bert: Pre-training of deep bidirectional transformers for language
+  understanding.
+\newblock {\em arXiv:1810.04805}, 2018.
+
+\end{thebibliography}

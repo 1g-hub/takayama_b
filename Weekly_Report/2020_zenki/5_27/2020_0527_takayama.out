@@ -1,0 +1,9 @@
+\BOOKMARK [1][-]{section.1}{あらすじ}{}% 1
+\BOOKMARK [1][-]{section.2}{進捗}{}% 2
+\BOOKMARK [1][-]{section.3}{正例ラベルを変えた時の感情推定}{}% 3
+\BOOKMARK [1][-]{section.4}{データセットに含まれる未知語率}{}% 4
+\BOOKMARK [2][-]{subsection.4.1}{未知語 \(ギャグタッチオリジナル\)}{section.4}% 5
+\BOOKMARK [2][-]{subsection.4.2}{問題点}{section.4}% 6
+\BOOKMARK [1][-]{section.5}{Data Augmentation 改善案}{}% 7
+\BOOKMARK [1][-]{section.6}{余談}{}% 8
+\BOOKMARK [1][-]{section.7}{今後の実験予定}{}% 9

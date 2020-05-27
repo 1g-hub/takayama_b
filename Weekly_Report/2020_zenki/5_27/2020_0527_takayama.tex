@@ -1,0 +1,173 @@
+%\documentstyle[epsf,twocolumn]{jarticle}       %LaTeX2.09仕様
+\documentclass[twocolumn]{jarticle}     %pLaTeX2e仕様
+
+%\usepackage[backend=bibtex, style=numeric]{biblatex}
+%\addbibresource{sankou.bib}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%  基本 バージョン
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\topmargin}{-45pt}
+%\setlength{\oddsidemargin}{0cm}
+\setlength{\oddsidemargin}{-7.5mm}
+%\setlength{\evensidemargin}{0cm}
+\setlength{\textheight}{24.1cm}
+%setlength{\textheight}{25cm}
+\setlength{\textwidth}{17.4cm}
+%\setlength{\textwidth}{172mm}
+\setlength{\columnsep}{11mm}
+
+\setlength{\intextsep}{8pt}
+\setlength{\textfloatsep}{8pt}
+\setlength{\floatsep}{1pt}
+
+\kanjiskip=.07zw plus.5pt minus.5pt
+
+
+
+%【節がかわるごとに(1.1)(1.2) …(2.1)(2.2)と数式番号をつけるとき】
+%\makeatletter
+%\renewcommand{\theequation}{%
+%\thesection.\arabic{equation}} %\@addtoreset{equation}{section}
+%\makeatother
+
+%\renewcommand{\arraystretch}{0.95} 行間の設定
+
+\usepackage[dvipdfmx]{graphicx}   %pLaTeX2e仕様(\documentstyle ->\documentclass)
+\usepackage{scalefnt}
+\usepackage{bm}
+\usepackage{here}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[subrefformat=parens]{subcaption}
+\captionsetup{compatibility=false}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{comment}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{nidanfloat}
+\usepackage[dvipdfmx]{hyperref}
+
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+
+\begin{document}
+
+\twocolumn[
+\noindent
+\hspace{1em}
+
+令和2年5月27日(水) ゼミ資料
+\hfill
+\ \ B4 高山 裕成
+
+\vspace{2mm}
+\hrule
+\begin{center}
+{\Large  進捗報告}
+\end{center}
+\hrule
+\vspace{3mm}
+]
+
+\section{あらすじ}
+BERT\cite{BERT} pretrained モデルでの未知語数が分かると Data Augmentation 改善案が浮かぶかもしれない.
+
+% \footnotesize
+\section{進捗}
+
+\begin{itemize}
+  \item 正例ラベルを変えた時の感情推定
+  \item オリジナル ・ 拡張後における未知語数
+\end{itemize}
+
+\section{正例ラベルを変えた時の感情推定}
+
+これまでの実験では正例ラベルとして喜楽としていたが, 驚愕・ニュートラルに変えて先週と同様の実験を行った. 実験の結果を表\ref{tab:result} に示す. 特に, 正例ラベルを驚愕とした場合は正例とまったく判断されなかった. これは, 訓練時点でラベル比が極端に正例が少なく, そもそも特徴を学習できていなかった可能性が高い.
+
+
+\begin{table*}[!b]
+\begin{center}
+\caption{result}
+\scalebox{0.65}{
+\begin{tabular}{lllllllllllllllll|lll}
+\hline
+\multicolumn{2}{c}{\multirow{2}{*}{model}} & \multicolumn{3}{c}{ギャグ} & \multicolumn{3}{c}{少女漫画} & \multicolumn{3}{c}{少年漫画} & \multicolumn{3}{c}{青年漫画} & \multicolumn{3}{c|}{萌え系} & \multicolumn{3}{c}{5タッチ平均} \\
+\multicolumn{2}{c}{} & \multicolumn{1}{c}{Acc} & \multicolumn{1}{c}{Recall} & \multicolumn{1}{c}{F1} & \multicolumn{1}{c}{Acc} & \multicolumn{1}{c}{Recall} & \multicolumn{1}{c}{F1} & \multicolumn{1}{c}{Acc} & \multicolumn{1}{c}{Recall} & \multicolumn{1}{c}{F1} & \multicolumn{1}{c}{Acc} & \multicolumn{1}{c}{Recall} & \multicolumn{1}{c}{F1} & \multicolumn{1}{c}{Acc} & \multicolumn{1}{c}{Recall} & \multicolumn{1}{c|}{F1} & \multicolumn{1}{c}{Acc} & \multicolumn{1}{c}{Recall} & \multicolumn{1}{c}{F1} \\ \hline
+驚愕 & BERT (Last Layer) & 0.758 & 0.000 & 0.000 & 0.806 & 0.000 & 0.000 & {\ul 0.859} & 0.000 & 0.000 & 0.662 & 0.647 & {\ul 0.500} & {\ul 0.719} & 0.000 & 0.000 & {\ul 0.761} & 0.129 & 0.100 \\
+ニュートラル & BERT (Last Layer) & 0.379 & 0.400 & 0.281 & {\ul 0.881} & 0.000 & 0.000 & 0.578 & 0.788 & {\ul 0.658} & 0.677 & 0.200 & 0.276 & 0.625 & 0.267 & 0.250 & 0.628 & 0.331 & 0.293 \\ \hline
+喜楽 & BERT (Last Layer) & {\ul 0.833} & 0.400 & {\ul 0.421} & 0.567 & 0.579 & {\ul 0.603} & 0.797 & 0.083 & 0.133 & {\ul 0.800} & 0.357 & 0.435 & 0.656 & 0.455 & {\ul 0.476} & 0.731 & 0.375 & {\ul 0.414} \\ \hline
+\multicolumn{2}{l}{ベースライン} & \multicolumn{1}{c}{0.85} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0.43} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0.81} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0.78} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0.66} & \multicolumn{1}{c}{0} & \multicolumn{1}{c|}{0} & \multicolumn{1}{c}{0.71} & \multicolumn{1}{c}{0} & \multicolumn{1}{c}{0}
+\end{tabular}
+\label{tab:result}
+}
+\end{center}
+\end{table*}
+
+\section{データセットに含まれる未知語率}
+
+BERT の事前学習済モデル\footnote{http://nlp.ist.i.kyoto-u.ac.jp}のボキャブラリーに含まれているかどうかを各タッチについて拡張前後で算出した. その結果が表\ref{tab:unknown} である.
+
+\begin{table}[hb]
+\begin{center}
+\caption{データセットに含まれる未知語率}
+\scalebox{0.8}{
+\begin{tabular}{llccccc}
+\hline
+\multicolumn{2}{c}{\multirow{2}{*}{}} & \multirow{2}{*}{ギャグ} & \multirow{2}{*}{少女} & \multirow{2}{*}{少年} & \multirow{2}{*}{青年} & \multirow{2}{*}{萌え系} \\
+\multicolumn{2}{c}{} &  &  &  &  &  \\ \hline
+拡張前 & 総単語数 & 270 & 289 & 274 & 276 & 276 \\
+ & 未知語率 & 0.215 & 0.239 & 0.208 & 0.210 & 0.203 \\ \hline
+拡張後 & 総単語数 & 3030 & 3209 & 3089 & 3154 & 3154 \\
+ & 未知語率 & 0.679 & 0.687 & 0.679 & 0.680 & 0.680
+\end{tabular}
+\label{tab:unknown}
+}
+\end{center}
+\end{table}
+
+\subsection{未知語 (ギャグタッチオリジナル)}
+\begin{verbatim}
+  'んだろう', 'ございます', '内緒',
+  'クールだ', 'ね〜', '顔色',
+  '大丈夫です', '昨晩', '手伝える',
+  'じゃあ', '添削', 'なあ', 'あー',
+  'どうぞ', 'キャー', 'ベタ',
+  'なんで', 'おかず',
+  'はんぶん', 'こし', 'よっか',
+  'ジャーン', 'パフェ', 'ました〜',
+  '器用だ', 'いろんな', '飽き',
+  '独り占め', '頑張る', 'よそ',
+  '人違い', '恥ずかしい',
+  'ただいま〜', 'かえり'
+\end{verbatim}
+
+\subsection{問題点}
+今まで, Juman++ を用いてトークナイズすればいいと思って BERT への入力にそのまま使っていたが,
+もしかしたら更に BERT の トークナイザーを用いてサブワードに分けないといけなかったかもしれないので, やり直してきます.
+といえども, 未知語率は相当高い.
+
+\section{Data Augmentation 改善案}
+\begin{itemize}
+  \item 何らかの指標を用いて使用する拡張後のデータを変化させて学習させる.
+  \item 正規化辞書(表記ゆれ対策)を作成する.
+  \item 意味解析においては Juman は有効だがこのデータセットに対して有効かは疑問. unidic という現代語話し言葉コーパスなども使ってみる.
+\end{itemize}
+
+\section{余談}
+先週末から, 今使っているノートパソコンの動作がとても不安定になってしまったので昨日, 買い換えました.
+なので, USAGI SERV の GPU の警告回りに気を配る余裕がなかったです.
+
+\section{今後の実験予定}
+\begin{itemize}
+  \item Data Augmentation の手法の改善案の模索.
+  \item 直前 n - 1 文 を考慮した n 文を入力して末尾入力の感情推定をする.
+\end{itemize}
+
+\bibliographystyle{unsrt}
+\bibliography{sankou}
+
+
+\end{document}
