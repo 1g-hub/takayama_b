@@ -1,0 +1,183 @@
+%\documentstyle[epsf,twocolumn]{jarticle}       %LaTeX2.09仕様
+\documentclass[twocolumn]{jarticle}     %pLaTeX2e仕様
+
+%\usepackage[backend=bibtex, style=numeric]{biblatex}
+%\addbibresource{sankou.bib}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%  基本 バージョン
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\topmargin}{-45pt}
+%\setlength{\oddsidemargin}{0cm}
+\setlength{\oddsidemargin}{-7.5mm}
+%\setlength{\evensidemargin}{0cm}
+\setlength{\textheight}{24.1cm}
+%setlength{\textheight}{25cm}
+\setlength{\textwidth}{17.4cm}
+%\setlength{\textwidth}{172mm}
+\setlength{\columnsep}{11mm}
+
+\setlength{\intextsep}{8pt}
+\setlength{\textfloatsep}{8pt}
+\setlength{\floatsep}{1pt}
+
+\kanjiskip=.07zw plus.5pt minus.5pt
+
+
+
+%【節がかわるごとに(1.1)(1.2) …(2.1)(2.2)と数式番号をつけるとき】
+%\makeatletter
+%\renewcommand{\theequation}{%
+%\thesection.\arabic{equation}} %\@addtoreset{equation}{section}
+%\makeatother
+
+%\renewcommand{\arraystretch}{0.95} 行間の設定
+
+\usepackage[dvipdfmx]{graphicx}   %pLaTeX2e仕様(\documentstyle ->\documentclass)
+\usepackage{scalefnt}
+\usepackage{bm}
+\usepackage{here}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[subrefformat=parens]{subcaption}
+\captionsetup{compatibility=false}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{comment}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{nidanfloat}
+\usepackage[dvipdfmx]{hyperref}
+
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+
+\begin{document}
+
+\twocolumn[
+\noindent
+\hspace{1em}
+
+令和2年6月10日(水) ゼミ資料
+\hfill
+\ \ B4 高山 裕成
+
+\vspace{2mm}
+\hrule
+\begin{center}
+{\Large  進捗報告}
+\end{center}
+\hrule
+\vspace{3mm}
+]
+
+\section{あらすじ}
+研究から逃げた.
+
+% \footnotesize
+\section{進捗}
+
+\begin{itemize}
+  \item 未知語率再測定
+\end{itemize}
+
+\section{データセットに含まれる未知語率}
+
+BERT の事前学習済モデル\footnote{http://nlp.ist.i.kyoto-u.ac.jp}のボキャブラリーに含まれているかどうかを各タッチについて拡張前後で算出した. また, transformers ライブラリ内のトークナイザでサブワードに分割した場合も算出した. 用いている BERT のモデルは形態素をサブワードに分割したものを基本単位として事前学習しているので, 後者の方が有用である可能性が高い.
+
+\subsubsection{形態素(Juman++)}
+従来, 実験で用いていた手法における未知語率を表したのが表\ref{tab:unknown} である.
+拡張前で約 25\%, 拡張後で約 68\% であった.
+
+\begin{table}[htb]
+\begin{center}
+\caption{データセットに含まれる未知語率}
+\scalebox{0.8}{
+\begin{tabular}{llccccc}
+\hline
+\multicolumn{2}{c}{\multirow{2}{*}{}} & \multirow{2}{*}{ギャグ} & \multirow{2}{*}{少女} & \multirow{2}{*}{少年} & \multirow{2}{*}{青年} & \multirow{2}{*}{萌え系} \\
+\multicolumn{2}{c}{} &  &  &  &  &  \\ \hline
+拡張前 & 総単語数 & 270 & 289 & 274 & 276 & 276 \\
+ & 未知語率 & 0.244 & 0.263 & 0.230 & 0.236 & 0.232 \\ \hline
+拡張後 & 総単語数 & 3030 & 3209 & 3089 & 3154 & 3154 \\
+ & 未知語率 & 0.681 & 0.688 & 0.681 & 0.682 & 0.682
+\end{tabular}
+\label{tab:unknown}
+}
+\end{center}
+\end{table}
+
+\subsubsection{サブワード化}
+
+
+\begin{table}[htb]
+\begin{center}
+\caption{データセットに含まれる未知語率(サブワード化)}
+\scalebox{0.8}{
+\begin{tabular}{llccccc}
+\hline
+\multicolumn{2}{c}{\multirow{2}{*}{}} & \multirow{2}{*}{ギャグ} & \multirow{2}{*}{少女} & \multirow{2}{*}{少年} & \multirow{2}{*}{青年} & \multirow{2}{*}{萌え系} \\
+\multicolumn{2}{c}{} &  &  &  &  &  \\ \hline
+拡張前 & 総単語数 & 311 & 331 & 315 & 316 & 316 \\
+ & 未知語率 & 0.026 & 0.021 & 0.019 & 0.022 & 0.025 \\ \hline
+拡張後 & 総単語数 & 2633 & 2728 & 2664 & 2705 & 2708 \\
+ & 未知語率 & 0.090 & 0.089 & 0.088 & 0.089 & 0.089
+\end{tabular}
+\label{tab:unknown_bert_tokenize}
+}
+\end{center}
+\end{table}
+
+\subsection{未知語 (ギャグオリジナル サブワード)}
+\begin{verbatim}
+'A', '?', 'DVD',
+'B', '!', 'GPU',
+',', '.'
+\end{verbatim}
+
+対策として, 句読点はストップワードとして除外していたが, `.' や `,' も除外しておく.
+`A' や `B' はキャラクタ由来のワードであるから, 辞書内に含まれる固有名詞で置換する.
+他のタッチのオリジナルデータでは `2' など数字も未知語として表れていた. この対策としては 数値を表すトークンまたは `0' に置換する.
+
+\subsection{未知語の品詞別頻度}
+萌えタッチについて, 拡張前後・サブワードにするかしないかの 4 パターンについて,
+未知語を MeCab を使って品詞解析し, 品詞ごとに頻度をまとめたものが表\ref{tab:freq} である.
+
+\begin{table}[htb]
+\begin{center}
+\caption{未知語の品詞別頻度(萌えタッチ)}
+\scalebox{0.7}{
+\begin{tabular}{lcc|cc}
+moe & オリジナル & 拡張後 & オリジナル(subword) & 拡張後(subword) \\ \hline
+名詞 & 42 & {\ul 1927} & 8 & {\ul 258} \\
+形容詞 & 2 & 186 & 0 & 24 \\
+副詞 & 2 & 202 & 0 & 15 \\
+動詞 & 14 & {\ul 495} & 0 & 27 \\
+助動詞 & 14 & 93 & 0 & 10 \\
+助詞 & 9 & 195 & 0 & 33 \\
+連体詞 & 2 & 15 & 0 & 0 \\
+接頭詞 & 0 & 89 & 0 & 7 \\
+フィラー & 1 & 6 & 0 & 0 \\
+接続詞 & 1 & 4 & 0 & 1 \\
+感動詞 & 5 & 7 & 0 & 0 \\
+記号 & 0 & 9 & 0 & 1
+\end{tabular}
+\label{tab:freq}
+}
+\end{center}
+\end{table}
+
+\newpage
+
+\section{今後の実験予定}
+\begin{itemize}
+  \item サブワード化した状態で前回と同じ実験を回す.
+  \item 直前 n - 1 文 を考慮した n 文を入力して末尾入力の感情推定をする.
+\end{itemize}
+
+\bibliographystyle{unsrt}
+\bibliography{sankou}
+
+
+\end{document}

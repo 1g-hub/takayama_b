@@ -59,7 +59,7 @@ class manga4koma():
             #self.new_data[touch_name] = self.data[touch_name].assign(to)
             self.data[touch_name]['tokenized'] = s
             self.data[touch_name]['bert_tokenized'] = [b for b in bert_tokenizer.batch_encode_plus(s, pad_to_max_length=True, add_special_tokens=True, is_pretokenized=True)['input_ids']]
-            del s
+        del s
 
 
     def zero_padding(self, touch_name, seq_len=3):
@@ -114,13 +114,13 @@ class manga4koma():
 
 
 amanga4koma = manga4koma(to_zero_pad=True)
-print(amanga4koma.data['gyagu'].what)
+#print(amanga4koma.data['gyagu'].what)
 
 #print(amanga4koma.data['gyagu'].tokenized)
-print(amanga4koma.data['gyagu'].bert_tokenized)
+print(amanga4koma.data['gyagu'].bert_tokenized[0])
 
 a = np.stack([*amanga4koma.data['gyagu'].bert_tokenized],axis=0)
-print(a)
+#print(a)
 #embedding = Embbedding(amanga4koma.tokenized, "../models/d2v_manga109.model", mode='d2v', word_base=True)
 #print(embedding.embed['gyagu'].size)
 #print(embedding.embed['gyagu'])
