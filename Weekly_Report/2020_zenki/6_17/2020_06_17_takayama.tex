@@ -164,6 +164,7 @@ optimizer & \multicolumn{2}{|c|}{Adam} \\ \hline
   \end{center}
 \end{figure*}
 
+\footnotesize
 \begin{itemize}
   \item id : セリフの区別用の数字. 同じ id なら元は同じセリフから生成されている.
   \item original : オリジナルのセリフかどうか
@@ -176,7 +177,10 @@ optimizer & \multicolumn{2}{|c|}{Adam} \\ \hline
   \item what : セリフ
   \item wakati : what を juman++ で分かち書きにしたもの
   \item subword : wakati をさらに BERT のトークナイザーで分割したもの ([UNK] の場合は元の単語に戻している)
+  \item emotion : 感情ラベル
 \end{itemize}
+
+\normalsize
 
 \section{連続 n 文を入力とする実験のネットワークモデル}
 図\ref{fig:net} にネットワークの概略図を示す. ${s_i}$ はそれぞれ連続する n 文のセリフを BERT の id 列に変換したものである. また, 組み合わせとしては同一の 4 コマに属し, かつ連続しているものを扱う. 各 4 コマの序盤に現れるセリフには参照できる過去のセリフが無いため, 便宜上のセリフ $[$pad$]$ を置くことで対処した. よって, 単語 id 列長を $w$ とすると入力次元は $(batch \times n \times w)$ となる. このままでは BERT の入力次元に対応していないので, まず $(n \times batch \times w)$ へと軸を入れ替え, これを 1 次元目について各要素に分解し, これら n 個の 次元数 $(batch \times w)$ のベクトルをそれぞれ BERT への入力とし, BERT の出力から [CLS] トークンに相当するベクトルのみを抜き取り, 先と逆の手順を踏むことで次元数 $(batch \times n \times 768)$ のテンソルを得ることができる. これを Bi LSTM, Self-Attention への入力とすることで末尾のセリフの感情推定を行う. このモデルの形で将来的に期待できることは, BERT の出力を stack する前に, 各 [CLS] Vector に元のセリフに対応するコマの画像の分散表現を concat でき, マルチモーダルでかつシーケンシャルな推定が可能となることであるが, 不安点としては BERT の利点を上手く利用できているのかという問題がある.
@@ -188,7 +192,7 @@ BERT は最終層のみをチューニングし, その他実験設定などは,
 
 \begin{figure}[!hb]
   \begin{center}
-    \includegraphics[scale=0.25]{net.png}
+    \includegraphics[scale=0.5]{net.png}
     \caption{seq net} %タイトルをつける
     \label{fig:net} %ラベルをつけ図の参照を可能にする
   \end{center}

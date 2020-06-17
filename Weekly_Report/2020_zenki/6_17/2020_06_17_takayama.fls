@@ -129,6 +129,10 @@ INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 INPUT dataset.png
 INPUT extractbb -B cropbox -O dataset.png
+INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin8.tfm
+INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/min8.tfm
+INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
+INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
 OUTPUT 2020_06_17_takayama.dvi
 INPUT net.png
 INPUT extractbb -B cropbox -O net.png

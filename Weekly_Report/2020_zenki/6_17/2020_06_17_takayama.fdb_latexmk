@@ -1,25 +1,27 @@
 # Fdb version 3
-["bibtex 2020_06_17_takayama"] 1592367114 "2020_06_17_takayama.aux" "2020_06_17_takayama.bbl" "2020_06_17_takayama" 1592367123
-  "2020_06_17_takayama.aux" 1592367119 2793 4d1a9df8440d52be4b146a71031e7b47 "latex"
+["bibtex 2020_06_17_takayama"] 1592371946 "2020_06_17_takayama.aux" "2020_06_17_takayama.bbl" "2020_06_17_takayama" 1592372001
+  "2020_06_17_takayama.aux" 1592371997 2793 4d1a9df8440d52be4b146a71031e7b47 "latex"
   "c:/w32tex/share/texmf-dist/bibtex/bst/base/unsrt.bst" 711628419 16936 ccef3eeba627342727ad24949dd376ee ""
   "sankou.bib" 1592326201 511 87a7c29949a664d6705fdb389c6a7496 ""
   (generated)
   "2020_06_17_takayama.bbl"
   "2020_06_17_takayama.blg"
-["dvipdf"] 1592367119 "2020_06_17_takayama.dvi" "2020_06_17_takayama.pdf" "2020_06_17_takayama" 1592367123
-  "2020_06_17_takayama.dvi" 1592367119 18288 1937ef1c6a417b2143a12ebd969c6fe3 "latex"
+["dvipdf"] 1592371997 "2020_06_17_takayama.dvi" "2020_06_17_takayama.pdf" "2020_06_17_takayama" 1592372001
+  "2020_06_17_takayama.dvi" 1592371997 18428 9f52bb7fac524c52d483a190a3a9bece "latex"
   (generated)
   "2020_06_17_takayama.pdf"
-["latex"] 1592367114 "2020_06_17_takayama.tex" "2020_06_17_takayama.dvi" "2020_06_17_takayama" 1592367123
-  "2020_06_17_takayama.aux" 1592367119 2793 4d1a9df8440d52be4b146a71031e7b47 "latex"
-  "2020_06_17_takayama.bbl" 1592367114 309 73f5f9a51ff30cb3a068c35822cb6f7e "bibtex 2020_06_17_takayama"
-  "2020_06_17_takayama.out" 1592367119 478 475a28382c056c4c65e2e0c7160dcc77 "latex"
-  "2020_06_17_takayama.tex" 1592367106 11437 3f1f91fc86ea575b165d7f4ac0e01f56 ""
+["latex"] 1592371993 "2020_06_17_takayama.tex" "2020_06_17_takayama.dvi" "2020_06_17_takayama" 1592372001
+  "2020_06_17_takayama.aux" 1592371997 2793 4d1a9df8440d52be4b146a71031e7b47 "latex"
+  "2020_06_17_takayama.bbl" 1592371946 309 73f5f9a51ff30cb3a068c35822cb6f7e "bibtex 2020_06_17_takayama"
+  "2020_06_17_takayama.out" 1592371997 478 475a28382c056c4c65e2e0c7160dcc77 "latex"
+  "2020_06_17_takayama.tex" 1592371989 11501 4dede487ea413c91380686908a42fbbc ""
   "c:/w32tex/share/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm" 1519818042 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/min10.tfm" 1519818042 1196 1be730212205a270378fba11a44765dc ""
+  "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/min8.tfm" 1519818042 1196 d5b431ce76e19b70391960a9dd08fa4f ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tgoth10.tfm" 1519818042 856 7404843a5f798859944d7973a47821d5 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin10.tfm" 1519818042 856 39c171483fe1bb7d0e1368980c0c205b ""
+  "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin8.tfm" 1519818042 856 bdef40bcf3aed4751efa9be9bfa6eb4b ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1233951848 1120 1e8878807317373affa7f7bba4cf2f6a ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1233951848 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
@@ -38,6 +40,8 @@
   "c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmbx7.tfm" 1136768653 1336 3125ccb448c1a09074e3aa4a9832f130 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmmib10.tfm" 1136768653 1524 554068197b70979a55370e6c6495f441 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmr12.tfm" 1136768653 1288 655e228510b4c2a1abe905c368440826 ""
+  "c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmr8.tfm" 1136768653 1292 21c1c5bfeaebccffdb478fd231a0997d ""
+  "c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1136768653 1120 8b7d695260f3cff42e636090a8002094 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm" 1136768653 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/public/latex/lasy6.tfm" 808425112 520 4889cce2180234b97cad636b6039c722 ""
   "c:/w32tex/share/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1284260789 1458 43ab4710dc82f3edeabecd0d099626b2 ""
@@ -89,7 +93,7 @@
   "dataset.png" 1592235234 37432 00338a5e93b62d9d8fe42dc838fc612e ""
   "net.png" 1592364996 49563 67e9897dda5314d103477a0d85829195 ""
   (generated)
-  "2020_06_17_takayama.dvi"
   "2020_06_17_takayama.out"
-  "2020_06_17_takayama.log"
+  "2020_06_17_takayama.dvi"
   "2020_06_17_takayama.aux"
+  "2020_06_17_takayama.log"

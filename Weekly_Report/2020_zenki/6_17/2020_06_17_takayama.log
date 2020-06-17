@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.10.4)  17 JUN 2020 13:11
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.sjis) (TeX Live 2019/W32TeX) (preloaded format=platex 2019.10.4)  17 JUN 2020 14:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -349,6 +349,8 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 File: dataset.png Graphic file (type bmp)
 <dataset.png>
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 169.
  [1
 
 
@@ -369,29 +371,29 @@ LaTeX Font Warning: Font shape `JY1/gt/m/it' undefined
 Package caption Warning: Unused \captionsetup[sub] on input line 50.
 See the caption package documentation for explanation.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 209.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 213.
 [3
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 209.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 213.
  (./2020_06_17_takayama.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 209.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 209.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 213.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 213.
 Package rerunfilecheck Info: File `2020_06_17_takayama.out' has not changed.
 (rerunfilecheck)             Checksum: 475A28382C056C4C65E2E0C7160DCC77;478.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 209.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 213.
  ) 
 Here is how much of TeX's memory you used:
- 7028 strings out of 492758
- 104896 string characters out of 6142108
+ 7037 strings out of 492758
+ 104978 string characters out of 6142108
  244645 words of memory out of 5000000
- 11389 multiletter control sequences out of 15000+600000
- 13950 words of font info for 56 fonts, out of 8000000 for 9000
+ 11394 multiletter control sequences out of 15000+600000
+ 14968 words of font info for 60 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  45i,11n,46p,1174b,416s stack positions out of 5000i,500n,10000p,500000b,80000s
 
-Output written on 2020_06_17_takayama.dvi (3 pages, 18288 bytes).
+Output written on 2020_06_17_takayama.dvi (3 pages, 18428 bytes).
