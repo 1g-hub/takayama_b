@@ -1,7 +1,6 @@
 # 自然言語処理でよく使うライブラリ
 import numpy as np
 import matplotlib.pyplot as plt
-import MeCab
 import torch
 from sklearn.metrics import accuracy_score
 from sklearn.utils.extmath import randomized_svd
@@ -145,12 +144,12 @@ def truncated_svd(p_pmi, word_vec_size=100, _n_iter=5, _random_state=None):
 
 
 # MeCab分かち書き
-def split2words_mecab(texts):
-    parser = lambda x: MeCab.Tagger(' -Owakati').parse(x).strip().split()
-    res = []
-    for text in texts:
-        res.append(parser(text))
-    return np.array(res)
+# def split2words_mecab(texts):
+#     parser = lambda x: MeCab.Tagger(' -Owakati').parse(x).strip().split()
+#     res = []
+#     for text in texts:
+#         res.append(parser(text))
+#     return np.array(res)
 
 def jumanpp_wakati2array(texts):
     res = []

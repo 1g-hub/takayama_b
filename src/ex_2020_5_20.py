@@ -318,7 +318,7 @@ def main():
         for touch_name in TOUCH_NAME_ENG:
             print("touch: {}".format(touch_name))
 
-            ex = Manga4koma_Experiment(touch_name=touch_name, batch_size=16, epochs=1, p_label=p_emo)
+            ex = Manga4koma_Experiment(touch_name=touch_name, batch_size=16, epochs=200, p_label=p_emo)
 
             trial = ex.optuna_optimize()
 

@@ -21,20 +21,21 @@ from numba import jit
 # GLOBAL 変数
 TOUCH_NAME_ENG = ["gyagu", "shoujo", "shounen", "seinen", "moe"]
 
-P_EMOTIONS = ['喜楽']
+P_EMOTIONS = ['ニュートラル','驚愕']
 
 P_DIC = {'ニュートラル':'neutral', '驚愕':'kyougaku', '喜楽':'kiraku'}
 
-manga_data = manga4koma()
+manga_data = manga4koma(to_sub_word=True)
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 torch.backends.cudnn.benchmark = True
+
 
 # ========
 # 最終層のみのfine-tuning
 class Net(nn.Module):
     config = BertConfig.from_json_file('../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/config.json')
-
+    debug_flag = True
     def __init__(self):
         super(Net, self).__init__()
         self.bert = BertModel.from_pretrained('../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/pytorch_model.bin',
@@ -47,10 +48,13 @@ class Net(nn.Module):
             param.requires_grad = False
 
         # Bert encoderの最終レイヤのrequires_gradをTrueで更新
-        #for name, param in self.bert.encoder.layer[-1].named_parameters():
-        #    param.requires_grad = True
+        for name, param in self.bert.encoder.layer[-1].named_parameters():
+            param.requires_grad = True
 
     def forward(self, x):
+        if self.debug_flag is True:
+            print(x.size())
+            self.debug_flag = False
         bert_out = self.bert(x)[0] # 最後の隠れ層
         out = self.classifier(bert_out[:, 0, :]) # [CLS] に相当する部分のみ使う
         return out
@@ -117,8 +121,8 @@ class Manga4koma_Experiment():
 
         self.touch_name = touch_name
 
-        self.log_path = './result_' + self.touch_name + '_' + P_DIC[self.p_label] + '_bert_last_layer.txt'
-        self.new_model_path = '../models/bert/My_Japanese_transformers/' + self.touch_name + '_' + P_DIC[self.p_label] + '_bert_last_layer.bin'
+        self.log_path = './result_' + self.touch_name + '_' + P_DIC[self.p_label] + '_subw_maji_bert_last_layer_.txt'
+        self.new_model_path = '../models/bert/My_Japanese_transformers/' + self.touch_name + '_' + P_DIC[self.p_label] + '_subw_bert_last_layer.bin'
 
         self.reset_count()
 
@@ -298,7 +302,7 @@ class Manga4koma_Experiment():
     def objective_variable(self):
 
         def objective(trial):
-            lr = trial.suggest_loguniform('lr', 1e-7, 1e-4)
+            lr = trial.suggest_loguniform('lr', 1e-7, 1e-6)
             print("suggest lr = {}".format(lr))
             best_valid_f1 = self.manga4koma_train(lr=lr, is_study=True)
             error = 1 - best_valid_f1
@@ -308,7 +312,7 @@ class Manga4koma_Experiment():
 
     def optuna_optimize(self):
         study = optuna.create_study()
-        study.optimize(self.objective_variable(), n_trials=1)
+        study.optimize(self.objective_variable(), n_trials=5)
         return study.best_trial
 
 def main():
@@ -318,7 +322,7 @@ def main():
         for touch_name in TOUCH_NAME_ENG:
             print("touch: {}".format(touch_name))
 
-            ex = Manga4koma_Experiment(touch_name=touch_name, batch_size=16, epochs=1, p_label=p_emo)
+            ex = Manga4koma_Experiment(touch_name=touch_name, batch_size=16, epochs=200, p_label=p_emo)
 
             trial = ex.optuna_optimize()
 

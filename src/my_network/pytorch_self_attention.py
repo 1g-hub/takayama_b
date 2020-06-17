@@ -89,4 +89,8 @@ class SelfAttentionClassifier(nn.Module):
     m2 = (out * attention_weight[:,:,1].unsqueeze(2)).sum(dim=1)
     m3 = (out * attention_weight[:,:,2].unsqueeze(2)).sum(dim=1)
     feats = torch.cat([m1, m2, m3], dim=1)
-    return F.log_softmax(self.main(feats), dim=1), attention_weight
+    # F.log_softmax(self.main(feats), dim=1)
+    output = self.main(feats)
+    print(output.size())
+    print(output)
+    return output, attention_weight

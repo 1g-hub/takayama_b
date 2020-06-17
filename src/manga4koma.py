@@ -22,7 +22,7 @@ bert_tokenizer = BertTokenizer('../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE
                                    config='../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/tokenizer_config.json')
 
 class manga4koma():
-    def __init__(self, to_zero_pad=False):
+    def __init__(self, to_sub_word=False, to_zero_pad=False, to_sequential=False, seq_len=3):
         self.TOUCH_NAME_ENG = ["gyagu", "shoujo", "shounen", "seinen", "moe"]
         self.CONV_TOUCH = {"gyagu": "ギャグタッチ", "shoujo": "少女漫画タッチ", "shounen": "少年漫画タッチ", "seinen": "青年漫画タッチ", "moe": "萌え系タッチ"}
         self.EMB_MODE = ["d2v", "bert"]
@@ -30,26 +30,35 @@ class manga4koma():
         self.CONV_EMO = {"ニュートラル": 'neutral', "驚愕": 'kyougaku', "喜楽": 'kiraku', "恐怖": 'kyouhu', "悲哀": 'hiai', "憤怒": 'hunnu', "嫌悪": 'keno'}
         self.SEQ_LEN = [2, 3, 4, 5, 6]
         self.to_zero_pad = to_zero_pad
+        self.to_sub_word = to_sub_word
+        self.to_sequential = to_sequential
+        self.seq_len = seq_len
         self.__set_data()
-        self.__tokenize()
+        self.__tokenize(seq_len=self.seq_len)
 
     def __set_data(self):
         self.data = defaultdict(pd.DataFrame)
         self.original_data = defaultdict(pd.DataFrame)
-        self.bert_tokenized = defaultdict(dict)
-        self.tokenized = defaultdict(list)
+        #self.bert_tokenized = defaultdict(dict)
+        #self.tokenized = defaultdict(list)
 
         for touch_name in self.TOUCH_NAME_ENG:
             self.data[touch_name] = pd.read_csv(
-                '../dataset/' + touch_name + '_augmentation.csv',
+                '../dataset/' + touch_name + '_aug_add_sub.csv',
                 index_col=0,
                 dtype={'original': bool},
                 usecols=lambda x: x is not 'index'
             )
             self.original_data[touch_name] = self.data[touch_name][self.data[touch_name].original]
 
-            self.data[touch_name].wakati = [w.split(' ') for w in self.data[touch_name].wakati.tolist()]
-            self.original_data[touch_name].wakati = [w.split(' ') for w in self.original_data[touch_name].wakati.tolist()]
+            if self.to_sub_word is False:
+                self.data[touch_name].wakati = [w.split(' ') for w in self.data[touch_name].wakati.tolist()]
+                self.original_data[touch_name].wakati = [w.split(' ') for w in self.original_data[touch_name].wakati.tolist()]
+            else:
+                self.data[touch_name].wakati = [w.split(' ') for w in self.data[touch_name].subword.tolist()]
+                self.original_data[touch_name].wakati = [w.split(' ') for w in
+                                                         self.original_data[touch_name].subword.tolist()]
+
 
     def __tokenize(self, seq_len=3):
         for touch_name in self.TOUCH_NAME_ENG:
@@ -58,7 +67,11 @@ class manga4koma():
             s = self.data[touch_name].wakati.tolist()
             #self.new_data[touch_name] = self.data[touch_name].assign(to)
             self.data[touch_name]['tokenized'] = s
+
             self.data[touch_name]['bert_tokenized'] = [b for b in bert_tokenizer.batch_encode_plus(s, pad_to_max_length=True, add_special_tokens=True, is_pretokenized=True)['input_ids']]
+
+            if self.to_sequential:
+                self.to_seq(touch_name, seq_len)
         del s
 
 
@@ -112,14 +125,55 @@ class manga4koma():
         new_data_set = pd.concat([s for s in sep], sort=False)
         self.data[touch_name] = new_data_set.reset_index(drop=True)
 
+    def to_seq(self, touch_name, seq_len=3):
+        #bert_tokenizeをいじる
+        self.seq_data = defaultdict(dict)
+        f_trains = self.data[touch_name][self.data[touch_name].original]
 
-amanga4koma = manga4koma(to_zero_pad=True)
-#print(amanga4koma.data['gyagu'].what)
+        x = []
+        y = []
 
-#print(amanga4koma.data['gyagu'].tokenized)
-print(amanga4koma.data['gyagu'].bert_tokenized[0])
+        for f_index, f_train_data in f_trains.iterrows():
 
-a = np.stack([*amanga4koma.data['gyagu'].bert_tokenized],axis=0)
+            front_in = pd.DataFrame([{field: None for field in self.data[touch_name].columns.values}])
+
+            give_up = False
+
+            for seq in range(seq_len - 1):
+                next = f_trains[(f_trains.id - seq == f_train_data.id) & (f_trains.story_sub_num == f_train_data.story_sub_num)]
+                if len(next) == 0:
+                    give_up = True
+                    break
+                else:
+                    next = next.iloc[0]
+                front_in = front_in.append(next)
+
+            if give_up:
+                continue
+
+            third_ins = self.data[touch_name][(self.data[touch_name].id - 1 == front_in.iloc[-1].id) & (self.data[touch_name].story_sub_num == front_in.iloc[-1].story_sub_num)]
+            # print(front_in.iloc[1].what + " " + front_in.iloc[2].what)
+            for t_index, third_in in third_ins.iterrows():
+
+                input = np.stack([*front_in.tail(seq_len-1).bert_tokenized, third_in.bert_tokenized], axis=0)
+                x.append(input)
+
+        self.data[touch_name] = self.data[touch_name][self.data[touch_name]['what'] != '[PAD]']
+        self.data[touch_name] = self.data[touch_name].reset_index(drop=True)
+        self.data[touch_name].bert_tokenized = x
+        #x_t, x_v, y_t, y_v = train_test_split(x, y, test_size=val_size, random_state=random_seed, shuffle=shuffle)
+
+
+
+
+# amanga4koma = manga4koma(to_zero_pad=True, to_sub_word=True, to_sequential=True, seq_len=3)
+# print(amanga4koma.data['gyagu'].what)
+# print(amanga4koma.data['gyagu'].bert_tokenized)
+# print(amanga4koma.data['gyagu'].bert_tokenized[0])
+#print(bert_tokenizer.convert_ids_to_tokens(amanga4koma.data['gyagu'].bert_tokenized[7862]))
+#print(amanga4koma.data['gyagu'].wakati)
+
+#a = np.stack([*amanga4koma.data['gyagu'].bert_tokenized],axis=0)
 #print(a)
 #embedding = Embbedding(amanga4koma.tokenized, "../models/d2v_manga109.model", mode='d2v', word_base=True)
 #print(embedding.embed['gyagu'].size)

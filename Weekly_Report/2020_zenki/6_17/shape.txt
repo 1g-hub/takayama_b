@@ -1,0 +1,21 @@
+subword
+
+gyagu 31
+shoujo 30
+shounen
+seinen
+moe
+
+
+
+not sub subword
+
+gyagu
+shoujo
+shounen
+seinen
+moe
+
+
+6/14
+今やってるのはBERT固定！！！名前は違ってるから気をつけろ!
