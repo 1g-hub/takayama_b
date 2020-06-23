@@ -86,13 +86,13 @@
 
 よって, 単語 id 列長を $w$ とすると入力次元は $(batch \times n \times w)$ となる. このままでは BERT の入力次元に対応していないので, まず $(n \times batch \times w)$ へと軸を入れ替え, これを 1 次元目について各要素に分解し, これら n 個の 次元数 $(batch \times w)$ のベクトルをそれぞれ BERT への入力とし, BERT の出力から [CLS] トークンに相当するベクトルのみを抜き取り, 先と逆の手順を踏むことで次元数 $(batch \times n \times 768)$ のテンソルを得ることができる. これを識別器 Bi LSTM, Self-Attention への入力とすることで末尾のセリフの感情推定を行う.
 
-BERT は事前学習済モデル\footnote{http://nlp.ist.i.kyoto-u.ac.jp}を用い, 最終層のみをチューニングする. その他実験設定などは, 前回までと同様 1 文のみを入力とする実験と同じである. 識別器のパラメータは\ref{tab:self_net} に示す.
+BERT は事前学習済モデル\footnote{http://nlp.ist.i.kyoto-u.ac.jp}を用い, 最終層のみをチューニングする. その他実験設定などは, 前回までと同様 1 文のみを入力とする実験と同じである. 識別器のパラメータは図\ref{tab:self_net} に示す.
 
 今週は $n = 3$ と $n = 5$ の場合について実験を行った.
 
 \begin{figure}[!hb]
   \begin{center}
-    \includegraphics[scale=0.5]{net.png}
+    \includegraphics[scale=0.4]{net.png}
     \caption{seq net} %タイトルをつける
     \label{fig:net} %ラベルをつけ図の参照を可能にする
   \end{center}
@@ -134,11 +134,12 @@ atten\_num\_layers & 3     \\ \hline
 \end{center}
 \end{table*}
 
-\section{今後の研究の方向性}
+\section{今後の研究の方向性?}
 \begin{itemize}
   \item 4 コマストーリーデータセットで訓練・テストでは精度に期待できない
-  \item 単語 id 列長を 64, 128 として実験
-  \item 連続 n 文を入力とする実験 つづき
+  \item 整備された他の日本語の極性評価データセットを用いて BERT の事前学習モデルを fine tuning し, 4 コマ漫画の感情推定問題に転移させる?
+  \item 仕様によっては感情ラベルの貼り直し, または人手によるラベル付けが必要になる
+  \item manga109 のセリフのデータも用いれば半教師あり学習も可能か
 \end{itemize}
 
 
@@ -146,8 +147,8 @@ atten\_num\_layers & 3     \\ \hline
 \section{今後の実験予定}
 \begin{itemize}
   \item 前期発表資料作り
-  \item 単語 id 列長を 64, 128 として実験
-  \item 連続 n 文を入力とする実験 つづき
+  \item 連続 n 文を入力とする実験 続き
+  \item コマの画像のベクトルも考慮した感情推定
 \end{itemize}
 
 \bibliographystyle{unsrt}
