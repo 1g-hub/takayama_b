@@ -26,7 +26,7 @@ P_EMOTIONS = ['喜楽', 'ニュートラル', '驚愕']
 
 P_DIC = {'ニュートラル':'neutral', '驚愕':'kyougaku', '喜楽':'kiraku'}
 
-manga_data = manga4koma(to_zero_pad=True, to_sub_word=True, to_sequential=True, seq_len=3)
+manga_data = manga4koma(to_zero_pad=True, to_sub_word=True, to_sequential=True, seq_len=5)
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 torch.backends.cudnn.benchmark = True
@@ -46,7 +46,7 @@ class Net(nn.Module):
         self.seq_len = seq_len
         self.fine_tuning = fine_tuning
 
-        # Bertの1〜11段目は更新せず、12段目とSequenceClassificationのLayerのみトレーニングする。
+        # Bertの1〜11段目は更新せず、12段目とSequenceClassificationのLayerのみトレーニングする
         # 一旦全部のパラメータのrequires_gradをFalseで更新
         for name, param in self.bert_encoder.named_parameters():
             param.requires_grad = False
@@ -141,8 +141,8 @@ class Manga4koma_Experiment():
 
         self.touch_name = touch_name
 
-        self.log_path = './result_' + self.touch_name + '_' + P_DIC[self.p_label] + '_seq_len3_bert_last_layer.txt'
-        self.new_model_path = '../models/bert/My_Japanese_transformers/' + self.touch_name + '_' + P_DIC[self.p_label] + '_seq_len3_bert_last_layer.bin'
+        self.log_path = './result_' + self.touch_name + '_' + P_DIC[self.p_label] + '_seq_len5_bert_last_layer.txt'
+        self.new_model_path = '../models/bert/My_Japanese_transformers/' + self.touch_name + '_' + P_DIC[self.p_label] + '_seq_len5_bert_last_layer.bin'
 
         self.reset_count()
 
@@ -322,7 +322,7 @@ class Manga4koma_Experiment():
     def objective_variable(self):
 
         def objective(trial):
-            lr = trial.suggest_loguniform('lr', 1e-7, 1e-6)
+            lr = trial.suggest_loguniform('lr', 1e-7, 1e-5)
             print("suggest lr = {}".format(lr))
             best_valid_f1 = self.manga4koma_train(lr=lr, is_study=True)
             error = 1 - best_valid_f1
