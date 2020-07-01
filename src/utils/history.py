@@ -26,15 +26,15 @@ class History():
 
         if self.best[phase]['acc'] < new_acc:
             self.best[phase]['acc'] = new_acc
-            self.enable_save = True
-        else:
-            self.enable_save = False
+        #     self.enable_save = True
+        # else:
+        #     self.enable_save = False
 
         if self.best[phase]['f1'] < new_f1:
             self.best[phase]['f1'] = new_f1
-            #self.enable_save = True
-        #else:
-        #    self.enable_save = False
+            self.enable_save = True
+        else:
+            self.enable_save = False
 
     def check(self, phase='train', index='f1', new_value=0.0 - 1e-5):
         # モデル保存すべきかを返す

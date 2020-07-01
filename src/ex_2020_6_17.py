@@ -22,11 +22,11 @@ from numba import jit
 # GLOBAL 変数
 TOUCH_NAME_ENG = ["gyagu", "shoujo", "shounen", "seinen", "moe"]
 
-P_EMOTIONS = ['喜楽', 'ニュートラル', '驚愕']
+P_EMOTIONS = ['喜楽']
 
 P_DIC = {'ニュートラル':'neutral', '驚愕':'kyougaku', '喜楽':'kiraku'}
 
-manga_data = manga4koma(to_zero_pad=True, to_sub_word=True, to_sequential=True, seq_len=5)
+manga_data = manga4koma(to_zero_pad=True, to_sub_word=True, to_sequential=True, seq_len=6)
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 torch.backends.cudnn.benchmark = True
@@ -52,7 +52,7 @@ class Net(nn.Module):
             param.requires_grad = False
 
         if self.fine_tuning:
-            # Bert encoderの最終レイヤのrequires_gradをTrueで更新
+            # Bert encoderの最終レイヤのrequires_gradをTrueで更新aq
             for name, param in self.bert_encoder.encoder.layer[-1].named_parameters():
                 param.requires_grad = True
 
@@ -141,8 +141,8 @@ class Manga4koma_Experiment():
 
         self.touch_name = touch_name
 
-        self.log_path = './result_' + self.touch_name + '_' + P_DIC[self.p_label] + '_seq_len5_bert_last_layer.txt'
-        self.new_model_path = '../models/bert/My_Japanese_transformers/' + self.touch_name + '_' + P_DIC[self.p_label] + '_seq_len5_bert_last_layer.bin'
+        self.log_path = './result_' + self.touch_name + '_' + P_DIC[self.p_label] + '_seq_len6_bert_last_layer.txt'
+        self.new_model_path = '../models/bert/My_Japanese_transformers/' + self.touch_name + '_' + P_DIC[self.p_label] + '_seq_len6_bert_last_layer.bin'
 
         self.reset_count()
 
@@ -155,7 +155,7 @@ class Manga4koma_Experiment():
         self.is_study = is_study
 
         self.history = History()
-        self.net = Net().to(device)
+        self.net = Net(seq_len=6).to(device)
 
         self.optimizer = torch.optim.Adam(self.net.parameters(), lr=lr)
 
@@ -245,7 +245,7 @@ class Manga4koma_Experiment():
 
     def manga4koma_test(self):
         log_f = open(self.log_path, 'a', encoding='utf-8')
-        self.net = Net().to(device)
+        self.net = Net(seq_len=6).to(device)
         self.load_model()
         self.reset_count()
         test_index = 0
@@ -314,8 +314,8 @@ class Manga4koma_Experiment():
 
     def cal_F1(self):
         # 正例の F1値を返す
-        c_precision = self.c_mat[0][0] / (1e-09 + self.c_mat[0][0] + self.c_mat[0][1])
-        c_recall = self.c_mat[0][0] / (1e-09 + self.c_mat[0][0] + self.c_mat[1][0])
+        c_precision = self.c_mat[0][0] / (1e-09 + self.c_mat[0][0] + self.c_mat[1][0])
+        c_recall = self.c_mat[0][0] / (1e-09 + self.c_mat[0][0] + self.c_mat[0][1])
         c_f1 = (2 * c_recall * c_precision) / (1e-09 + c_recall + c_precision)
         return c_f1
 
@@ -332,7 +332,7 @@ class Manga4koma_Experiment():
 
     def optuna_optimize(self):
         study = optuna.create_study()
-        study.optimize(self.objective_variable(), n_trials=5)
+        study.optimize(self.objective_variable(), n_trials=2)
         return study.best_trial
 
 def main():

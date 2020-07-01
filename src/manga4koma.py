@@ -1,14 +1,22 @@
 # coding: utf-8
 from collections import defaultdict
-import matplotlib.pyplot as plt
+
 import numpy as np
 import pandas as pd
-from utils import nlp_util as nlp
 
-import torch
+import pickle
+import os
 from transformers import BertTokenizer, BertForMaskedLM, BertConfig
 
-from manga4koma_embedding import Embbedding
+
+def pickle_dump(obj, path):
+    with open(path, mode='wb') as f:
+        pickle.dump(obj,f)
+
+def pickle_load(path):
+    with open(path, mode='rb') as f:
+        data = pickle.load(f)
+        return data
 
 TOUCH_NAME_ENG = ["gyagu", "shoujo", "shounen", "seinen", "moe"]
 CONV_TOUCH = {"gyagu": "ギャグタッチ", "shoujo": "少女漫画タッチ", "shounen": "少年漫画タッチ", "seinen": "青年漫画タッチ", "moe": "萌え系タッチ"}
@@ -49,6 +57,9 @@ class manga4koma():
                 dtype={'original': bool},
                 usecols=lambda x: x is not 'index'
             )
+
+            # koma_vec列の追加
+            self.data[touch_name] = self.data[touch_name].assign(koma_vec = None)
             self.original_data[touch_name] = self.data[touch_name][self.data[touch_name].original]
 
             if self.to_sub_word is False:
@@ -62,6 +73,13 @@ class manga4koma():
 
     def __tokenize(self, seq_len=3):
         for touch_name in self.TOUCH_NAME_ENG:
+
+            for i, v in self.data[touch_name].iterrows():
+                if os.path.exists('../dataset/4koma_vec/' + touch_name + '_' + str(v['story_main_num']+1).zfill(3) + '_' + str(v['story_sub_num']+1) + '-' + str(v['koma']+1) + '.pkl'):
+                    self.data[touch_name].at[i, 'koma_vec'] = pickle_load('../dataset/4koma_vec/' + touch_name + '_' + str(v['story_main_num']+1).zfill(3) + '_' + str(v['story_sub_num']+1) + '-' + str(v['koma']+1) + '.pkl')
+                else:
+                    self.data[touch_name].at[i, 'koma_vec'] = pickle_load('../dataset/4koma_vec/pad.pkl')
+
             if self.to_zero_pad:
                 self.zero_padding(touch_name, seq_len)
             s = self.data[touch_name].wakati.tolist()
@@ -69,6 +87,7 @@ class manga4koma():
             self.data[touch_name]['tokenized'] = s
 
             self.data[touch_name]['bert_tokenized'] = [b for b in bert_tokenizer.batch_encode_plus(s, pad_to_max_length=True, add_special_tokens=True, is_pretokenized=True)['input_ids']]
+
 
             if self.to_sequential:
                 self.to_seq(touch_name, seq_len)
@@ -84,6 +103,7 @@ class manga4koma():
         data['koma'] = 0
         data['emotion'] = 'None'
         data['what'] = '[PAD]'
+        data['koma_vec'] = pickle_load('../dataset/4koma_vec/pad.pkl')
         # data['wakati'] = np.array([np.zeros((1, 300))]).reshape(300)
         data['wakati'] = ['[PAD]']
         story_main_max = self.data[touch_name].story_main_num.max()
@@ -155,19 +175,26 @@ class manga4koma():
             # print(front_in.iloc[1].what + " " + front_in.iloc[2].what)
             for t_index, third_in in third_ins.iterrows():
 
-                input = np.stack([*front_in.tail(seq_len-1).bert_tokenized, third_in.bert_tokenized], axis=0)
-                x.append(input)
+                input_x = np.stack([*front_in.tail(seq_len-1).bert_tokenized, third_in.bert_tokenized], axis=0)
+                x.append(input_x)
+
+                input_y = np.stack([*front_in.tail(seq_len-1).koma_vec, third_in.koma_vec], axis=0)
+                y.append(input_y)
 
         self.data[touch_name] = self.data[touch_name][self.data[touch_name]['what'] != '[PAD]']
         self.data[touch_name] = self.data[touch_name].reset_index(drop=True)
         self.data[touch_name].bert_tokenized = x
+        self.data[touch_name].koma_vec = y
         #x_t, x_v, y_t, y_v = train_test_split(x, y, test_size=val_size, random_state=random_seed, shuffle=shuffle)
 
 
 
 
 # amanga4koma = manga4koma(to_zero_pad=True, to_sub_word=True, to_sequential=True, seq_len=3)
-# print(amanga4koma.data['gyagu'].what)
+# print(amanga4koma.data['gyagu'].koma_vec[0])
+# print(amanga4koma.data['moe'].koma_vec[0])
+# print(amanga4koma.data['moe'].koma_vec[7562])
+# print(amanga4koma.data['moe'].what)
 # print(amanga4koma.data['gyagu'].bert_tokenized)
 # print(amanga4koma.data['gyagu'].bert_tokenized[0])
 #print(bert_tokenizer.convert_ids_to_tokens(amanga4koma.data['gyagu'].bert_tokenized[7862]))
