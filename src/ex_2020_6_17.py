@@ -26,7 +26,7 @@ P_EMOTIONS = ['喜楽']
 
 P_DIC = {'ニュートラル':'neutral', '驚愕':'kyougaku', '喜楽':'kiraku'}
 
-manga_data = manga4koma(to_zero_pad=True, to_sub_word=True, to_sequential=True, seq_len=6)
+manga_data = manga4koma(to_zero_pad=True, to_sub_word=True, to_sequential=True, seq_len=5)
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 torch.backends.cudnn.benchmark = True
@@ -51,10 +51,10 @@ class Net(nn.Module):
         for name, param in self.bert_encoder.named_parameters():
             param.requires_grad = False
 
-        if self.fine_tuning:
-            # Bert encoderの最終レイヤのrequires_gradをTrueで更新aq
-            for name, param in self.bert_encoder.encoder.layer[-1].named_parameters():
-                param.requires_grad = True
+        # if self.fine_tuning:
+        #     # Bert encoderの最終レイヤのrequires_gradをTrueで更新aq
+        #     for name, param in self.bert_encoder.encoder.layer[-1].named_parameters():
+        #         param.requires_grad = True
 
     def forward(self, x):
         x = x.type(torch.long)
@@ -141,8 +141,8 @@ class Manga4koma_Experiment():
 
         self.touch_name = touch_name
 
-        self.log_path = './result_' + self.touch_name + '_' + P_DIC[self.p_label] + '_seq_len6_bert_last_layer.txt'
-        self.new_model_path = '../models/bert/My_Japanese_transformers/' + self.touch_name + '_' + P_DIC[self.p_label] + '_seq_len6_bert_last_layer.bin'
+        self.log_path = './result_' + self.touch_name + '_' + P_DIC[self.p_label] + '_seq_len5_fixed.txt'
+        self.new_model_path = '../models/bert/My_Japanese_transformers/' + self.touch_name + '_' + P_DIC[self.p_label] + '_seq_len5_fixed.bin'
 
         self.reset_count()
 
@@ -155,7 +155,7 @@ class Manga4koma_Experiment():
         self.is_study = is_study
 
         self.history = History()
-        self.net = Net(seq_len=6).to(device)
+        self.net = Net(seq_len=5).to(device)
 
         self.optimizer = torch.optim.Adam(self.net.parameters(), lr=lr)
 
@@ -245,7 +245,7 @@ class Manga4koma_Experiment():
 
     def manga4koma_test(self):
         log_f = open(self.log_path, 'a', encoding='utf-8')
-        self.net = Net(seq_len=6).to(device)
+        self.net = Net(seq_len=5).to(device)
         self.load_model()
         self.reset_count()
         test_index = 0
@@ -322,7 +322,7 @@ class Manga4koma_Experiment():
     def objective_variable(self):
 
         def objective(trial):
-            lr = trial.suggest_loguniform('lr', 1e-7, 1e-5)
+            lr = trial.suggest_loguniform('lr', 6e-7, 1e-5)
             print("suggest lr = {}".format(lr))
             best_valid_f1 = self.manga4koma_train(lr=lr, is_study=True)
             error = 1 - best_valid_f1

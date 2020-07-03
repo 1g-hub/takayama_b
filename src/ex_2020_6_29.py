@@ -40,7 +40,7 @@ class Net(nn.Module):
         super(Net, self).__init__()
         self.bert_encoder = BertModel.from_pretrained('../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/pytorch_model.bin',
                                               config=self.config)
-        self.classifier = MLP3Net(in_dim=768)
+        self.classifier = MLP3Net(in_dim=4864)
 
         self.fine_tuning = fine_tuning
 
