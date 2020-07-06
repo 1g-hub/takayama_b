@@ -1,19 +1,19 @@
 # Fdb version 3
-["bibtex 2020_1st_takayama"] 1593929328 "2020_1st_takayama.aux" "2020_1st_takayama.bbl" "2020_1st_takayama" 1593929345
-  "2020_1st_takayama.aux" 1593929332 4910 d8413d4cb91614e41ce42b73dedbf315 "latex"
+["bibtex 2020_1st_takayama"] 1593929328 "2020_1st_takayama.aux" "2020_1st_takayama.bbl" "2020_1st_takayama" 1593952926
+  "2020_1st_takayama.aux" 1593952920 4910 d8413d4cb91614e41ce42b73dedbf315 "latex"
   "c:/w32tex/share/texmf-dist/bibtex/bst/base/unsrt.bst" 711628419 16936 ccef3eeba627342727ad24949dd376ee ""
   "sankou.bib" 1593929293 2603 f4b0e19c8badb3c7a0f725f5acfdee02 ""
   (generated)
-  "2020_1st_takayama.bbl"
   "2020_1st_takayama.blg"
-["dvipdf"] 1593929332 "2020_1st_takayama.dvi" "2020_1st_takayama.pdf" "2020_1st_takayama" 1593929345
-  "2020_1st_takayama.dvi" 1593929332 38996 56a35618dea16c1937e90c00c1cf939d "latex"
+  "2020_1st_takayama.bbl"
+["dvipdf"] 1593952921 "2020_1st_takayama.dvi" "2020_1st_takayama.pdf" "2020_1st_takayama" 1593952926
+  "2020_1st_takayama.dvi" 1593952920 38988 d3ae6792ef6520a44df6062afd0e7bbe "latex"
   (generated)
   "2020_1st_takayama.pdf"
-["latex"] 1593929328 "2020_1st_takayama.tex" "2020_1st_takayama.dvi" "2020_1st_takayama" 1593929345
-  "2020_1st_takayama.aux" 1593929332 4910 d8413d4cb91614e41ce42b73dedbf315 "latex"
+["latex"] 1593952916 "2020_1st_takayama.tex" "2020_1st_takayama.dvi" "2020_1st_takayama" 1593952926
+  "2020_1st_takayama.aux" 1593952920 4910 d8413d4cb91614e41ce42b73dedbf315 "latex"
   "2020_1st_takayama.bbl" 1593929328 1219 74f52608876b8190a4191adb9ce33dc0 "bibtex 2020_1st_takayama"
-  "2020_1st_takayama.tex" 1593929277 26715 1ea67182506ac1c0157f0b3d2acb39bf ""
+  "2020_1st_takayama.tex" 1593952912 26718 ec57a6a2028354816482996479a03aae ""
   "4koma.png" 1593929293 426847 114875dc22effe5d837ef11825a6229e ""
   "c:/w32tex/share/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm" 1519818042 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
@@ -94,6 +94,6 @@
   "c:/w32tex/share/texmf-dist/web2c/texmf.cnf" 1569228113 36614 36bcba4138d21dc48ee03f08b1e2dd36 ""
   "seq_net.png" 1593929293 44750 5fe6e3fd71d40e021117b8f97208bf5a ""
   (generated)
-  "2020_1st_takayama.dvi"
   "2020_1st_takayama.aux"
+  "2020_1st_takayama.dvi"
   "2020_1st_takayama.log"
