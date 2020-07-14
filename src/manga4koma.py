@@ -86,12 +86,28 @@ class manga4koma():
             #self.new_data[touch_name] = self.data[touch_name].assign(to)
             self.data[touch_name]['tokenized'] = s
 
-            self.data[touch_name]['bert_tokenized'] = [b for b in bert_tokenizer.batch_encode_plus(s, pad_to_max_length=True, add_special_tokens=True, is_pretokenized=True)['input_ids']]
+            res_encode = bert_tokenizer.batch_encode_plus(s, pad_to_max_length=True, add_special_tokens=True, is_pretokenized=True)
+
+            # self.data[touch_name]['bert_tokenized'] = [b for b in bert_tokenizer.batch_encode_plus(s, pad_to_max_length=True, add_special_tokens=True, is_pretokenized=True)]
+
+            self.data[touch_name]['input_ids'] = \
+                [b for b in res_encode['input_ids']]
+            self.data[touch_name]['token_type_ids'] = \
+                [b for b in res_encode['token_type_ids']]
+            self.data[touch_name]['attention_mask'] = \
+                [b for b in res_encode['attention_mask']]
+
+            # res_encode = bert_tokenizer.batch_encode_plus(s, pad_to_max_length=True, add_special_tokens=True, is_pretokenized=True)
+            # self.data[touch_name]['bert_tokenized'] = []
+            #
+            # for i in range(len(res_encode['input_ids'])):
+            #     self.data[touch_name]['bert_tokenized'].append({'input_ids': res_encode['input_ids'][i], 'token_type_ids': res_encode['token_type_ids'][i],
+            #               'attention_mask': res_encode['attention_mask'][i]})
 
 
             if self.to_sequential:
                 self.to_seq(touch_name, seq_len)
-        del s
+        del s, res_encode
 
 
     def zero_padding(self, touch_name, seq_len=3):
@@ -150,8 +166,10 @@ class manga4koma():
         self.seq_data = defaultdict(dict)
         f_trains = self.data[touch_name][self.data[touch_name].original]
 
-        x = []
-        y = []
+        x_input = []
+        x_type = []
+        x_attn = []
+        y_koma = []
 
         for f_index, f_train_data in f_trains.iterrows():
 
@@ -175,27 +193,31 @@ class manga4koma():
             # print(front_in.iloc[1].what + " " + front_in.iloc[2].what)
             for t_index, third_in in third_ins.iterrows():
 
-                input_x = np.stack([*front_in.tail(seq_len-1).bert_tokenized, third_in.bert_tokenized], axis=0)
-                x.append(input_x)
+                x_input.append(np.stack([*front_in.tail(seq_len-1).input_ids, third_in.input_ids], axis=0))
+                x_type.append(np.stack([*front_in.tail(seq_len-1).token_type_ids, third_in.token_type_ids], axis=0))
+                x_attn.append(np.stack([*front_in.tail(seq_len-1).attention_mask, third_in.attention_mask], axis=0))
 
-                input_y = np.stack([*front_in.tail(seq_len-1).koma_vec, third_in.koma_vec], axis=0)
-                y.append(input_y)
+                y_koma.append(np.stack([*front_in.tail(seq_len-1).koma_vec, third_in.koma_vec], axis=0))
 
         self.data[touch_name] = self.data[touch_name][self.data[touch_name]['what'] != '[PAD]']
         self.data[touch_name] = self.data[touch_name].reset_index(drop=True)
-        self.data[touch_name].bert_tokenized = x
-        self.data[touch_name].koma_vec = y
+        self.data[touch_name].input_ids = x_input
+        self.data[touch_name].token_type_ids = x_type
+        self.data[touch_name].attention_mask = x_attn
+        self.data[touch_name].koma_vec = y_koma
         #x_t, x_v, y_t, y_v = train_test_split(x, y, test_size=val_size, random_state=random_seed, shuffle=shuffle)
 
 
 
 
-# amanga4koma = manga4koma(to_zero_pad=True, to_sub_word=True, to_sequential=True, seq_len=3)
+# amanga4koma = manga4koma(to_zero_pad=False, to_sub_word=True, to_sequential=False, seq_len=3)
 # print(amanga4koma.data['gyagu'].koma_vec[0])
 # print(amanga4koma.data['moe'].koma_vec[0])
 # print(amanga4koma.data['moe'].koma_vec[7562])
 # print(amanga4koma.data['moe'].what)
-# print(amanga4koma.data['gyagu'].bert_tokenized)
+# print(amanga4koma.data['gyagu'].input_ids)
+# print(amanga4koma.data['gyagu'].token_type_ids)
+# print(amanga4koma.data['gyagu'].attention_mask)
 # print(amanga4koma.data['gyagu'].bert_tokenized[0])
 #print(bert_tokenizer.convert_ids_to_tokens(amanga4koma.data['gyagu'].bert_tokenized[7862]))
 #print(amanga4koma.data['gyagu'].wakati)

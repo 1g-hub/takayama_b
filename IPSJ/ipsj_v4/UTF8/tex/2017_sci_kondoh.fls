@@ -1,0 +1,9 @@
+PWD C:/Users/TAKAYAMA/Documents/GitHub/takayama/IPSJ/ipsj_v4/UTF8/tex
+INPUT c:/w32tex/share/texmf-dist/web2c/texmf.cnf
+INPUT c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt
+INPUT 2017_sci_kondoh.tex
+OUTPUT 2017_sci_kondoh.log
+INPUT c:/w32tex/share/texmf-dist/tex/platex/base/jarticle.cls
+INPUT c:/w32tex/share/texmf-dist/tex/platex/base/jarticle.cls
+INPUT c:/w32tex/share/texmf-dist/tex/platex/base/jsize10.clo
+INPUT c:/w32tex/share/texmf-dist/tex/platex/base/jsize10.clo

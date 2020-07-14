@@ -1,0 +1,22 @@
+\begin{thebibliography}{1}
+
+\bibitem{LSTM}
+F.~A. Gers, J.~Schmidhuber, and F.~Cummins.
+\newblock Learning to forget:continual prediction with lstm.
+\newblock 1999.
+
+\bibitem{aiwolf}
+鳥海不二夫, 片上大輔, 澤博隆, 葉通将, 篠田孝祐, 狩野芳伸.
+\newblock 人狼知能 だます・見破る・説得する人工知能.
+\newblock 森北出版株式会社, Mar. 2016.
+
+\bibitem{project}
+人狼知能プロジェクト.
+\newblock http://aiwolf.org/.
+
+\bibitem{RNN}
+W.~Zaremba.
+\newblock Recurrent neural network regularization.
+\newblock 2015.
+
+\end{thebibliography}

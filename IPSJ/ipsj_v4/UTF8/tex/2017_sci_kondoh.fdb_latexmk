@@ -1,0 +1,16 @@
+# Fdb version 3
+["dvipdf"] 0 "2017_sci_kondoh.dvi" "2017_sci_kondoh.pdf" "2017_sci_kondoh" 0
+  "2017_sci_kondoh.dvi" 1489126635 29116 01fd4a49f97b5815dc7cf1333c2e11b9 "latex"
+  (generated)
+  "2017_sci_kondoh.pdf"
+["latex"] 1594603966 "2017_sci_kondoh.tex" "2017_sci_kondoh.dvi" "2017_sci_kondoh" 1594603967
+  "2017_sci_kondoh.aux" 1489126635 2095 5b9861b063fcc19135523d124aadd25d ""
+  "2017_sci_kondoh.tex" 1489126632 21289 9f3bdff31421859e593d63b47dc403e2 ""
+  "c:/w32tex/share/texmf-dist/tex/platex/base/jarticle.cls" 1569934002 25768 7795b6eb199d132d0146c0d315b25fef ""
+  "c:/w32tex/share/texmf-dist/tex/platex/base/jsize10.clo" 1569934002 8451 6e1b94a79d29feb410caf4b608bd8f53 ""
+  "c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt" 1570169253 4556572 a6c137fa42816e84ac5b2da246c5a25c ""
+  "c:/w32tex/share/texmf-dist/web2c/texmf.cnf" 1569228113 36614 36bcba4138d21dc48ee03f08b1e2dd36 ""
+  "sci.sty" 0 -1 0 ""
+  (generated)
+  "2017_sci_kondoh.dvi"
+  "2017_sci_kondoh.log"

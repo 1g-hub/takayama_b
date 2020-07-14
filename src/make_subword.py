@@ -24,6 +24,8 @@ for touch_name in TOUCH_NAME_ENG:
         wakati = data.at[index, 'wakati'].split(" ")
         s_subword = []
         for w in wakati:
+            if w == '!':
+                w = ''
             word_after = bert_tokenizer.tokenize(w)
             for word in word_after:
                 if word == '[UNK]':
