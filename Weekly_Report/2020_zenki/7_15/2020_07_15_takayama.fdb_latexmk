@@ -1,12 +1,12 @@
 # Fdb version 3
-["dvipdf"] 1594788467 "2020_07_14_takayama.dvi" "2020_07_14_takayama.pdf" "2020_07_14_takayama" 1594788470
-  "2020_07_14_takayama.dvi" 1594788467 9300 52170a4c6ca2c471c9df816159c4f5a3 "latex"
+["dvipdf"] 1594788591 "2020_07_15_takayama.dvi" "2020_07_15_takayama.pdf" "2020_07_15_takayama" 1594788593
+  "2020_07_15_takayama.dvi" 1594788591 9300 3d1a270ba8b8e68c6b2527e784dd7bdb "latex"
   (generated)
-  "2020_07_14_takayama.pdf"
-["latex"] 1594788464 "2020_07_14_takayama.tex" "2020_07_14_takayama.dvi" "2020_07_14_takayama" 1594788470
-  "2020_07_14_takayama.aux" 1594788467 2273 472f04c34ee7e5edbc5694dcbefd2677 "latex"
-  "2020_07_14_takayama.out" 1594788467 369 98b9954807eee985f4b6403a78a50896 "latex"
-  "2020_07_14_takayama.tex" 1594788461 6590 04996785665c9dc6bd200c49c62bfc2e ""
+  "2020_07_15_takayama.pdf"
+["latex"] 1594788588 "2020_07_15_takayama.tex" "2020_07_15_takayama.dvi" "2020_07_15_takayama" 1594788593
+  "2020_07_15_takayama.aux" 1594788591 2273 472f04c34ee7e5edbc5694dcbefd2677 "latex"
+  "2020_07_15_takayama.out" 1594788591 369 98b9954807eee985f4b6403a78a50896 "latex"
+  "2020_07_15_takayama.tex" 1594788553 6590 17f376138e40af86bd35bb5f201ae066 ""
   "c:/w32tex/share/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm" 1519818042 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/min10.tfm" 1519818042 1196 1be730212205a270378fba11a44765dc ""
@@ -78,7 +78,7 @@
   "c:/w32tex/share/texmf-dist/web2c/eptex/platex.fmt" 1570169253 4556572 a6c137fa42816e84ac5b2da246c5a25c ""
   "c:/w32tex/share/texmf-dist/web2c/texmf.cnf" 1569228113 36614 36bcba4138d21dc48ee03f08b1e2dd36 ""
   (generated)
-  "2020_07_14_takayama.out"
-  "2020_07_14_takayama.aux"
-  "2020_07_14_takayama.log"
-  "2020_07_14_takayama.dvi"
+  "2020_07_15_takayama.aux"
+  "2020_07_15_takayama.log"
+  "2020_07_15_takayama.out"
+  "2020_07_15_takayama.dvi"
