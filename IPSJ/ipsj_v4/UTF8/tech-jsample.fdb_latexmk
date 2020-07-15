@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1594653391 "tech-jsample.dvi" "tech-jsample.pdf" "tech-jsample" 1594653410
-  "tech-jsample.dvi" 1594653390 41444 94a226b52285602f31678ec6eb95e641 "latex"
+["dvipdf"] 1594777574 "tech-jsample.dvi" "tech-jsample.pdf" "tech-jsample" 1594777583
+  "tech-jsample.dvi" 1594777573 41444 0727c2be22cd3dede065fe248114c293 "latex"
   (generated)
   "tech-jsample.pdf"
-["latex"] 1594653387 "tech-jsample.tex" "tech-jsample.dvi" "tech-jsample" 1594653409
+["latex"] 1594777570 "tech-jsample.tex" "tech-jsample.dvi" "tech-jsample" 1594777583
   "c:/w32tex/share/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/adobe/times/ptmr7t.tfm" 1064858046 2124 2601a75482e9426d33db523edf23570a ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/jis/jis.tfm" 1519818042 468 53f854284f6afa6c36aaa2d1090ecc12 ""
@@ -62,9 +62,9 @@
   "c:/w32tex/share/texmf-dist/web2c/texmf.cnf" 1569228113 36614 36bcba4138d21dc48ee03f08b1e2dd36 ""
   "ipsj.cls" 1594601705 142123 edc2b78c657ed865834831a8cbffeb3f ""
   "ipsjtech.sty" 1594653363 6557 7da63f5ef9ff38c341d18c1c092b2107 ""
-  "tech-jsample.aux" 1594653390 5008 1ba41f8392b128942c7b29dfd4747932 "latex"
+  "tech-jsample.aux" 1594777573 5008 1ba41f8392b128942c7b29dfd4747932 "latex"
   "tech-jsample.tex" 1594652973 28019 300c614aa16f3ad5b5665fd92e1beb1d ""
   (generated)
-  "tech-jsample.aux"
   "tech-jsample.log"
   "tech-jsample.dvi"
+  "tech-jsample.aux"
