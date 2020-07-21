@@ -20,13 +20,13 @@ from numba import jit
 
 # ========
 # GLOBAL 変数
-TOUCH_NAME_ENG = ["gyagu", "shoujo", "shounen", "seinen", "moe"]
+TOUCH_NAME_ENG = ["shoujo", "moe"]
 
 P_EMOTIONS = ['喜楽']
 
 P_DIC = {'ニュートラル':'neutral', '驚愕':'kyougaku', '喜楽':'kiraku'}
 
-manga_data = manga4koma(to_zero_pad=True, to_sub_word=True, to_sequential=True, seq_len=3)
+manga_data = manga4koma(to_zero_pad=True, to_sub_word=True, to_sequential=True, seq_len=6)
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 torch.backends.cudnn.benchmark = True
@@ -157,8 +157,8 @@ class Manga4koma_Experiment():
 
         self.touch_name = touch_name
 
-        self.log_path = './result_' + self.touch_name + '_' + P_DIC[self.p_label] + '_seq_len3_last_0713_epoch50.txt'
-        self.new_model_path = '../models/bert/My_Japanese_transformers/' + self.touch_name + '_' + P_DIC[self.p_label] + '_seq_len3_last_0713_epoch50.bin'
+        self.log_path = './result_' + self.touch_name + '_' + P_DIC[self.p_label] + '_seq_len5_last_0713_epoch50.txt'
+        self.new_model_path = '../models/bert/My_Japanese_transformers/' + self.touch_name + '_' + P_DIC[self.p_label] + '_seq_len5_last_0713_epoch50.bin'
 
         self.reset_count()
 
@@ -170,7 +170,7 @@ class Manga4koma_Experiment():
         self.is_study = is_study
 
         self.history = History()
-        self.net = Net(seq_len=3).to(device)
+        self.net = Net(seq_len=6).to(device)
 
         self.optimizer = torch.optim.Adam(self.net.parameters(), lr=lr)
 
@@ -262,7 +262,7 @@ class Manga4koma_Experiment():
 
     def manga4koma_test(self):
         log_f = open(self.log_path, 'a', encoding='utf-8')
-        self.net = Net(seq_len=3).to(device)
+        self.net = Net(seq_len=6).to(device)
         self.load_model()
         self.reset_count()
         test_index = 0
@@ -295,6 +295,7 @@ class Manga4koma_Experiment():
                                                                               predicted[0],
                                                                               self.test_data_set.iloc[test_index].emotion),
                           file=log_f)
+                    print(y_pred,file=log_f)
 
                 pred.append(predicted[0])
                 label.append(torch.max(y_test.data, 1)[1][0])
@@ -343,7 +344,7 @@ class Manga4koma_Experiment():
         k = self.bairitsu
 
         def objective(trial):
-            lr = trial.suggest_loguniform('lr', 7e-7 * k*k, 8e-7 * k*k)
+            lr = trial.suggest_loguniform('lr', 7e-7 * k*k*5, 8e-7 * k*k*5)
             print("suggest lr = {}".format(lr))
             best_valid_f1 = self.manga4koma_train(lr=lr, is_study=True)
             error = 1 - best_valid_f1
