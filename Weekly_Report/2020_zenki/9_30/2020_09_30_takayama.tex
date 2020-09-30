@@ -1,0 +1,150 @@
+%\documentstyle[epsf,twocolumn]{jarticle}       %LaTeX2.09仕様
+\documentclass[twocolumn]{jarticle}     %pLaTeX2e仕様
+
+%\usepackage[backend=bibtex, style=numeric]{biblatex}
+%\addbibresource{sankou.bib}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%  基本 バージョン
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\topmargin}{-45pt}
+%\setlength{\oddsidemargin}{0cm}
+\setlength{\oddsidemargin}{-7.5mm}
+%\setlength{\evensidemargin}{0cm}
+\setlength{\textheight}{24.1cm}
+%setlength{\textheight}{25cm}
+\setlength{\textwidth}{17.4cm}
+%\setlength{\textwidth}{172mm}
+\setlength{\columnsep}{11mm}
+
+\setlength{\intextsep}{8pt}
+\setlength{\textfloatsep}{8pt}
+\setlength{\floatsep}{1pt}
+
+\kanjiskip=.07zw plus.5pt minus.5pt
+
+
+
+%【節がかわるごとに(1.1)(1.2) …(2.1)(2.2)と数式番号をつけるとき】
+%\makeatletter
+%\renewcommand{\theequation}{%
+%\thesection.\arabic{equation}} %\@addtoreset{equation}{section}
+%\makeatother
+
+%\renewcommand{\arraystretch}{0.95} 行間の設定
+
+\usepackage[dvipdfmx]{graphicx}   %pLaTeX2e仕様(\documentstyle ->\documentclass)
+\usepackage{scalefnt}
+\usepackage{bm}
+\usepackage{here}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[subrefformat=parens]{subcaption}
+\captionsetup{compatibility=false}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{comment}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{nidanfloat}
+\usepackage[dvipdfmx]{hyperref}
+
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+
+\begin{document}
+
+\twocolumn[
+\noindent
+\hspace{1em}
+
+令和2年9月30日(水) ゼミ資料
+\hfill
+\ \ B4 高山 裕成
+
+\vspace{2mm}
+\hrule
+\begin{center}
+{\Large  進捗報告}
+\end{center}
+\hrule
+\vspace{3mm}
+]
+
+\section{あらすじ}
+hottoSNS-BERT モデルが届いた.
+
+% \footnotesize
+\section{進捗}
+
+\begin{itemize}
+  \item 未知語率測定
+\end{itemize}
+
+\section{データセットに含まれる未知語率}
+
+BERT の事前学習済モデル(京大BERT・hottoSNS-BERT) を用いて 4 コマ漫画ストーリーデータセットについてボキャブラリーに含まれているかどうかを各タッチについてデータオーギュメンテーション前後で算出した.
+形態素解析には Juman++ を用いている.
+
+\subsubsection{形態素(Juman++)}
+従来, 実験で用いていた手法における未知語率を表したのが表\ref{tab:unknown} である.
+拡張前で約 25\%, 拡張後で約 68\% であった.
+
+\begin{table*}[htb]
+\begin{center}
+\caption{データセットに含まれる未知語率}
+\scalebox{0.8}{
+\begin{tabular}{lllccccc}
+\hline
+\multicolumn{1}{c}{} &               &      & \multirow{2}{*}{ギャグ} & \multirow{2}{*}{少女} & \multirow{2}{*}{少年} & \multirow{2}{*}{青年} & \multirow{2}{*}{萌え系} \\
+\multicolumn{1}{c}{} &               &      &                      &                     &                     &                     &                      \\ \hline
+\multicolumn{2}{l}{拡張前}              &      &                      &                     &                     &                     &                      \\
+                     & 京大BERT        & 総単語数 & 311                  & 331                 & 315                 & 316                 & 316                  \\
+                     &               & 未知語率 & 0.026                & 0.021               & 0.019               & 0.022               & 0.025                \\ \cline{2-8}
+                     & hottoSNS-BERT & 総単語数 & 270                  & 289                 & 274                 & 276                 & 276                  \\
+                     &               & 未知語率 & 0.133                & 0.131               & 0.128               & 0.127               & 0.120                \\ \hline
+拡張後                  &               &      &                      &                     &                     &                     &                      \\
+                     & 京大BERT        & 総単語数 & 2633                 & 2728                & 2664                & 2705                & 2708                 \\
+                     &               & 未知語率 & 0.090                & 0.089               & 0.088               & 0.089               & 0.089                \\ \cline{2-8}
+                     & hottoSNS-BERT & 総単語数 & 3030                 & 3209                & 3089                & 3154                & 3154                 \\
+                     &               & 未知語率 & 0.695                & 0.700               & 0.696               & 0.698               & 0.697
+\end{tabular}
+\label{tab:unknown}
+}
+\end{center}
+\end{table*}
+
+
+\subsection{考察}
+\subsubsection{語彙数}
+拡張前は京大BERTの方が多かったが拡張後はhottoSNS-BERTの方が多かった.
+理由としてはトークナイズ時の仕様の違いによるものだと考えられる.
+\begin{itemize}
+  \item 京大BERT は 形態素からサブワードへの変換は BPE を用いている
+  \item hottoSNS-BERT は形態素解析を行わずSentencePieceを用いて直接テキストからサブワード化している
+\end{itemize}
+\subsubsection{未知語率}
+前節の理由から例えば形態素「ただいま～」について\\
+hottoSNS-BERT では
+\begin{verbatim}
+ただいま～
+\end{verbatim}
+のままで全体として未知語として扱われているが京大BERTでは
+\begin{verbatim}
+ただ ##い ##ま ##〜
+\end{verbatim}
+と扱われ, その差が未知語率に大きく差をもたらしていると考えられる.
+
+
+\section{今後の実験予定}
+\begin{itemize}
+  \item Juman++ ではなくSentencePieceの事前学習済みモデルを用いて形態素解析を行う.
+  \item セリフからの話者推定
+\end{itemize}
+
+\bibliographystyle{unsrt}
+\bibliography{sankou}
+
+
+\end{document}
