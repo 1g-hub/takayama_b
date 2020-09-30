@@ -25,7 +25,7 @@ for b in bert_words:
 # GLOBAL 変数
 TOUCH_NAME_ENG = ["gyagu", "shoujo", "shounen", "seinen", "moe"]
 
-log = open('./cnt_unkwords_hottoSNS.txt',mode='w', encoding='utf-8')
+log = open('./cnt_unkwords_hottoSNS_spm.txt',mode='w', encoding='utf-8')
 
 bert_tokenizer = BertTokenizer("../models/bert/hottoSNS-bert-pytorch/vocab.txt",do_lower_case=False, do_basic_tokenize=False)
 
@@ -55,9 +55,11 @@ for touch_name in TOUCH_NAME_ENG:
     #     wakati = bert_tokenizer.tokenize(s[0])
     #     print("wakati:")
     #     print(wakati)
+    sp_tokenizer = sp.SentencePieceProcessor()
+    sp_tokenizer.load("../models/bert/hottoSNS-bert-pytorch/tokenizer_spm_32K.model")
 
-    data.wakati = [w.split(' ') for w in data.wakati.tolist()]
-    original_data.wakati = [w.split(' ') for w in original_data.wakati.tolist()]
+    data.wakati = [sp_tokenizer.EncodeAsPieces(w) for w in data.what.tolist()]
+    original_data.wakati = [sp_tokenizer.EncodeAsPieces(w) for w in original_data.what.tolist()]
 
     for wakati in original_data.wakati:
         print(wakati)
@@ -113,8 +115,6 @@ for touch_name in TOUCH_NAME_ENG:
     print("Augmentated未知語率 : {}".format( len(unk_words) / (len(unk_words) + len(known_words)) ), file=log )
     print(unk_words, file=log)
 
-    data.wakati = [w.split(' ') for w in data.wakati.tolist()]
-    original_data.wakati = [w.split(' ') for w in original_data.wakati.tolist()]
 
 log.close()
 

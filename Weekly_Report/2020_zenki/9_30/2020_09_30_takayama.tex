@@ -79,21 +79,17 @@ hottoSNS-BERT モデルが届いた.
 \section{進捗}
 
 \begin{itemize}
-  \item 未知語率測定
+  \item 未知語割合測定
 \end{itemize}
 
-\section{データセットに含まれる未知語率}
+\section{データセットに含まれる未知語割合}
 
 BERT の事前学習済モデル(京大BERT・hottoSNS-BERT) を用いて 4 コマ漫画ストーリーデータセットについてボキャブラリーに含まれているかどうかを各タッチについてデータオーギュメンテーション前後で算出した.
 形態素解析には Juman++ を用いている.
 
-\subsubsection{形態素(Juman++)}
-従来, 実験で用いていた手法における未知語率を表したのが表\ref{tab:unknown} である.
-拡張前で約 25\%, 拡張後で約 68\% であった.
-
 \begin{table*}[htb]
 \begin{center}
-\caption{データセットに含まれる未知語率}
+\caption{データセットに含まれる未知語割合}
 \scalebox{0.8}{
 \begin{tabular}{lllccccc}
 \hline
@@ -101,14 +97,14 @@ BERT の事前学習済モデル(京大BERT・hottoSNS-BERT) を用いて 4 コ�
 \multicolumn{1}{c}{} &               &      &                      &                     &                     &                     &                      \\ \hline
 \multicolumn{2}{l}{拡張前}              &      &                      &                     &                     &                     &                      \\
                      & 京大BERT        & 総単語数 & 311                  & 331                 & 315                 & 316                 & 316                  \\
-                     &               & 未知語率 & 0.026                & 0.021               & 0.019               & 0.022               & 0.025                \\ \cline{2-8}
+                     &               & 未知語割合 & 0.026                & 0.021               & 0.019               & 0.022               & 0.025                \\ \cline{2-8}
                      & hottoSNS-BERT & 総単語数 & 270                  & 289                 & 274                 & 276                 & 276                  \\
-                     &               & 未知語率 & 0.133                & 0.131               & 0.128               & 0.127               & 0.120                \\ \hline
+                     &               & 未知語割合 & 0.133                & 0.131               & 0.128               & 0.127               & 0.120                \\ \hline
 拡張後                  &               &      &                      &                     &                     &                     &                      \\
                      & 京大BERT        & 総単語数 & 2633                 & 2728                & 2664                & 2705                & 2708                 \\
-                     &               & 未知語率 & 0.090                & 0.089               & 0.088               & 0.089               & 0.089                \\ \cline{2-8}
+                     &               & 未知語割合 & 0.090                & 0.089               & 0.088               & 0.089               & 0.089                \\ \cline{2-8}
                      & hottoSNS-BERT & 総単語数 & 3030                 & 3209                & 3089                & 3154                & 3154                 \\
-                     &               & 未知語率 & 0.695                & 0.700               & 0.696               & 0.698               & 0.697
+                     &               & 未知語割合 & 0.695                & 0.700               & 0.696               & 0.698               & 0.697
 \end{tabular}
 \label{tab:unknown}
 }
@@ -124,7 +120,7 @@ BERT の事前学習済モデル(京大BERT・hottoSNS-BERT) を用いて 4 コ�
   \item 京大BERT は 形態素からサブワードへの変換は BPE を用いている
   \item hottoSNS-BERT は形態素解析を行わずSentencePieceを用いて直接テキストからサブワード化している
 \end{itemize}
-\subsubsection{未知語率}
+\subsubsection{未知語割合}
 前節の理由から例えば形態素「ただいま～」について\\
 hottoSNS-BERT では
 \begin{verbatim}
@@ -134,12 +130,52 @@ hottoSNS-BERT では
 \begin{verbatim}
 ただ ##い ##ま ##〜
 \end{verbatim}
-と扱われ, その差が未知語率に大きく差をもたらしていると考えられる.
+と扱われ, その差が未知語割合に大きく差をもたらしていると考えられる.
 
+\subsection{SentencePieceによる形態素解析}
+hottoSNS-BERTモデルのみについて, hottoSNS-BERT の分かち書きコーパス構築時に学習されたSentencePieceの事前学習済みモデルを用いて形態素解析した場合についても未知語割合を算出した.
 
+\begin{table*}[htb]
+\begin{center}
+\caption{SentencePieceによる形態素解析}
+\scalebox{0.8}{
+\begin{tabular}{lllccccc}
+\hline
+\multicolumn{2}{c}{\multirow{2}{*}{hottoSNS-BERT}} &      & \multirow{2}{*}{ギャグ} & \multirow{2}{*}{少女} & \multirow{2}{*}{少年} & \multirow{2}{*}{青年} & \multirow{2}{*}{萌え系} \\
+\multicolumn{2}{c}{}                               &      &                      &                     &                     &                     &                      \\ \hline
+\multicolumn{2}{l}{拡張前}                            &      &                      &                     &                     &                     &                      \\
+                 & Juman++ 形態素化                    & 総単語数 & 270                  & 289                 & 274                 & 276                 & 276                  \\
+                 &                                 & 未知語割合 & 0.133                & 0.131               & 0.128               & 0.127               & 0.120                \\ \cline{2-8}
+                 & SentencePiece 形態素化              & 総単語数 & 318                  & 342                 & 327                 & 332                 & 329                  \\
+                 &                                 & 未知語割合 & 0.012                & 0.012               & 0.009               & 0.012               & 0.012                \\ \hline
+拡張後              &                                 &      &                      &                     &                     &                     &                      \\
+                 & Juman++ 形態素化                    & 総単語数 & 3030                 & 3209                & 3089                & 3154                & 3154                 \\
+                 &                                 & 未知語割合 & 0.695                & 0.700               & 0.696               & 0.698               & 0.697                \\ \cline{2-8}
+                 & SentencePiece 形態素化              & 総単語数 & 2495                 & 2597                & 2523                & 2568                & 2563                 \\
+                 &                                 & 未知語割合 & 0.036                & 0.035               & 0.035               & 0.035               & 0.035
+\end{tabular}
+\label{tab:unknownspm}
+}
+\end{center}
+\end{table*}
+
+\subsection{考察}
+\subsubsection{未知語割合}
+Juman++ と比べて大幅に改善され, 拡張前後どちらの場合についても京大BERTよりも未知語割合は下がった.
+\subsubsection{重要な未知語}
+\begin{verbatim}
+['A', 'DVD', 'B', 'GPU']
+\end{verbatim}
+\subsubsection{データ拡張由来の未知語}
+\begin{verbatim}
+  ['坐臥', '斯', '迚', '爾', '寔', '悉', '頗', '假', '遁', '顏', '佞', '兇', '譎', '奸譎', '瀟', '窈窕', '婉', '嬋', '悍', '裳', '艷', '閨', '嚊', '嬶', '庸', '灑', '滌', '渫', '臍', '浚', '婢', '嘱', '饒', '噺', '恤', '賦', '婬', '婬靡', '靡', '芍', '辯', '僉', '虞', '尤', '緻', '禀', '稟', '稟賦', '忽', '儕', '儷', '豁', '帙', '韋', '柢', '繙', '誦', '帛', '稍', '聊', '纔', '做', '搦', '疵瑕', '瑕疵', '疵', '昊', '穹', '稗', '躬', '輓', '覯', '扣', '撥', '斥', '洩', '擯斥', '兌', '壟', '渥', '乍', '軈', '孰', '已', '疚']
+
+\end{verbatim}
 \section{今後の実験予定}
 \begin{itemize}
-  \item Juman++ ではなくSentencePieceの事前学習済みモデルを用いて形態素解析を行う.
+  \item 前期研究分をhottoSNS-BERTで再実験
+  \item 二分割交差検証
+  \item データセット不備への対処(ラベルなしセリフをスキップしてデータから除外されていた)
   \item セリフからの話者推定
 \end{itemize}
 
