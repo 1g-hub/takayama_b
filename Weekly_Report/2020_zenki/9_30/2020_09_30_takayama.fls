@@ -100,6 +100,7 @@ INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT c:/w32tex/share/texmf-dist/tex/latex/base/omscmr.fd
 INPUT c:/w32tex/share/texmf-dist/tex/latex/base/omscmr.fd
+INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
@@ -123,7 +124,6 @@ INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 OUTPUT 2020_09_30_takayama.dvi
 INPUT 2020_09_30_takayama.aux
 INPUT ./2020_09_30_takayama.out
