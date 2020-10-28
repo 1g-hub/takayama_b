@@ -40,7 +40,7 @@ print(bert_tokenizer.convert_tokens_to_ids(s))
 print(bert_tokenizer.convert_tokens_to_ids(['赤城','一ノ瀬志希']))
 print(bert_tokenizer.convert_tokens_to_ids(['[UNK]','<unk>']))
 
-s = 'bさん、苦手そうだよな…'
+s = 'DVDさん、苦手そうだよな…'
 s = (sp_tokenizer.EncodeAsPieces(s))
 print(s)
 print(bert_tokenizer.convert_tokens_to_ids(s))
