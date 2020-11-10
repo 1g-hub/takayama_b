@@ -7,7 +7,7 @@ import pandas as pd
 import pickle
 import os
 from transformers import BertTokenizer, BertForMaskedLM, BertConfig
-
+import torch
 
 def pickle_dump(obj, path):
     with open(path, mode='wb') as f:
@@ -210,7 +210,7 @@ class manga4koma():
 
 
 
-# amanga4koma = manga4koma(to_zero_pad=False, to_sub_word=True, to_sequential=False, seq_len=3)
+amanga4koma = manga4koma(to_zero_pad=False, to_sub_word=True, to_sequential=False, seq_len=3)
 # print(amanga4koma.data['gyagu'].koma_vec[0])
 # print(amanga4koma.data['moe'].koma_vec[0])
 # print(amanga4koma.data['moe'].koma_vec[7562])
@@ -228,7 +228,12 @@ class manga4koma():
 #print(embedding.embed['gyagu'].size)
 #print(embedding.embed['gyagu'])
 #print(amanga4koma.data['gyagu'].what)
-#input_ids = torch.tensor(amanga4koma.bert_tokenized['gyagu']['input_ids'])
-#print(bert_tokenizer.convert_ids_to_tokens(input_ids[0].tolist()))
+input_ids = torch.tensor(amanga4koma.data['gyagu']['input_ids'])
+for i in range(10):
+    print(bert_tokenizer.convert_ids_to_tokens(input_ids[i].tolist()))
 
+amanga4koma = manga4koma(to_zero_pad=False, to_sub_word=False, to_sequential=False, seq_len=3)
 
+input_ids = torch.tensor(amanga4koma.data['gyagu']['input_ids'])
+for i in range(10):
+    print(bert_tokenizer.convert_ids_to_tokens(input_ids[i].tolist()))

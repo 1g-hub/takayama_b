@@ -22,9 +22,9 @@ print(bert_words)
 # GLOBAL 変数
 TOUCH_NAME_ENG = ["gyagu", "shoujo", "shounen", "seinen", "moe"]
 
-log = open('./cnt_unk_words_add_bert_tokenize.txt',mode='w', encoding='utf-8')
+log = open('./cnt_unkwords_hottoSNS.txt',mode='w', encoding='utf-8')
 
-bert_tokenizer = BertTokenizer('../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/vocab.txt', config='models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/tokenizer_config.json', do_basic_tokenize=False)
+bert_tokenizer = BertTokenizer("../models/bert/hottoSNS-bert-pytorch/vocab.txt",do_lower_case=False, do_basic_tokenize=False)
 
 for touch_name in TOUCH_NAME_ENG:
     unk_words = []
@@ -86,50 +86,50 @@ for touch_name in TOUCH_NAME_ENG:
     unk_words = []
     known_words = []
 
-    for wakati in data.wakati:
-        for word_before in wakati:
-            word_after = bert_tokenizer.tokenize(word_before)
-            # print(word_after)
-            # print(word_before)
-
-            # w_ori = ''.join(word_before)
-            # # [UNK] を元に戻す.
-            # w_a = ''.join(word_after).replace('##','').split('[UNK]')
-            # print(w_a)
-            # unk_num = len(w_a) - 1
-            # for w in w_a:
-            #     w_ori.replace(w,' ')
-            # w_ori.split(' ')
-            # print(w_ori)
-            for word in word_after:
-                print(word)
-                if word == '[UNK]':
-                    word = ''.join(word_before)
-                    #print(word)
-                w_id = bert_tokenizer.convert_tokens_to_ids(word)
-                if word in known_words:
-                    continue
-                else:
-                    if w_id != 1:
-                        if word == 'A':
-                            print("ERROR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-                        known_words.append(word)
-                    else:
-                        if word not in unk_words:
-                            unk_words.append(word)
-                # if word in known_words:
-                #     continue
-                # else:
-                #     if word in bert_words:
-                #         known_words.append(word)
-                #     else:
-                #         if word not in unk_words:
-                #             unk_words.append(word)
-    print("タッチ : {}".format(touch_name), file=log)
-    print("Augmentated総単語数 : {}".format(len(unk_words) + len(known_words)), file=log)
-    print("Augmentated未知語数 : {}".format(len(unk_words)), file=log)
-    print("Augmentated未知語率 : {}".format( len(unk_words) / (len(unk_words) + len(known_words)) ), file=log )
-    print(unk_words, file=log)
+    # for wakati in data.wakati:
+    #     for word_before in wakati:
+    #         word_after = bert_tokenizer.tokenize(word_before)
+    #         # print(word_after)
+    #         # print(word_before)
+    #
+    #         # w_ori = ''.join(word_before)
+    #         # # [UNK] を元に戻す.
+    #         # w_a = ''.join(word_after).replace('##','').split('[UNK]')
+    #         # print(w_a)
+    #         # unk_num = len(w_a) - 1
+    #         # for w in w_a:
+    #         #     w_ori.replace(w,' ')
+    #         # w_ori.split(' ')
+    #         # print(w_ori)
+    #         for word in word_after:
+    #             print(word)
+    #             if word == '[UNK]':
+    #                 word = ''.join(word_before)
+    #                 #print(word)
+    #             w_id = bert_tokenizer.convert_tokens_to_ids(word)
+    #             if word in known_words:
+    #                 continue
+    #             else:
+    #                 if w_id != 1:
+    #                     if word == 'A':
+    #                         print("ERROR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    #                     known_words.append(word)
+    #                 else:
+    #                     if word not in unk_words:
+    #                         unk_words.append(word)
+    #             # if word in known_words:
+    #             #     continue
+    #             # else:
+    #             #     if word in bert_words:
+    #             #         known_words.append(word)
+    #             #     else:
+    #             #         if word not in unk_words:
+    #             #             unk_words.append(word)
+    # print("タッチ : {}".format(touch_name), file=log)
+    # print("Augmentated総単語数 : {}".format(len(unk_words) + len(known_words)), file=log)
+    # print("Augmentated未知語数 : {}".format(len(unk_words)), file=log)
+    # print("Augmentated未知語率 : {}".format( len(unk_words) / (len(unk_words) + len(known_words)) ), file=log )
+    # print(unk_words, file=log)
 
 log.close()
 
