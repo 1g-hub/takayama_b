@@ -30,17 +30,21 @@ bert_tokenizer = BertTokenizer('../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE
                                    config='../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/tokenizer_config.json')
 
 class manga4koma():
-    def __init__(self, to_sub_word=False, to_zero_pad=False, to_sequential=False, seq_len=3):
+    def __init__(self, to_zero_pad=False, to_sequential=False, seq_len=3, mode='kyoto'):
         self.TOUCH_NAME_ENG = ["gyagu", "shoujo", "shounen", "seinen", "moe"]
         self.CONV_TOUCH = {"gyagu": "ギャグタッチ", "shoujo": "少女漫画タッチ", "shounen": "少年漫画タッチ", "seinen": "青年漫画タッチ", "moe": "萌え系タッチ"}
         self.EMB_MODE = ["d2v", "bert"]
         self.EMB_DIM = {"d2v": 300, "bert": 768}
         self.CONV_EMO = {"ニュートラル": 'neutral', "驚愕": 'kyougaku', "喜楽": 'kiraku', "恐怖": 'kyouhu', "悲哀": 'hiai', "憤怒": 'hunnu', "嫌悪": 'keno'}
         self.SEQ_LEN = [2, 3, 4, 5, 6]
+
+        # 各4コマの最初には台詞がないので, '[PAD]' というテキストのセリフを付加するかどうか
         self.to_zero_pad = to_zero_pad
-        self.to_sub_word = to_sub_word
         self.to_sequential = to_sequential
         self.seq_len = seq_len
+
+        # mode : 'kyoto' 京大BERT, 'hotto' hottoSNS-BERT
+        self.mode = mode
         self.__set_data()
         self.__tokenize(seq_len=self.seq_len)
 
@@ -52,9 +56,9 @@ class manga4koma():
 
         for touch_name in self.TOUCH_NAME_ENG:
             self.data[touch_name] = pd.read_csv(
-                '../dataset/' + touch_name + '_aug_add_sub.csv',
+                '../new_dataset/' + touch_name + '_modified_aug.csv',
                 index_col=0,
-                dtype={'original': bool},
+                dtype={'original': bool,'inner': bool, 'kakimoji': bool, 'self_anotated': bool, 'alter_emotion': str},
                 usecols=lambda x: x is not 'index'
             )
 
@@ -62,18 +66,20 @@ class manga4koma():
             self.data[touch_name] = self.data[touch_name].assign(koma_vec = None)
             self.original_data[touch_name] = self.data[touch_name][self.data[touch_name].original]
 
-            if self.to_sub_word is False:
-                self.data[touch_name].wakati = [w.split(' ') for w in self.data[touch_name].wakati.tolist()]
-                self.original_data[touch_name].wakati = [w.split(' ') for w in self.original_data[touch_name].wakati.tolist()]
-            else:
+            if self.mode == 'kyoto':
                 self.data[touch_name].wakati = [w.split(' ') for w in self.data[touch_name].subword.tolist()]
                 self.original_data[touch_name].wakati = [w.split(' ') for w in
                                                          self.original_data[touch_name].subword.tolist()]
+            elif self.mode == 'hotto':
+                self.data[touch_name].wakati = [w.split(' ') for w in self.data[touch_name].wakati_sp.tolist()]
+                self.original_data[touch_name].wakati = [w.split(' ') for w in
+                                                         self.original_data[touch_name].wakati_sp.tolist()]
 
 
     def __tokenize(self, seq_len=3):
         for touch_name in self.TOUCH_NAME_ENG:
 
+            # koma_vec の代入
             for i, v in self.data[touch_name].iterrows():
                 if os.path.exists('../dataset/4koma_vec/' + touch_name + '_' + str(v['story_main_num']+1).zfill(3) + '_' + str(v['story_sub_num']+1) + '-' + str(v['koma']+1) + '.pkl'):
                     self.data[touch_name].at[i, 'koma_vec'] = pickle_load('../dataset/4koma_vec/' + touch_name + '_' + str(v['story_main_num']+1).zfill(3) + '_' + str(v['story_sub_num']+1) + '-' + str(v['koma']+1) + '.pkl')
@@ -112,16 +118,16 @@ class manga4koma():
 
     def zero_padding(self, touch_name, seq_len=3):
         data_columns = ['id', 'original', 'story_main_num', 'story_sub_num', 'koma', 'who', 'inner', 'speaker', 'what',
-                        'wakati',
-                        'emotion']
+                        'wakati', 'emotion', 'kakimoji', 'self_anotated', 'alter_emotion', 'wakati_sp']
         data = dict.fromkeys(data_columns)
+        padding_serif = '[PAD]' if self.mode == 'kyoto' else '<pad>'
         data['original'] = True
         data['koma'] = 0
         data['emotion'] = 'None'
-        data['what'] = '[PAD]'
+        data['what'] = padding_serif
         data['koma_vec'] = pickle_load('../dataset/4koma_vec/pad.pkl')
         # data['wakati'] = np.array([np.zeros((1, 300))]).reshape(300)
-        data['wakati'] = ['[PAD]']
+        data['wakati'] = [padding_serif]
         story_main_max = self.data[touch_name].story_main_num.max()
         story_main_min = self.data[touch_name].story_main_num.min()
         sep = []
@@ -210,7 +216,11 @@ class manga4koma():
 
 
 
-amanga4koma = manga4koma(to_zero_pad=False, to_sub_word=True, to_sequential=False, seq_len=3)
+amanga4koma = manga4koma(to_zero_pad=True, to_sequential=False, seq_len=3, mode='hotto')
+print(amanga4koma.data['gyagu'].wakati[0])
+print(amanga4koma.data['gyagu'].wakati_sp[0])
+print(amanga4koma.data['gyagu'].wakati[2])
+print(amanga4koma.data['gyagu'].wakati_sp[2])
 # print(amanga4koma.data['gyagu'].koma_vec[0])
 # print(amanga4koma.data['moe'].koma_vec[0])
 # print(amanga4koma.data['moe'].koma_vec[7562])
@@ -228,12 +238,15 @@ amanga4koma = manga4koma(to_zero_pad=False, to_sub_word=True, to_sequential=Fals
 #print(embedding.embed['gyagu'].size)
 #print(embedding.embed['gyagu'])
 #print(amanga4koma.data['gyagu'].what)
-input_ids = torch.tensor(amanga4koma.data['gyagu']['input_ids'])
-for i in range(10):
-    print(bert_tokenizer.convert_ids_to_tokens(input_ids[i].tolist()))
 
-amanga4koma = manga4koma(to_zero_pad=False, to_sub_word=False, to_sequential=False, seq_len=3)
 
-input_ids = torch.tensor(amanga4koma.data['gyagu']['input_ids'])
-for i in range(10):
-    print(bert_tokenizer.convert_ids_to_tokens(input_ids[i].tolist()))
+
+# input_ids = torch.tensor(amanga4koma.data['gyagu']['input_ids'])
+# for i in range(10):
+#     print(bert_tokenizer.convert_ids_to_tokens(input_ids[i].tolist()))
+#
+# amanga4koma = manga4koma(to_zero_pad=False, to_sub_word=False, to_sequential=False, seq_len=3)
+#
+# input_ids = torch.tensor(amanga4koma.data['gyagu']['input_ids'])
+# for i in range(10):
+#     print(bert_tokenizer.convert_ids_to_tokens(input_ids[i].tolist()))
