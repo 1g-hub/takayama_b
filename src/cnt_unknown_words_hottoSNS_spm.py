@@ -27,8 +27,8 @@ TOUCH_NAME_ENG = ["gyagu", "shoujo", "shounen", "seinen", "moe"]
 
 log = open('./cnt_unkwords_hottoSNS_spm.txt',mode='w', encoding='utf-8')
 
-bert_tokenizer = BertTokenizer("../models/bert/hottoSNS-bert-pytorch/vocab.txt",config='../models/bert/hottoSNS-bert-pytorch/tokenizer_config.json', unk_token='<unk>')
-
+# bert_tokenizer = BertTokenizer("../models/bert/hottoSNS-bert-pytorch/vocab.txt",config='../models/bert/hottoSNS-bert-pytorch/tokenizer_config.json', unk_token='<unk>')
+bert_tokenizer = BertTokenizer("../models/bert/hottoSNS-bert-pytorch/vocab.txt",do_lower_case= False, tokenize_chinese_chars=False, unk_token='<unk>',pad_token='<pad>',init_inputs=[])
 s = 'ゆめさんが、ファボしてくるあたり、世代だなって思いました(   ̇- ̇  )笑'
 print(bert_tokenizer.tokenize(s))
 sp_tokenizer = sp.SentencePieceProcessor()
@@ -39,8 +39,8 @@ print(s)
 print(bert_tokenizer.convert_tokens_to_ids(s))
 print(bert_tokenizer.convert_tokens_to_ids(['赤城','一ノ瀬志希']))
 print(bert_tokenizer.convert_tokens_to_ids(['[UNK]','<unk>']))
-
-s = 'DVDさん、苦手そうだよな…'
+print(bert_tokenizer.convert_tokens_to_ids(['[PAD]','<pad>']))
+s = 'dvdさん、苦手そうだよな…'
 s = (sp_tokenizer.EncodeAsPieces(s))
 print(s)
 print(bert_tokenizer.convert_tokens_to_ids(s))
