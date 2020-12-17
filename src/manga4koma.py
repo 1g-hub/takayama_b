@@ -25,10 +25,6 @@ EMB_DIM = {"d2v": 300, "bert": 768}
 CONV_EMO = {"ニュートラル": 'neutral', "驚愕": 'kyougaku', "喜楽": 'kiraku', "恐怖": 'kyouhu', "悲哀": 'hiai', "憤怒": 'hunnu', "嫌悪": 'keno'}
 SEQ_LEN = [2, 3, 4, 5, 6]
 
-bert_tokenizer = BertTokenizer('../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/vocab.txt',
-                                   do_lower_case=False, do_basic_tokenize=False,
-                                   config='../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/tokenizer_config.json')
-
 class manga4koma():
     def __init__(self, to_zero_pad=False, to_sequential=False, seq_len=3, mode='kyoto'):
         self.TOUCH_NAME_ENG = ["gyagu", "shoujo", "shounen", "seinen", "moe"]
@@ -45,6 +41,21 @@ class manga4koma():
 
         # mode : 'kyoto' 京大BERT, 'hotto' hottoSNS-BERT
         self.mode = mode
+
+        self.change_mode(new_mode=self.mode)
+
+    def change_mode(self, new_mode='hotto'):
+        self.mode = new_mode
+
+        if self.mode == 'kyoto':
+            self.bert_tokenizer = BertTokenizer(
+                '../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/vocab.txt',
+                do_lower_case=False, do_basic_tokenize=False,
+                config='../models/bert/Japanese_L-12_H-768_A-12_E-30_BPE_WWM_transformers/tokenizer_config.json')
+        elif self.mode == 'hotto':
+            self.bert_tokenizer = BertTokenizer("../models/bert/hottoSNS-bert-pytorch/vocab.txt", do_lower_case=False,
+                                                tokenize_chinese_chars=False, unk_token='<unk>', pad_token='<pad>',
+                                                init_inputs=[])
         self.__set_data()
         self.__tokenize(seq_len=self.seq_len)
 
@@ -56,7 +67,7 @@ class manga4koma():
 
         for touch_name in self.TOUCH_NAME_ENG:
             self.data[touch_name] = pd.read_csv(
-                '../new_dataset/' + touch_name + '_modified_aug.csv',
+                '../new_dataset/' + touch_name + '_modified_aug_add_sub.csv',
                 index_col=0,
                 dtype={'original': bool,'inner': bool, 'kakimoji': bool, 'self_anotated': bool, 'alter_emotion': str},
                 usecols=lambda x: x is not 'index'
@@ -92,7 +103,7 @@ class manga4koma():
             #self.new_data[touch_name] = self.data[touch_name].assign(to)
             self.data[touch_name]['tokenized'] = s
 
-            res_encode = bert_tokenizer.batch_encode_plus(s, pad_to_max_length=True, add_special_tokens=True, is_pretokenized=True)
+            res_encode = self.bert_tokenizer.batch_encode_plus(s, pad_to_max_length=True, add_special_tokens=True, is_pretokenized=True)
 
             # self.data[touch_name]['bert_tokenized'] = [b for b in bert_tokenizer.batch_encode_plus(s, pad_to_max_length=True, add_special_tokens=True, is_pretokenized=True)]
 
@@ -216,11 +227,23 @@ class manga4koma():
 
 
 
-amanga4koma = manga4koma(to_zero_pad=True, to_sequential=False, seq_len=3, mode='hotto')
-print(amanga4koma.data['gyagu'].wakati[0])
-print(amanga4koma.data['gyagu'].wakati_sp[0])
-print(amanga4koma.data['gyagu'].wakati[2])
-print(amanga4koma.data['gyagu'].wakati_sp[2])
+amanga4koma = manga4koma(to_zero_pad=True, to_sequential=False, seq_len=3, mode='kyoto')
+# print(amanga4koma.data['gyagu'].wakati[0])
+# print(amanga4koma.data['gyagu'].wakati_sp[0])
+# print(amanga4koma.data['gyagu'].wakati[2])
+# print(amanga4koma.data['gyagu'].wakati_sp[2])
+# print(amanga4koma.data['gyagu'].input_ids[0])
+# print(amanga4koma.data['gyagu'].input_ids[2])
+# amanga4koma.change_mode('kyoto')
+# print(amanga4koma.data['gyagu'].wakati[0])
+# print(amanga4koma.data['gyagu'].wakati_sp[0])
+# print(amanga4koma.data['gyagu'].wakati[2])
+# print(amanga4koma.data['gyagu'].wakati_sp[2])
+# print(amanga4koma.data['gyagu'].input_ids[0])
+# print(amanga4koma.data['gyagu'].input_ids[2])
+
+for i in amanga4koma.data['gyagu'].input_ids:
+    print(i)
 # print(amanga4koma.data['gyagu'].koma_vec[0])
 # print(amanga4koma.data['moe'].koma_vec[0])
 # print(amanga4koma.data['moe'].koma_vec[7562])
