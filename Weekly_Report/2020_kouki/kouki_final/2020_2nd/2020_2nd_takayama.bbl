@@ -1,5 +1,17 @@
 \begin{thebibliography}{1}
 
+\bibitem{comic}
+松下 光範.
+\newblock コミック工学：マンガを計算可能にする試み.
+\newblock {\em 日本知能情報ファジィ学会 ファジィ システム
+  シンポジウム 講演論文集}, 29:199--199, 2013.
+
+\bibitem{mtap_matsui_2017}
+Yusuke Matsui, Kota Ito, Yuji Aramaki, Azuma Fujimoto, Toru Ogawa, Toshihiko
+  Yamasaki, and Kiyoharu Aizawa.
+\newblock Sketch-based manga retrieval using manga109 dataset.
+\newblock {\em Multimedia Tools and Applications}, 76(20):21811--21838, 2017.
+
 \bibitem{ueno_miki2018}
 上野 未貴.
 \newblock 創作者と人工知能:
@@ -12,6 +24,12 @@ Chang M.-W. Lee~K. Devlin, J. and K~Toutanova.
 \newblock Bert: Pre-training of deep bidirectional transformers for language
   understanding.
 \newblock {\em arXiv:1810.04805}, 2018.
+
+\bibitem{kyoto-bert}
+黒橋~禎夫 柴田~知秀, 河原~大輔.
+\newblock Bert による日本語構文解析の精度向上.
+\newblock {\em 言語処理学会 第25回年次大会}, pages pp.205--208,
+  2019.
 
 \bibitem{hottoSNS-bert}
 Sakaki， Takeshi, Sakae Mizuki, and Naoyuki Gunji.

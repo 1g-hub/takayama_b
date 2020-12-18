@@ -1,19 +1,19 @@
 # Fdb version 3
-["bibtex 2020_2nd_takayama"] 1607478705 "2020_2nd_takayama.aux" "2020_2nd_takayama.bbl" "2020_2nd_takayama" 1607480108
-  "2020_2nd_takayama.aux" 1607480102 4962 f6e3cf7474de2c964a421726f1463e0c "latex"
+["bibtex 2020_2nd_takayama"] 1608264167 "2020_2nd_takayama.aux" "2020_2nd_takayama.bbl" "2020_2nd_takayama" 1608264175
+  "2020_2nd_takayama.aux" 1608264170 5102 3cc6cc41d12ce2e457b20776eb589bad "latex"
   "c:/w32tex/share/texmf-dist/bibtex/bst/base/unsrt.bst" 711628419 16936 ccef3eeba627342727ad24949dd376ee ""
-  "sankou.bib" 1607478651 2875 d2b69c6bbeb22205d968a5e0b8eb8503 ""
+  "sankou.bib" 1608262613 3458 c5f4151ea8b02c411b585e295d274439 ""
   (generated)
-  "2020_2nd_takayama.bbl"
   "2020_2nd_takayama.blg"
-["dvipdf"] 1607480103 "2020_2nd_takayama.dvi" "2020_2nd_takayama.pdf" "2020_2nd_takayama" 1607480108
-  "2020_2nd_takayama.dvi" 1607480102 39556 83fb9aeeefeda38d11c7fc7afa30c4a3 "latex"
+  "2020_2nd_takayama.bbl"
+["dvipdf"] 1608264170 "2020_2nd_takayama.dvi" "2020_2nd_takayama.pdf" "2020_2nd_takayama" 1608264175
+  "2020_2nd_takayama.dvi" 1608264170 40640 38f607dcbec6a2214368e750781ba4d9 "latex"
   (generated)
   "2020_2nd_takayama.pdf"
-["latex"] 1607480100 "2020_2nd_takayama.tex" "2020_2nd_takayama.dvi" "2020_2nd_takayama" 1607480108
-  "2020_2nd_takayama.aux" 1607480102 4962 f6e3cf7474de2c964a421726f1463e0c "latex"
-  "2020_2nd_takayama.bbl" 1607478705 1400 4cd92e4d88383e6c270d04358acca228 "bibtex 2020_2nd_takayama"
-  "2020_2nd_takayama.tex" 1607480084 26943 6ade084a31dc1f6fc5b51d1bf5678151 ""
+["latex"] 1608264167 "2020_2nd_takayama.tex" "2020_2nd_takayama.dvi" "2020_2nd_takayama" 1608264175
+  "2020_2nd_takayama.aux" 1608264170 5102 3cc6cc41d12ce2e457b20776eb589bad "latex"
+  "2020_2nd_takayama.bbl" 1608264167 2131 feff08b620e58f25cef4430456787479 "bibtex 2020_2nd_takayama"
+  "2020_2nd_takayama.tex" 1608264157 27117 19e481832d3e3480fa30fefd002befaf ""
   "4koma.png" 1607477542 426847 114875dc22effe5d837ef11825a6229e ""
   "c:/w32tex/share/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm" 1519818042 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
@@ -61,7 +61,6 @@
   "c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm" 1136768653 1116 933a60c408fc0a863a92debe84b2d294 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1136768653 1120 8b7d695260f3cff42e636090a8002094 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmti10.tfm" 1136768653 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
-  "c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmtt8.tfm" 1136768653 768 d7b9a2629a0c353102ad947dc9221d49 ""
   "c:/w32tex/share/texmf-dist/fonts/tfm/public/latex/lasy6.tfm" 808425112 520 4889cce2180234b97cad636b6039c722 ""
   "c:/w32tex/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty" 1358197772 5949 3f3fd50a8cc94c3d4cbf4fc66cd3df1c ""
   "c:/w32tex/share/texmf-dist/tex/latex/amsfonts/umsa.fd" 1358197772 961 6518c6525a34feb5e8250ffa91731cff ""

@@ -14,45 +14,45 @@ while executing---line 944 of file unsrt.bst
 Warning--empty journal in hottoSNS-bert
 Warning--empty journal in i2v
 Warning--empty journal in word_net_jp
-You've used 6 entries,
+You've used 9 entries,
             1791 wiz_defined-function locations,
-            473 strings with 4702 characters,
-and the built_in function-call counts, 947 in all, are:
-= -- 67
-> -- 52
-< -- 0
-+ -- 20
-- -- 14
-* -- 39
-:= -- 174
-add.period$ -- 18
-call.type$ -- 6
-change.case$ -- 6
+            493 strings with 5282 characters,
+and the built_in function-call counts, 1885 in all, are:
+= -- 159
+> -- 83
+< -- 1
++ -- 32
+- -- 23
+* -- 102
+:= -- 308
+add.period$ -- 27
+call.type$ -- 9
+change.case$ -- 9
 chr.to.int$ -- 0
-cite$ -- 9
-duplicate$ -- 52
-empty$ -- 96
-format.name$ -- 14
-if$ -- 201
+cite$ -- 12
+duplicate$ -- 94
+empty$ -- 182
+format.name$ -- 23
+if$ -- 419
 int.to.chr$ -- 0
-int.to.str$ -- 6
-missing$ -- 6
-newline$ -- 33
-num.names$ -- 6
-pop$ -- 28
+int.to.str$ -- 9
+missing$ -- 9
+newline$ -- 48
+num.names$ -- 9
+pop$ -- 33
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 20
+skip$ -- 50
 stack$ -- 0
-substring$ -- 0
-swap$ -- 4
-text.length$ -- 0
+substring$ -- 101
+swap$ -- 22
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 3
-while$ -- 6
-width$ -- 7
-write$ -- 59
+while$ -- 14
+width$ -- 10
+write$ -- 92
 (There were 4 error messages)

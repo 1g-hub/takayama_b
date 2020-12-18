@@ -68,6 +68,7 @@ INPUT 4koma.png
 INPUT extractbb -B cropbox -O 4koma.png
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+OUTPUT 2020_2nd_takayama.dvi
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
@@ -89,6 +90,9 @@ INPUT c:/w32tex/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tgoth9.tfm
+INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/goth9.tfm
+INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmbx9.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin8.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/min8.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
@@ -113,11 +117,6 @@ INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin6.tfm
-INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmtt8.tfm
-OUTPUT 2020_2nd_takayama.dvi
-INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/tgoth9.tfm
-INPUT c:/w32tex/share/texmf-dist/fonts/tfm/ptex-fonts/standard/goth9.tfm
-INPUT c:/w32tex/share/texmf-dist/fonts/tfm/public/cm/cmbx9.tfm
 INPUT seq_net.png
 INPUT extractbb -B cropbox -O seq_net.png
 INPUT 2020_2nd_takayama.bbl
