@@ -31,16 +31,11 @@ Chang M.-W. Lee~K. Devlin, J. and K~Toutanova.
 \newblock {\em 言語処理学会 第25回年次大会}, pages pp.205--208,
   2019.
 
-\bibitem{hottoSNS-bert}
-Sakaki， Takeshi, Sakae Mizuki, and Naoyuki Gunji.
-\newblock Bert pre-trained model trained on large-scale japanese social media
-  corpus.
-\newblock 2019.
-
 \bibitem{i2v}
-Yusuke~Matsui Masaki~Saito.
+Masaki Saito and Yusuke Matsui.
 \newblock Illustration2vec: A semantic vector representation of illustrations.
-\newblock 2015.
+\newblock In {\em SIGGRAPH Asia 2015 Technical Briefs}, SA ’15, New York, NY,
+  USA, 2015. Association for Computing Machinery.
 
 \bibitem{word_net_jp}
 Richard~Fothergill Francis~Bond, Timothy~Baldwin and Kiyotaka Uchimoto.
@@ -54,5 +49,11 @@ Takuya Akiba, Shotaro Sano, Toshihiko Yanase, Takeru Ohta, and Masanori Koyama.
 \newblock Optuna: A next-generation hyperparameter optimization framework.
 \newblock In {\em Proceedings of the 25rd {ACM} {SIGKDD} International
   Conference on Knowledge Discovery and Data Mining}, 2019.
+
+\bibitem{hottoSNS-bert}
+Sakaki， Takeshi, Sakae Mizuki, and Naoyuki Gunji.
+\newblock Bert pre-trained model trained on large-scale japanese social media
+  corpus.
+\newblock 2019.
 
 \end{thebibliography}
