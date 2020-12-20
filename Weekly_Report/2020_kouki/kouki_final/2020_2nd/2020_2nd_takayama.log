@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.7.16)  19 DEC 2020 01:19
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.7.16)  20 DEC 2020 12:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -249,32 +249,32 @@ LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <12> not available
 
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 148.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 150.
  (c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 148.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 150.
  (c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <10> not available
-(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 148.
+(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 150.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 148.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 150.
 LaTeX Font Info:    Font shape `JY1/mc/b/n' in size <10> not available
-(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 148.
+(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 150.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 148.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 150.
 LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <9> not available
-(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 151.
+(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 153.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <9> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 151.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 153.
 LaTeX Font Info:    Font shape `JY1/mc/b/n' in size <9> not available
-(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 151.
+(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 153.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <9> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 151.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 153.
 
-Overfull \hbox (2.44432pt too wide) in paragraph at lines 170--171
+Overfull \hbox (2.44432pt too wide) in paragraph at lines 172--173
  [][] 
  []
 
@@ -309,6 +309,6 @@ Here is how much of TeX's memory you used:
  19432 multiletter control sequences out of 15000+600000
  550447 words of font info for 95 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 45i,10n,47p,939b,373s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 45i,10n,47p,943b,373s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 2020_2nd_takayama.dvi (5 pages, 42752 bytes).
+Output written on 2020_2nd_takayama.dvi (5 pages, 42624 bytes).
