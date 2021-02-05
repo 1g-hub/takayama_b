@@ -1,0 +1,207 @@
+\documentclass[a4paper,twoside,twocolumn,10pt]{article}
+\usepackage{abstract} % Style for abstracts in Dept. CSIS, OPU
+%\usepackage{abstract_past} % Style for abstracts for the past curriculum
+
+%%%%%%%%%% Designate packages you need %%%%%%%%%%
+\usepackage{graphicx} % Enhanced support for graphics
+\usepackage{url} % Verbatim with URL-sensitive line breaks
+
+%%%%%%%%%% Parameters that should be customized %%%%%%%%%%
+% Language (1 = Japanese, 2 = English)
+\setlang{2}
+% Bachelor or Master (1 = Bachelor, 2 = Master)
+\setborm{2}
+% Fiscal year
+\setfy{2015}
+% Group number
+\setgnum{123}
+% Presentation order
+\setorder{2}
+% Increase page number (optional)
+%% \pplus{1}
+
+% Title
+\title{Template for Bachelor's Thesis Abstract and Master's Thesis Abstract}
+% Author
+\author{Taro Joho}
+%%%%%%%%%% Parameters that should be customized (end) %%%%%%%%%%
+
+\begin{document}
+\maketitle % Insert title
+\small
+
+\section{Introduction}
+This article explains usage of the
+template for Bachelor's Thesis Abstract at Computer Science Course,
+College of Engineering, Osaka Prefecture University
+(also at Department of Computer Science and Intelligent Systems,
+School of Engineering, Osaka Prefecture University)
+and
+Master's Thesis Abstract at Department of Computer Science and
+Intelligent Systems, Osaka Prefecture University.
+This article itself is made using the template.
+
+
+\section{Guidelines}
+
+\subsection{Bachelor's Thesis Abstract}
+\begin{enumerate}
+\item Paper Size and Page Limit\\
+  In principle, Bachelor's thesis abstract should be one page long.
+  If there is a special reason, it can be extended up to two pages.
+  The abstracts should be printed in both sides of A4 papers
+  in the presentation order in the group.
+\item Format\\
+  The abstract should be written using
+  designated LaTeX or MS Word template.
+\item Group Number and Page Number\\
+  In the upper right of the page(s),
+  ``(Group number) - (Page number in the group)''
+  should be printed.
+\end{enumerate}
+
+\subsection{Master's Thesis Abstract}
+\begin{enumerate}
+\item Paper Size and Page Limit\\
+  Master's thesis abstract should be two pages long.
+  It should be printed on both sides of an A4 paper.
+\item Format\\
+  The abstract should be written using
+  designated LaTeX or MS Word template.
+\item Group Number and Page Number\\
+  In the upper right of the pages,
+  ``(Group number) - (Page number in the group)''
+  should be printed.
+\end{enumerate}
+
+\section{LaTeX Template}
+\subsection{Files}
+\begin{itemize}
+\item abstract\_en.pdf\\
+  Sample PDF (English version)
+\item abstract\_en.tex\\
+  Sample LaTeX file (English version)
+\item index\_en.bib\\
+  Sample BibTeX file (English version)
+\item abstract.sty\\
+  Style for abstracts in Dept. CSIS
+\item abbrvunsrt.bst\\
+  BibTeX style file (English version)
+\item CSIS.eps\\
+  Logo of department as a figure example
+\item fancyhdr.sty\\
+  Style file for extensive control of page headers and footers
+  downloaded from \url{https://www.ctan.org/pkg/fancyhdr}
+\item titlesec.sty\\
+  Style file to select alternative section titles
+  downloaded from \url{https://www.ctan.org/pkg/titlesec}
+\end{itemize}
+
+\subsection{Setup}
+In the beginning of \textit{abstract.tex},
+the following parameters are available.
+They should be set by yourself.
+%
+\begin{verbatim}
+% Language (1 = Japanese, 2 = English)
+\setlang{2}
+% Bachelor or Master (1 = Bachelor, 2 = Master)
+\setborm{2}
+% Fiscal year
+\setfy{2015}
+% Group number
+\setgnum{3}
+% Presentation order
+\setorder{2}
+% Increase page number (optional)
+%% \pplus{1}
+\end{verbatim}
+%
+The \textit{Presentation order} represents the order of presentation in the group.
+According to it, the page numbers are automatically calculated based on
+the assumption that 1 page for each person in the Bachelor's thesis
+abstract and 2 pages in the Master's thesis abstract.
+If necessary, the page number can be modified by adding (or reducing)
+a certain number, which is designated by the following command
+$\backslash$pplus\{1\} (for adding 1).
+
+\subsection{Figures and Tables}
+Table~\ref{tbl:kuku} and Figure~\ref{fig:CSIS_logo}
+are examples of a table and a figure.
+
+\begin{table}[tb]
+  \caption{Table example: Multiplication table.}
+  \label{tbl:kuku}
+  \centering
+  \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|} \hline
+    - &  1 &  2 &  3 &  4 &  5 &  6 &  7 &  8 &  9 \\ \hline \hline
+    1 &  1 &  2 &  3 &  4 &  5 &  6 &  7 &  8 &  9 \\ \hline
+    2 &  2 &  4 &  6 &  8 & 10 & 12 & 14 & 16 & 18 \\ \hline
+    3 &  3 &  6 &  9 & 12 & 15 & 18 & 21 & 24 & 27 \\ \hline
+    4 &  4 &  8 & 12 & 16 & 20 & 24 & 28 & 32 & 36 \\ \hline
+    5 &  5 & 10 & 15 & 20 & 25 & 30 & 35 & 40 & 45 \\ \hline
+    6 &  6 & 12 & 18 & 24 & 30 & 36 & 42 & 48 & 54 \\ \hline
+    7 &  7 & 14 & 21 & 28 & 35 & 42 & 49 & 56 & 63 \\ \hline
+    8 &  8 & 16 & 24 & 32 & 40 & 48 & 56 & 64 & 72 \\ \hline
+    9 &  9 & 18 & 27 & 36 & 45 & 54 & 63 & 72 & 81 \\ \hline
+  \end{tabular}
+\end{table}
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=.3\hsize]{CSIS.eps}
+  \caption{Figure example: Logo.}
+  \label{fig:CSIS_logo}
+\end{figure}
+
+\subsection{References}
+BibTeX is recommended to use with \textit{abbrvunsrt.bst}
+bundled in the package.
+It is obtained by disabling sorting in \textit{abbrv.bst}.
+\cite{SakaiMe, Food, Neko} are examples.
+
+\subsection{For Students in Old Curriculum}
+Students who belong to Department of Computer Science and Intelligent Systems,
+School of Engineering should use
+\textit{abstract.sty} instead of \textit{abstract4past.sty}.
+
+\section{MS Word Template}
+MS Word version of the template that provides a similar format to the LaTeX version is available.
+
+\subsection{Files}
+\begin{itemize}
+\item abstract\_en\_word.pdf\\
+  Sample PDF (English version)
+\item abstract\_en\_word.docx\\
+  Sample Word file (English version)
+\end{itemize}
+
+\subsection{Header Setup}
+Double-click inside the header area (near the top of the page) to edit the header.
+Then, edit the following items.
+
+\subsubsection{Paper Type}
+\begin{itemize}
+\item For Computer Science Course, College of Engineering\\
+Use ``Bachelor's Thesis Abstract at Computer Science Course.''
+\item For Department of Computer Science and Intelligent Systems\\
+Use ``Master's Thesis Abstract at Department of Computer Science and Intelligent Systems.''
+\item For Department of Computer Science and Intelligent Systems,
+School of Engineering (old curriculum)\\
+Use ``Bachelor's Thesis Abstract at Department of Computer Science and Intelligent Systems.''
+\end{itemize}
+\subsubsection{Fiscal Year and Group Number}
+Directly edit fiscal year and your group number.
+
+\subsubsection{Page Number}
+Open ``Page Number Format'' and edit the number of ``Start at.''
+
+\subsection{Styles}
+Styles of Normal, Title, Author, Section, SubSection, SubSubSection, References, Table, Verbatim, Enumerate and Itemize are defined.
+Use them when necessary.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{abbrvunsrt}
+\bibliography{index_en}
+\end{document}

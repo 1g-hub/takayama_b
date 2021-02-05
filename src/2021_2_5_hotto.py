@@ -52,10 +52,9 @@ class Net(nn.Module):
         self.seq_len = seq_len
         self.fine_tuning = fine_tuning
 
-        self.bi_lstm = self_net.BiLSTMEncoder(768, 128)
-        self.classifier = self_net.SelfAttentionClassifier(128, 64, 3, 2)
+        self.classifier = MLP3Net(in_dim=768)
 
-        # Bertの1〜11段目は更新せず、12段目とSequenceClassificationのLayerのみトレーニングする
+        # Bertの1〜11段目は更新せず、12段目とSequenceClassificationのLayerのみトレーニングする。
         # 一旦全部のパラメータのrequires_gradをFalseで更新
         for name, param in self.bert_encoder.named_parameters():
             param.requires_grad = False
@@ -66,30 +65,9 @@ class Net(nn.Module):
                 param.requires_grad = True
 
     def forward(self, input_ids=None, token_type_ids=None, attention_mask=None, koma_vec=None):
-        # ========================================
-        batch_size = list(input_ids.size())[0]
-        w_size = list(input_ids.size())[2]
-        input_ids = input_ids.permute(1, 0, 2)
 
-        # token_type_ids = token_type_ids.permute(1, 0, 2)
-
-        attention_mask = attention_mask.permute(1, 0, 2)
-
-        bert_out = torch.empty(self.seq_len,batch_size,768).to(device)
-
-        # ========================================
-        for i in range(self.seq_len):
-            # self.bert_encoder(x[i])[0][:, 0, :] 最後の隠れ層の先頭[CLS]に相当するベクトル
-            token_type_ids = torch.tensor([[i%2 for n in range(w_size)] for m in range(batch_size)]).to(device)
-            bert_out[i] = self.bert_encoder(input_ids=input_ids[i], token_type_ids=token_type_ids, attention_mask=attention_mask[i])[0][:, 0, :]
-            # print("bert out[i] shape : {}".format(bert_out[i].size()))
-
-        bert_out = bert_out.permute(1, 0, 2)
-        # print("bert out shape(permutated) : {}".format(bert_out.size()))
-        bi_lstm_out = self.bi_lstm(bert_out)
-        # print("bi_lstm_out shape : {}".format(bi_lstm_out.size()))
-        out, attn = self.classifier(bi_lstm_out)
-        # print("out shape : {}".format(out.size()))
+        bert_out = self.bert_encoder(input_ids=input_ids, token_type_ids=token_type_ids, attention_mask=attention_mask)[0]  # 最後の隠れ層
+        out = self.classifier(bert_out[:, 0, :])  # [CLS] に相当する部分のみ使う
         return out
 
 
@@ -163,8 +141,8 @@ class Manga4koma_Experiment():
 
         self.touch_name = touch_name
 
-        self.log_path = './result_' + self.touch_name + '_' + P_DIC[self.p_label] + '_hotto_epoch200_ex1.txt'
-        self.new_model_path = '../models/bert/My_Japanese_transformers/' + self.touch_name + '_' + P_DIC[self.p_label] + '_hotto_epoch200_ex1.bin'
+        self.log_path = './result_' + self.touch_name + '_' + P_DIC[self.p_label] + '_hotto_epoch50_fine_ex1.txt'
+        self.new_model_path = '../models/bert/My_Japanese_transformers/' + self.touch_name + '_' + P_DIC[self.p_label] + '_hotto_epoch50_fine_ex1.bin'
 
         self.reset_count()
 
@@ -213,6 +191,9 @@ class Manga4koma_Experiment():
 
                     self.optimizer.zero_grad()
 
+                    # print(x_input_ids.size())
+                    # print(x_tok.size())
+                    # print(x_attn.size())
                     with torch.set_grad_enabled(phase == 'train'):
                         y_pred = self.net(input_ids=x_input_ids, token_type_ids=x_tok, attention_mask=x_attn)
                         _, predicted = torch.max(y_pred.data, 1)
@@ -358,7 +339,7 @@ class Manga4koma_Experiment():
         k = self.bairitsu
 
         def objective(trial):
-            lr = trial.suggest_loguniform('lr', 7e-7 * k*k*5, 8e-7 * k*k*5)
+            lr = trial.suggest_loguniform('lr', 7e-8 * k*k*5, 8e-8 * k*k*5)
             print("suggest lr = {}".format(lr))
             best_valid_f1 = self.manga4koma_train(lr=lr, is_study=True)
             error = 1 - best_valid_f1

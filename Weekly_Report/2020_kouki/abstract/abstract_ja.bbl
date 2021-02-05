@@ -1,0 +1,21 @@
+\begin{thebibliography}{1}
+
+\bibitem{devlin2018bert}
+J.~Devlin, M.-W. Chang, K.~Lee, and K.~Toutanova.
+\newblock Bert: Pre-training of deep bidirectional transformers for language
+  understanding.
+\newblock {\em arXiv preprint arXiv:1810.04805}, 2018.
+
+\bibitem{i2v}
+M.~Saito and Y.~Matsui.
+\newblock Illustration2vec: A semantic vector representation of illustrations.
+\newblock In {\em SIGGRAPH Asia 2015 Technical Briefs}, SA ’15, New York, NY,
+  USA, 2015. Association for Computing Machinery.
+
+\bibitem{ueno_miki2018}
+上野.
+\newblock 創作者と人工知能: 共作実現に向けた創作過程とメタデータ付与 4
+  コマ漫画ストーリーデータセット構築.
+\newblock 人工知能学会全国大会論文集, 2018.
+
+\end{thebibliography}
