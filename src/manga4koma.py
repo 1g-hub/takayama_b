@@ -216,7 +216,10 @@ class manga4koma():
 
                 y_koma.append(np.stack([*front_in.tail(seq_len-1).koma_vec, third_in.koma_vec], axis=0))
 
-        self.data[touch_name] = self.data[touch_name][self.data[touch_name]['what'] != '[PAD]']
+        if self.mode == 'kyoto':
+            self.data[touch_name] = self.data[touch_name][self.data[touch_name]['what'] != '[PAD]']
+        else:
+            self.data[touch_name] = self.data[touch_name][self.data[touch_name]['what'] != '<pad>']
         self.data[touch_name] = self.data[touch_name].reset_index(drop=True)
         self.data[touch_name].input_ids = x_input
         self.data[touch_name].token_type_ids = x_type
@@ -227,7 +230,7 @@ class manga4koma():
 
 
 
-amanga4koma = manga4koma(to_zero_pad=True, to_sequential=False, seq_len=3, mode='kyoto')
+# amanga4koma = manga4koma(to_zero_pad=False, to_sequential=False, seq_len=3, mode='hotto')
 # print(amanga4koma.data['gyagu'].wakati[0])
 # print(amanga4koma.data['gyagu'].wakati_sp[0])
 # print(amanga4koma.data['gyagu'].wakati[2])
@@ -242,8 +245,11 @@ amanga4koma = manga4koma(to_zero_pad=True, to_sequential=False, seq_len=3, mode=
 # print(amanga4koma.data['gyagu'].input_ids[0])
 # print(amanga4koma.data['gyagu'].input_ids[2])
 
-for i in amanga4koma.data['gyagu'].input_ids:
-    print(i)
+# for i in amanga4koma.data['gyagu'].input_ids:
+#     print(i)
+#
+# for i in amanga4koma.data['gyagu'].what:
+#     print(i)
 # print(amanga4koma.data['gyagu'].koma_vec[0])
 # print(amanga4koma.data['moe'].koma_vec[0])
 # print(amanga4koma.data['moe'].koma_vec[7562])
