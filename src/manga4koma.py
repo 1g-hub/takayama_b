@@ -227,10 +227,49 @@ class manga4koma():
         self.data[touch_name].koma_vec = y_koma
         #x_t, x_v, y_t, y_v = train_test_split(x, y, test_size=val_size, random_state=random_seed, shuffle=shuffle)
 
+    def make_5touch_concat(self):
+        data_columns = ['id', 'original', 'story_main_num', 'story_sub_num', 'koma', 'who', 'inner', 'speaker', 'what',
+                        'wakati', 'emotion', 'kakimoji', 'self_anotated', 'alter_emotion', 'wakati_sp', 'touch']
+        data = pd.DataFrame(columns=data_columns)
+
+        for touch_name in self.TOUCH_NAME_ENG:
+            touch_data = self.data[touch_name]
+            touch_data = touch_data.assign(touch = touch_name)
+            data = pd.concat([data, touch_data])
+
+        s = data.wakati.tolist()
+        # self.new_data[touch_name] = self.data[touch_name].assign(to)
+        data['tokenized'] = s
+
+        res_encode = self.bert_tokenizer.batch_encode_plus(s, pad_to_max_length=True, add_special_tokens=True,
+                                                           is_pretokenized=True)
+
+        # self.data[touch_name]['bert_tokenized'] = [b for b in bert_tokenizer.batch_encode_plus(s, pad_to_max_length=True, add_special_tokens=True, is_pretokenized=True)]
+
+        data['input_ids'] = \
+            [b for b in res_encode['input_ids']]
+        data['token_type_ids'] = \
+            [b for b in res_encode['token_type_ids']]
+        data['attention_mask'] = \
+            [b for b in res_encode['attention_mask']]
+
+        return data
 
 
 
 # amanga4koma = manga4koma(to_zero_pad=False, to_sequential=False, seq_len=3, mode='hotto')
+# a = amanga4koma.make_5touch_concat()
+# print(a)
+# print(a.emotion)
+#
+# b = a[a.touch == 'shounen']
+# print(b)
+# print(b.emotion)
+#
+# b = a[a.touch == 'shoujo']
+# print(b)
+# print(b.emotion)
+# print(a.touch)
 # print(amanga4koma.data['gyagu'].wakati[0])
 # print(amanga4koma.data['gyagu'].wakati_sp[0])
 # print(amanga4koma.data['gyagu'].wakati[2])
