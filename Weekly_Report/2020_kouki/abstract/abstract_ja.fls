@@ -54,6 +54,8 @@ INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmr9.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/ptex-fonts/standard/tgoth9.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/ptex-fonts/standard/goth9.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmbx9.tfm
+INPUT teian.png
+INPUT extractbb -B cropbox -O teian.png
 INPUT abstract_ja.bbl
 INPUT abstract_ja.bbl
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmti9.tfm

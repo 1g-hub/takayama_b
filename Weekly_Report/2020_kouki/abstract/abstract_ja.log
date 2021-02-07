@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.7.16)  5 FEB 2021 16:25
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.7.16)  6 FEB 2021 18:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -136,7 +136,14 @@ LaTeX Font Info:    Font shape `JY1/mc/b/n' in size <9> not available
 (Font)              Font shape `JY1/mc/bx/n' tried instead on input line 35.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <9> not available
 (Font)              Font shape `JY1/gt/m/n' tried instead on input line 35.
- (./abstract_ja.bbl
+File: teian.png Graphic file (type bmp)
+<teian.png>
+
+Overfull \hbox (0.68375pt too wide) in paragraph at lines 70--71
+ [][] 
+ []
+
+(./abstract_ja.bbl
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
 (Font)              No change on input line 7.
 
@@ -145,18 +152,18 @@ Underfull \hbox (badness 2269) in paragraph at lines 4--8
  []
 
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
-(Font)              No change on input line 12.
+(Font)              No change on input line 23.
 ) [2
 
 
 ] (./abstract_ja.aux) ) 
 Here is how much of TeX's memory you used:
- 1332 strings out of 480982
- 18004 string characters out of 5915964
- 268073 words of memory out of 5000000
- 17567 multiletter control sequences out of 15000+600000
+ 1342 strings out of 480982
+ 18131 string characters out of 5915964
+ 270073 words of memory out of 5000000
+ 17573 multiletter control sequences out of 15000+600000
  541150 words of font info for 60 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 30i,10n,49p,605b,279s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,10n,49p,717b,299s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on abstract_ja.dvi (1 page, 7720 bytes).
+Output written on abstract_ja.dvi (1 page, 10160 bytes).
