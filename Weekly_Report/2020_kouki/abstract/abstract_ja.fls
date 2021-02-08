@@ -30,6 +30,8 @@ INPUT c:/texlive/2020/texmf-dist/tex/latex/graphics-def/dvipdfmx.def
 INPUT c:/texlive/2020/texmf-dist/tex/latex/graphics-def/dvipdfmx.def
 INPUT c:/texlive/2020/texmf-dist/tex/latex/url/url.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/url/url.sty
+INPUT c:/texlive/2020/texmf-dist/tex/latex/multirow/multirow.sty
+INPUT c:/texlive/2020/texmf-dist/tex/latex/multirow/multirow.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
 INPUT c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
 INPUT abstract_ja.aux

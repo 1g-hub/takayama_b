@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.7.16)  6 FEB 2021 18:31
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.7.16)  8 FEB 2021 19:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -82,15 +82,21 @@ File: dvipdfmx.def 2017/06/24 v5.0g Graphics/color driver for dvipdfmx
 ) (c:/texlive/2020/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip16
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+) (c:/texlive/2020/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
+\multirow@colwidth=\skip60
+\multirow@cntb=\count182
+\multirow@dima=\skip61
+\bigstrutjot=\dimen160
 ) (c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
 File: l3backend-dvips.def 2020-06-29 L3 backend support: dvips
 \l__pdf_internal_box=\box62
-\g__pdf_backend_object_int=\count182
+\g__pdf_backend_object_int=\count183
 \l__pdf_backend_content_box=\box63
 \l__pdf_backend_model_box=\box64
-\g__pdf_backend_annotation_int=\count183
-\g__pdf_backend_link_int=\count184
-\g__pdf_backend_link_sf_int=\count185
+\g__pdf_backend_annotation_int=\count184
+\g__pdf_backend_link_int=\count185
+\g__pdf_backend_link_sf_int=\count186
 ) (./abstract_ja.aux)
 \openout1 = `abstract_ja.aux'.
 
@@ -138,12 +144,11 @@ LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <9> not available
 (Font)              Font shape `JY1/gt/m/n' tried instead on input line 35.
 File: teian.png Graphic file (type bmp)
 <teian.png>
-
-Overfull \hbox (0.68375pt too wide) in paragraph at lines 70--71
- [][] 
- []
-
-(./abstract_ja.bbl
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 97.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 97.
+ (./abstract_ja.bbl
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
 (Font)              No change on input line 7.
 
@@ -153,17 +158,17 @@ Underfull \hbox (badness 2269) in paragraph at lines 4--8
 
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
 (Font)              No change on input line 23.
-) [2
+) [4
 
 
 ] (./abstract_ja.aux) ) 
 Here is how much of TeX's memory you used:
- 1342 strings out of 480982
- 18131 string characters out of 5915964
- 270073 words of memory out of 5000000
- 17573 multiletter control sequences out of 15000+600000
+ 1400 strings out of 480982
+ 19000 string characters out of 5915964
+ 271792 words of memory out of 5000000
+ 17627 multiletter control sequences out of 15000+600000
  541150 words of font info for 60 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 30i,10n,49p,717b,299s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,10n,49p,568b,337s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on abstract_ja.dvi (1 page, 10160 bytes).
+Output written on abstract_ja.dvi (1 page, 10872 bytes).
