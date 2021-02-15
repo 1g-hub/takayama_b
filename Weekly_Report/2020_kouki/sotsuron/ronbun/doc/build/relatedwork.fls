@@ -1,0 +1,11 @@
+PWD /Users/ryoyakaneda/Documents/学校/kaneda/卒論/ronbun/doc
+INPUT /usr/local/texlive/2020/texmf.cnf
+INPUT /usr/local/texlive/2020/texmf-dist/web2c/texmf.cnf
+INPUT /usr/local/texlive/2020/texmf.cnf
+INPUT /usr/local/texlive/2020/texmf-dist/web2c/texmf.cnf
+INPUT /usr/local/texlive/2020/texmf-var/web2c/eptex/platex.fmt
+INPUT relatedwork.tex
+OUTPUT ./build/relatedwork.log
+INPUT /usr/local/texlive/2020/texmf-dist/fonts/map/fontname/texfonts.map
+INPUT /usr/local/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+OUTPUT ./build/relatedwork.dvi

@@ -66,6 +66,8 @@ net = Net().to(device)
 
 
 res_hotto =[]
+
+unique_index=[]
 cnt = 0
 for index, ori in ori_data.iterrows():
     aug_data = data[(data.id == ori.id) & (data.touch == ori.touch) & (data.original is not True)]
@@ -87,8 +89,14 @@ for index, ori in ori_data.iterrows():
         with torch.no_grad():
             x = net(input_ids=x_input_ids, token_type_ids=x_tok, attention_mask=x_attn)[0].to('cpu').detach().numpy().copy()
             o = net(input_ids=o_input_ids, token_type_ids=o_tok, attention_mask=o_attn)[0].to('cpu').detach().numpy().copy()
-            res_hotto.append(cos_similarity(x, o))
-print(cnt)
+            # res_hotto.append(cos_similarity(x, o))
+            if (cos_similarity(x, o) < 0.751) & (cos_similarity(x, o) >= 0.750):
+                print(ori["what"])
+                print(aug["what"])
+                print(cos_similarity(x, o))
+                print("\n")
+                unique_index.append(index)
+# print(cnt)
 # kyoto
 
 print("####################################\n\nKYOTO\n\n################################")
@@ -102,6 +110,8 @@ net = Net().to(device)
 res_kyoto =[]
 cnt = 0
 for index, ori in ori_data.iterrows():
+    if index not in unique_index:
+        continue
     aug_data = data[(data.id == ori.id) & (data.touch == ori.touch) & (data.original is not True)]
     # print(ori.what)
     # print(len(aug_data))
@@ -121,14 +131,18 @@ for index, ori in ori_data.iterrows():
         with torch.no_grad():
             x = net(input_ids=x_input_ids, token_type_ids=x_tok, attention_mask=x_attn)[0].to('cpu').detach().numpy().copy()
             o = net(input_ids=o_input_ids, token_type_ids=o_tok, attention_mask=o_attn)[0].to('cpu').detach().numpy().copy()
-            res_kyoto.append(cos_similarity(x, o))
+            # res_kyoto.append(cos_similarity(x, o))
+            print(ori["what"])
+            print(aug["what"])
+            print(cos_similarity(x, o))
+            print("\n")
 
-print(cnt)
-bins = np.linspace(-1,1,50)
-plt.hist(res_hotto, bins, alpha = 0.5, label='hotto-SNS')
-plt.hist(res_kyoto, bins, alpha = 0.5, label='Kyoto')
-plt.xlabel("cos_similarity")
-plt.ylabel("num_data")
-plt.legend(loc='upper left')
-plt.savefig("./cos_sim_gyagu_hotto_vs_kyoto.png")
-plt.clf()
+# print(cnt)
+# bins = np.linspace(-1,1,50)
+# plt.hist(res_hotto, bins, alpha = 0.5, label='hotto-SNS')
+# plt.hist(res_kyoto, bins, alpha = 0.5, label='Kyoto')
+# plt.xlabel("cos_similarity")
+# plt.ylabel("num_data")
+# plt.legend(loc='upper left')
+# plt.savefig("./cos_sim_gyagu_hotto_vs_kyoto.png")
+# plt.clf()

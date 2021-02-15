@@ -1,0 +1,20 @@
+\begin{thebibliography}{1}
+
+\bibitem{comic}
+松下光範.
+\newblock コミック工学：マンガを計算可能にする試み.
+\newblock 日本知能情報ファジィ学会 ファジィ システム シンポジウム 講演論文集,
+  Vol.~29, pp. 199--199, 2013.
+
+\bibitem{jumanpp}
+京都大学大学院情報学研究科黒橋・河原研究室.
+\newblock 日本語形態素解析システム juman++ version 1.0.
+\newblock 2016.
+
+\bibitem{devlin2018bert}
+Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova.
+\newblock Bert: Pre-training of deep bidirectional transformers for language
+  understanding.
+\newblock {\em arXiv preprint arXiv:1810.04805}, 2018.
+
+\end{thebibliography}
