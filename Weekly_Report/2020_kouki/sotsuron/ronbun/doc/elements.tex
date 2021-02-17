@@ -1,0 +1,96 @@
+\newpage
+\changeindent{0cm}
+\section{要素技術}
+\changeindent{2cm}
+
+本章では，本研究に関連する要素技術について説明する.
+
+\changeindent{0cm}
+\subsection{自然言語処理に関する要素技術}
+\changeindent{2cm}
+
+自然言語の単語や文を計算機上で表現するための分散表現獲得手法について説明する.
+
+\changeindent{0cm}
+\subsubsection{形態素解析}
+\changeindent{2cm}
+
+形態素とは日本語などの自然言語において意味を持つ最小の単位のことであり,
+文を形態素に分割し, 各形態素の品詞などを判定する技術を形態素解析という.
+英語の文では, 単語と単語の区切りがほとんどの箇所で明示的に示される.
+このため、形態素への分割処理は簡単なルールに基づいて行われる場合が多い.
+一方で, 日本語の文は単語間の区切りが英語ほど明確でないため,
+形態素への分割は困難かつ重要である.
+
+形態素解析器としては, MeCab \cite{mecab} や Juman++\cite{jumanpp} などが存在する.
+
+\changeindent{0cm}
+\subsubsection{局所表現}
+\changeindent{2cm}
+自然言語の単語を計算機上で表現する手法として, 最もシンプルなものが局所表現である.
+単語の代表的な局所表現の 1 つに One-hot 表現がある.
+One-hot 表現は単語をベクトルの各次元に 1 対 1 対応させる表現方法である.
+非常に単純な手法であり, 実装が容易であるという利点がある.
+一方で, One-hot 表現では語彙数とベクトルの次元数が等しくなるため,
+語彙数の増大とともにベクトルの次元数も増大し, ベクトル空間がスパースになってしまう問題がある.
+また, 各単語がベクトル空間上で等距離に配置されてしまうため,
+単語間の意味的な関係性については定義できないことも大きな問題である.
+
+\changeindent{0cm}
+\subsubsection{分散表現}
+\changeindent{2cm}
+局所表現の問題点を解決するために考案された手法が分散表現である. 分散表現は各概念をベクトルの単一次元ではなく複数次元の実数で表す.
+単語の分散表現は，類似した文脈で使用される単語は類似した意味をもつ，という分布仮説を基盤としている.
+単語を実数値密ベクトルで表現することにより,
+単語間の意味的な関係性をベクトル空間上での類似度として定義できるという大きな利点がある.
+
+\changeindent{0cm}
+\subsubsection{Word2Vec}
+\changeindent{2cm}
+
+Word2Vec \cite{word2vec} は単語の分散表現を獲得する手法の 1 つである.
+この手法は，同じ文脈で出現する単語は類似した意味を持つと予想されることに基づいており,
+写像されたベクトルは, One-hot 表現のような局所表現と異なり, 単語間の意味を考慮した類似度測定や, $「王様」-「男」+「女」=「女王」$のような単語間の意味における演算などができるようになる.
+
+Word2Vec では, 自己から周りの単語あるいは周りの単語から自己を予測することにより分散表現を獲得する.
+前者の手法を Skip-gram といい, 後者の手法を Countinuous Bag-of-Words (CBOW) という.
+
+\changeindent{0cm}
+\subsubsection{Doc2Vec}
+\changeindent{2cm}
+
+Doc2Vec \cite{DBLP:journals/corr/LeM14} は Word2Vec をベースとした, 文書をベクトル空間上に写像し
+て分散表現を得る自然言語処理の手法である.
+Paragraph ID は各文書と紐づいており, 単語の学習時に一緒にこの Paragraph ID を学習することで文書の分散表現を獲得する.
+このベクトルを用いると文書間の類似度の算出や文書間での加減算が可能になる.
+
+CBOW を拡張したモデルを Distributed Memory モデルといい, Skip-gram を拡張したモデルを Distributed Bag-of-Words という.
+
+\changeindent{0cm}
+\subsubsection{BERT}
+\changeindent{2cm}
+Bidirectional Encoder Representations from Transformers (BERT) \cite{devlin2018bert} は, 2018 年に
+Google が発表した言語モデルであり, 複数の双方向 Transformer に基づく汎用言語モデルである.
+これまでの言語モデルは特定の学習タスクに対して 1 つのモデルを用いてきたが, BERT は
+大規模コーパスに対して事前学習を施して, 各タスクに対してfine-tuning をすることで,
+さまざまなタスクに柔軟に対応することができる. さらに, 以前はモデルごとに語彙を 1 から学習させるため, 非常に多くの時間とコストがかかって
+いたが, BERT ではオープンソースで公開されている文脈を既に学習させた Pre-Training BERT モデルを使用することで短時間で学習ができる.
+
+BERT の 事前学習では，周囲の単語からある単語を予測するMasked Language Model (MLM)
+と 2 つ目の文章が 1 つ目の文章の次の文章であるかを予測する Next Sentence Prediction (NSP) によりモデルを学習する.
+
+
+\changeindent{0cm}
+\subsection{画像処理に関する要素技術}
+\changeindent{2cm}
+
+画像処理に関する要素技術について説明する.
+
+\changeindent{0cm}
+\subsubsection{VGG}
+\changeindent{2cm}
+
+
+\changeindent{0cm}
+\subsubsection{illustration2vec}
+\changeindent{2cm}

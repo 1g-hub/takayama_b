@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.7.16)  15 FEB 2021 00:05
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.7.16)  18 FEB 2021 02:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -186,45 +186,60 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \tf@toc=\write3
 \openout3 = `index.toc'.
 
- [1] (./index.lof)
+ [1] [2] (./index.lof)
 \tf@lof=\write4
 \openout4 = `index.lof'.
 
- [2] (./index.lot)
+ [3] (./index.lot)
 \tf@lot=\write5
 \openout5 = `index.lot'.
 
- [3] (./doc/introduction.tex) [1] (./doc/relatedwork.tex
+ [4] (./doc/introduction.tex) [1] (./doc/dataset.tex
 LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <14.4> not available
-(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 9.
+(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 7.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 9.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 7.
 LaTeX Font Info:    Font shape `JY1/mc/b/n' in size <14.4> not available
-(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 9.
+(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 7.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 9.
- [2
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 7.
+) [2
 
-]) [3] (./doc/experiment.tex
+] (./doc/elements.tex [3
+
+] [4]) [5] (./doc/relatedwork.tex) [6
+
+] (./doc/experiment.tex
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 14.
- [4
+ [7
 
-]) [5] [6] (./doc/shaji.tex) [7
+]) [8] [9] (./doc/conclusion.tex) [10
+
+] (./doc/shaji.tex) [11
+
 
 ] (./index.bbl
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
-(Font)              No change on input line 18.
-) [8
+(Font)              No change on input line 13.
+LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
+(Font)              No change on input line 25.
+LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
+(Font)              No change on input line 35.
+LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
+(Font)              No change on input line 40.
+LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
+(Font)              No change on input line 46.
+) [12
 
 ] (./index.aux) ) 
 Here is how much of TeX's memory you used:
- 1224 strings out of 480982
- 16954 string characters out of 5915964
+ 1242 strings out of 480982
+ 17216 string characters out of 5915964
  266146 words of memory out of 5000000
- 17437 multiletter control sequences out of 15000+600000
+ 17446 multiletter control sequences out of 15000+600000
  545538 words of font info for 75 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 30i,8n,25p,202b,267s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,8n,25p,219b,267s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on index.dvi (12 pages, 23984 bytes).
+Output written on index.dvi (17 pages, 31680 bytes).
