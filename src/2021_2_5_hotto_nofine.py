@@ -25,10 +25,26 @@ P_EMOTIONS = ['喜楽']
 P_DIC = {'ニュートラル':'neutral', '驚愕':'kyougaku', '喜楽':'kiraku'}
 
 manga_data = manga4koma(to_zero_pad=False, to_sequential=False, seq_len=3, mode='hotto')
+EMO = ["ニュートラル", "驚愕", "喜楽", "恐怖", "悲哀", "憤怒", "嫌悪"]
+# data数
+for t in TOUCH_NAME_ENG:
+    print(t)
+    for emo in EMO:
+        print("#")
+        print(emo)
+        print("train")
+        print(len(manga_data.data[t][
+                      (manga_data.data[t].story_main_num < 5) & (manga_data.data[t].emotion == emo)]))
+        print("test")
+        print(len(manga_data.data[t][
+                      (manga_data.data[t].story_main_num >= 5) & (manga_data.data[t].original) & (
+                                  manga_data.data[t].emotion == emo)]))
+    print("\n")
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 torch.backends.cudnn.benchmark = True
 
+EMO = ["ニュートラル", "驚愕", "喜楽", "恐怖", "悲哀", "憤怒", "嫌悪"]
 
 # ========
 # 最終層のみのfine-tuning

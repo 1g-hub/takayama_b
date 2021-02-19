@@ -28,6 +28,8 @@ INPUT c:/texlive/2020/texmf-dist/tex/generic/epsf/epsf.sty
 INPUT c:/texlive/2020/texmf-dist/tex/generic/epsf/epsf.sty
 INPUT ccaption.sty
 INPUT ccaption.sty
+INPUT c:/texlive/2020/texmf-dist/tex/latex/multirow/multirow.sty
+INPUT c:/texlive/2020/texmf-dist/tex/latex/multirow/multirow.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
 INPUT c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
 INPUT index.aux
@@ -61,10 +63,10 @@ INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/ptex-fonts/standard/min8.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/ptex-fonts/standard/min6.tfm
+OUTPUT index.toc
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin9.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/ptex-fonts/standard/min9.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmr9.tfm
-OUTPUT index.toc
 INPUT index.lof
 INPUT index.lof
 OUTPUT index.lof
@@ -89,13 +91,12 @@ INPUT doc/figures/bert_pre.png
 INPUT extractbb -B cropbox -O doc/figures/bert_pre.png
 INPUT ./doc/method.tex
 INPUT ./doc/method.tex
-INPUT doc/figures/teian.png
-INPUT extractbb -B cropbox -O doc/figures/teian.png
+INPUT doc/figures/teian_2.png
+INPUT extractbb -B cropbox -O doc/figures/teian_2.png
 INPUT doc/figures/data_aug.png
 INPUT extractbb -B cropbox -O doc/figures/data_aug.png
 INPUT ./doc/experiment.tex
 INPUT ./doc/experiment.tex
-INPUT c:/texlive/2020/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin8.tfm
 INPUT ./doc/conclusion.tex
 INPUT ./doc/conclusion.tex
 INPUT ./doc/shaji.tex

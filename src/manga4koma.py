@@ -318,3 +318,5 @@ class manga4koma():
 # input_ids = torch.tensor(amanga4koma.data['gyagu']['input_ids'])
 # for i in range(10):
 #     print(bert_tokenizer.convert_ids_to_tokens(input_ids[i].tolist()))
+
+
