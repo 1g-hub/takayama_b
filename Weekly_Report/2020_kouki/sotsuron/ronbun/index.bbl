@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{comic}
 松下光範.
@@ -29,6 +29,12 @@ T.~KUDO.
 \newblock 日本語形態素解析システム juman++ version 1.0.
 \newblock 2016.
 
+\bibitem{DBLP:journals/corr/abs-1808-06226}
+Taku Kudo and John Richardson.
+\newblock Sentencepiece: {A} simple and language independent subword tokenizer
+  and detokenizer for neural text processing.
+\newblock {\em CoRR}, Vol. abs/1808.06226, , 2018.
+
 \bibitem{word2vec}
 Greg~Corrado Tomas~Mikolov, Kai~Chen and Jeffrey Dean.
 \newblock Efficient estimation of word rep-resentations in vector space.
@@ -39,10 +45,48 @@ Quoc~V. Le and Tom{\'{a}}s Mikolov.
 \newblock Distributed representations of sentences and documents.
 \newblock {\em CoRR}, Vol. abs/1405.4053, , 2014.
 
+\bibitem{attention}
+Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio.
+\newblock Neural machine translation by jointly learning to align and
+  translate, 2016.
+
+\bibitem{attention_model}
+Thang Luong, Hieu Pham, and Christopher~D. Manning.
+\newblock Effective approaches to attention-based neural machine translation.
+\newblock In {\em Proceedings of the 2015 Conference on Empirical Methods in
+  Natural Language Processing}, pp. 1412--1421, Lisbon, Portugal, September
+  2015. Association for Computational Linguistics.
+
+\bibitem{transformer}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+  Aidan~N Gomez, \L~ukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
+\newblock In I.~Guyon, U.~V. Luxburg, S.~Bengio, H.~Wallach, R.~Fergus,
+  S.~Vishwanathan, and R.~Garnett, editors, {\em Advances in Neural Information
+  Processing Systems}, Vol.~30, pp. 5998--6008. Curran Associates, Inc., 2017.
+
 \bibitem{devlin2018bert}
 Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova.
 \newblock Bert: Pre-training of deep bidirectional transformers for language
   understanding.
 \newblock {\em arXiv preprint arXiv:1810.04805}, 2018.
+
+\bibitem{brusilovsky:simonyan2014very}
+Karen Simonyan and Andrew Zisserman.
+\newblock {Very deep convolutional networks for large-scale image recognition}.
+\newblock {\em arXiv preprint arXiv:1409.1556}, 2014.
+
+\bibitem{i2v}
+Masaki Saito and Yusuke Matsui.
+\newblock Illustration2vec: A semantic vector representation of illustrations.
+\newblock In {\em SIGGRAPH Asia 2015 Technical Briefs}, SA ’15, New York, NY,
+  USA, 2015. Association for Computing Machinery.
+
+\bibitem{word_net_jp}
+Richard~Fothergill Francis~Bond, Timothy~Baldwin and Kiyotaka Uchimoto.
+\newblock Japanese semcor: A sense-tagged corpus of japanese in the 6th
+  international conference of the global wordnet association (gwc-2012),
+  matsue.
+\newblock 2012.
 
 \end{thebibliography}

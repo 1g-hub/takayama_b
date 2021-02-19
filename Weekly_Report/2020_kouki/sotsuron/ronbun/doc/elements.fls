@@ -1,0 +1,9 @@
+PWD C:/Users/mtlil/Documents/GitHub/experiment/Weekly_Report/2020_kouki/sotsuron/ronbun/doc
+INPUT c:/texlive/2020/texmf.cnf
+INPUT c:/texlive/2020/texmf-dist/web2c/texmf.cnf
+INPUT c:/texlive/2020/texmf-var/web2c/eptex/platex.fmt
+INPUT elements.tex
+OUTPUT elements.log
+OUTPUT elements.dvi
+INPUT c:/texlive/2020/texmf-dist/fonts/map/fontname/texfonts.map
+INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
