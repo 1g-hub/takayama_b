@@ -7,46 +7,48 @@ Repeated entry---line 15 of file index_ja.bib
  : @article{devlin2018bert
  :                        ,
 I'm skipping whatever remains of this entry
-You've used 3 entries,
+Warning--empty journal in hottoSNS-bert
+Warning--上野未貴 には，姓と名の間に空白がないよ？ in ueno_miki2018
+You've used 5 entries,
             2597 wiz_defined-function locations,
-            606 strings with 4765 characters,
-and the built_in function-call counts, 982 in all, are:
-= -- 79
-> -- 41
-< -- 0
-+ -- 17
-- -- 14
-* -- 44
-:= -- 158
-add.period$ -- 10
-call.type$ -- 3
-change.case$ -- 16
+            617 strings with 5082 characters,
+and the built_in function-call counts, 1859 in all, are:
+= -- 158
+> -- 70
+< -- 1
++ -- 29
+- -- 24
+* -- 85
+:= -- 277
+add.period$ -- 16
+call.type$ -- 5
+change.case$ -- 27
 chr.to.int$ -- 0
-cite$ -- 3
-duplicate$ -- 55
-empty$ -- 83
-format.name$ -- 21
-if$ -- 214
+cite$ -- 7
+duplicate$ -- 104
+empty$ -- 153
+format.name$ -- 37
+if$ -- 416
 int.to.chr$ -- 0
-int.to.str$ -- 3
-missing$ -- 3
-newline$ -- 18
-num.names$ -- 6
-pop$ -- 28
+int.to.str$ -- 5
+missing$ -- 5
+newline$ -- 28
+num.names$ -- 10
+pop$ -- 50
 preamble$ -- 1
-purify$ -- 13
+purify$ -- 22
 quote$ -- 0
-skip$ -- 47
+skip$ -- 98
 stack$ -- 0
-substring$ -- 15
-swap$ -- 2
-text.length$ -- 0
+substring$ -- 68
+swap$ -- 17
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 12
-warning$ -- 0
-while$ -- 6
-width$ -- 4
-write$ -- 35
-is.kanji.str$ -- 31
+type$ -- 20
+warning$ -- 2
+while$ -- 12
+width$ -- 6
+write$ -- 55
+is.kanji.str$ -- 50
 (There was 1 error message)

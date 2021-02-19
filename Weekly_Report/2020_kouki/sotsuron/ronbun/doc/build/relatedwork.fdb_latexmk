@@ -1,0 +1,16 @@
+# Fdb version 3
+["dvipdf"] 1612174677 "build/relatedwork.dvi" "build/relatedwork.pdf" "build/relatedwork" 1612174678
+  "build/relatedwork.dvi" 1612174677 880 fd203dd8311e491f840b1198b0e713d1 "latex"
+  (generated)
+  "build/relatedwork.pdf"
+["latex"] 1612174677 "relatedwork.tex" "build/relatedwork.dvi" "relatedwork" 1612174678
+  "/usr/local/texlive/2020/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
+  "/usr/local/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
+  "/usr/local/texlive/2020/texmf-dist/web2c/texmf.cnf" 1598393674 39451 15a3ebee027466ecb89701aa91dfebaf ""
+  "/usr/local/texlive/2020/texmf-var/web2c/eptex/platex.fmt" 1608363314 2607256 0ddc5192a6e081bfd7e408910fa6e5d1 ""
+  "/usr/local/texlive/2020/texmf.cnf" 1586288231 577 d60164b4589a341208aff7a667fbbdcb ""
+  "build/relatedwork.aux" 1612173904 8 a94a2480d3289e625eea47cd1b285758 ""
+  "relatedwork.tex" 1612174675 4202 64a7302fa526518f8d082b457fb7dda9 ""
+  (generated)
+  "build/relatedwork.log"
+  "build/relatedwork.dvi"

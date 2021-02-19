@@ -6,6 +6,17 @@ J.~Devlin, M.-W. Chang, K.~Lee, and K.~Toutanova.
   understanding.
 \newblock {\em arXiv preprint arXiv:1810.04805}, 2018.
 
+\bibitem{kyoto-bert}
+黒橋~禎夫.
+\newblock Bert による日本語構文解析の精度向上.
+\newblock 言語処理学会 第25回年次大会, pp. pp.205--208, 2019.
+
+\bibitem{hottoSNS-bert}
+Sakaki, Takeshi, S.~Mizuki, N.~Gunji.
+\newblock Bert pre-trained model trained on large-scale japanese social media
+  corpus.
+\newblock 2019.
+
 \bibitem{i2v}
 M.~Saito and Y.~Matsui.
 \newblock Illustration2vec: A semantic vector representation of illustrations.
@@ -13,7 +24,7 @@ M.~Saito and Y.~Matsui.
   USA, 2015. Association for Computing Machinery.
 
 \bibitem{ueno_miki2018}
-上野.
+上野未貴.
 \newblock 創作者と人工知能: 共作実現に向けた創作過程とメタデータ付与 4
   コマ漫画ストーリーデータセット構築.
 \newblock 人工知能学会全国大会論文集, 2018.

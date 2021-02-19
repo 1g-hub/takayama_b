@@ -1,0 +1,14 @@
+# Fdb version 3
+["dvipdf"] 1611081635 "build/introduction.dvi" "build/introduction.pdf" "build/introduction" 1611081636
+  "build/introduction.dvi" 1611081635 860 83a7d5f804db1ffd2d50c82f5d1327b6 "latex"
+  (generated)
+  "build/introduction.pdf"
+["latex"] 1611081635 "introduction.tex" "build/introduction.dvi" "introduction" 1611081636
+  "/usr/local/texlive/2020/texmf-dist/web2c/texmf.cnf" 1598393674 39451 15a3ebee027466ecb89701aa91dfebaf ""
+  "/usr/local/texlive/2020/texmf-var/web2c/eptex/platex.fmt" 1608363314 2607256 0ddc5192a6e081bfd7e408910fa6e5d1 ""
+  "/usr/local/texlive/2020/texmf.cnf" 1586288231 577 d60164b4589a341208aff7a667fbbdcb ""
+  "build/introduction.aux" 1611081324 8 a94a2480d3289e625eea47cd1b285758 ""
+  "introduction.tex" 1611081634 1693 0ba4f3c9bcec53b42075df392bce9e33 ""
+  (generated)
+  "build/introduction.dvi"
+  "build/introduction.log"
