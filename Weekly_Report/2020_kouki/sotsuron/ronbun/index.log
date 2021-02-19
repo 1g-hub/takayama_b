@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.7.16)  19 FEB 2021 19:11
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.7.16)  20 FEB 2021 03:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -74,99 +74,105 @@ Package: ccaption 2005/03/29 v3.2a Extended captioning and new floats
 \abovelegendskip=\skip52
 \belowlegendskip=\skip53
 \c@newflo@tctr=\count179
+) (c:/texlive/2020/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
+\multirow@colwidth=\skip54
+\multirow@cntb=\count180
+\multirow@dima=\skip55
+\bigstrutjot=\dimen166
 ) (c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
 File: l3backend-dvips.def 2020-06-29 L3 backend support: dvips
 \l__pdf_internal_box=\box61
-\g__pdf_backend_object_int=\count180
+\g__pdf_backend_object_int=\count181
 \l__pdf_backend_content_box=\box62
 \l__pdf_backend_model_box=\box63
-\g__pdf_backend_annotation_int=\count181
-\g__pdf_backend_link_int=\count182
-\g__pdf_backend_link_sf_int=\count183
+\g__pdf_backend_annotation_int=\count182
+\g__pdf_backend_link_int=\count183
+\g__pdf_backend_link_sf_int=\count184
 ) (./index.aux)
 \openout1 = `index.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
 
-Underfull \hbox (badness 10000) detected at line 38
+Underfull \hbox (badness 10000) detected at line 39
 \JY1/mc/m/n/24.88 卒業研究報告書
  []
 
 
-Underfull \vbox (badness 10000) detected at line 38
+Underfull \vbox (badness 10000) detected at line 39
  []
 
 
-Underfull \vbox (badness 10000) detected at line 38
+Underfull \vbox (badness 10000) detected at line 39
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 38.
+(Font)              <14.4> on input line 39.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 38.
+(Font)              <7> on input line 39.
 
-Overfull \hbox (3.1333pt too wide) detected at line 38
+Overfull \hbox (3.1333pt too wide) detected at line 39
  []$[]$[]
  []
 
 
-Underfull \vbox (badness 10000) detected at line 38
+Underfull \vbox (badness 10000) detected at line 39
  []
 
 
-Underfull \vbox (badness 10000) detected at line 38
+Underfull \vbox (badness 10000) detected at line 39
  []
 
 
-Underfull \hbox (badness 10000) detected at line 38
+Underfull \hbox (badness 10000) detected at line 39
 [] \OT1/cmr/m/n/14.4 32 \JY1/mc/m/n/14.4 年 （ \OT1/cmr/m/n/14.4 2020 \JY1/mc/m/n/14.4 年 ） []
  []
 
 
-Underfull \vbox (badness 10000) detected at line 38
+Underfull \vbox (badness 10000) detected at line 39
  []
 
 
-Underfull \hbox (badness 10000) detected at line 38
+Underfull \hbox (badness 10000) detected at line 39
 \JY1/mc/m/n/14.4 大阪府立大学工学部知能情報工学科
  []
 
 
-Underfull \vbox (badness 10000) detected at line 38
+Underfull \vbox (badness 10000) detected at line 39
  []
 
 
-Overfull \vbox (54.664pt too high) detected at line 38
+Overfull \vbox (54.664pt too high) detected at line 39
  []
 
 [1
 
 ]
 LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <17.28> not available
-(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 41.
+(Font)              Font shape `JT1/mc/bx/n' tried instead on input line 42.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <17.28> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 41.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 42.
 LaTeX Font Info:    Font shape `JY1/mc/b/n' in size <17.28> not available
-(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 41.
+(Font)              Font shape `JY1/mc/bx/n' tried instead on input line 42.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <17.28> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 41.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 42.
  (./index.toc
 LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <12> not available
 (Font)              Font shape `JT1/mc/bx/n' tried instead on input line 1.
@@ -182,19 +188,19 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 3.
- [1])
+)
 \tf@toc=\write3
 \openout3 = `index.toc'.
 
- [2] (./index.lof)
+ [1] (./index.lof)
 \tf@lof=\write4
 \openout4 = `index.lof'.
 
- [3] (./index.lot)
+ [2] (./index.lot)
 \tf@lot=\write5
 \openout5 = `index.lot'.
 
- [4] (./doc/introduction.tex) [1] (./doc/dataset.tex
+ [3] (./doc/introduction.tex) [1] (./doc/dataset.tex
 LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <14.4> not available
 (Font)              Font shape `JT1/mc/bx/n' tried instead on input line 9.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
@@ -217,21 +223,18 @@ File: doc/figures/transformer.png Graphic file (type bmp)
 File: doc/figures/bert_pre.png Graphic file (type bmp)
 <doc/figures/bert_pre.png>
  [8] [9]) [10] (./doc/method.tex
-File: doc/figures/teian.png Graphic file (type bmp)
-<doc/figures/teian.png>
+File: doc/figures/teian_2.png Graphic file (type bmp)
+<doc/figures/teian_2.png>
  [11
 
 ]
 File: doc/figures/data_aug.png Graphic file (type bmp)
 <doc/figures/data_aug.png>
-) [12] (./doc/experiment.tex
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 14.
- [13
+) [12] (./doc/experiment.tex) [13
 
-]) [14] [15] (./doc/conclusion.tex) [16
+] [14] (./doc/conclusion.tex) [15
 
-] (./doc/shaji.tex) [17
+] (./doc/shaji.tex) [16
 
 
 ] (./index.bbl
@@ -247,7 +250,7 @@ LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
 (Font)              No change on input line 46.
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
 (Font)              No change on input line 56.
- [18
+ [17
 
 ]
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
@@ -258,14 +261,14 @@ LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
 (Font)              No change on input line 77.
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
 (Font)              No change on input line 82.
-) [19] (./index.aux) ) 
+) [18] (./index.aux) ) 
 Here is how much of TeX's memory you used:
- 1281 strings out of 480982
- 17975 string characters out of 5915964
- 266146 words of memory out of 5000000
- 17475 multiletter control sequences out of 15000+600000
- 545875 words of font info for 76 fonts, out of 8000000 for 9000
+ 1333 strings out of 480982
+ 18800 string characters out of 5915964
+ 271874 words of memory out of 5000000
+ 17524 multiletter control sequences out of 15000+600000
+ 545686 words of font info for 75 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 30i,8n,25p,830b,315s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,9n,25p,830b,315s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on index.dvi (24 pages, 52056 bytes).
+Output written on index.dvi (22 pages, 48596 bytes).
