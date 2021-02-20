@@ -10,46 +10,46 @@ Name 1 in "Tomas Mikolov, Kai Chen, Greg Corrado, and Jeffrey Dean" has a comma 
 while executing---line 1216 of file junsrt.bst
 Warning--empty journal in word_net_jp
 Warning--empty journal in hottoSNS-bert
-You've used 24 entries,
+You've used 25 entries,
             2270 wiz_defined-function locations,
-            669 strings with 8315 characters,
-and the built_in function-call counts, 8343 in all, are:
-= -- 686
-> -- 235
+            673 strings with 8582 characters,
+and the built_in function-call counts, 8623 in all, are:
+= -- 699
+> -- 251
 < -- 19
-+ -- 94
-- -- 70
-* -- 363
-:= -- 1010
-add.period$ -- 77
-call.type$ -- 24
-change.case$ -- 24
++ -- 100
+- -- 75
+* -- 375
+:= -- 1047
+add.period$ -- 80
+call.type$ -- 25
+change.case$ -- 25
 chr.to.int$ -- 0
-cite$ -- 27
-duplicate$ -- 528
-empty$ -- 814
-format.name$ -- 140
-if$ -- 2094
+cite$ -- 28
+duplicate$ -- 547
+empty$ -- 845
+format.name$ -- 150
+if$ -- 2162
 int.to.chr$ -- 0
-int.to.str$ -- 24
-missing$ -- 23
-newline$ -- 122
-num.names$ -- 26
-pop$ -- 182
+int.to.str$ -- 25
+missing$ -- 24
+newline$ -- 127
+num.names$ -- 27
+pop$ -- 192
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 444
+skip$ -- 455
 stack$ -- 0
 substring$ -- 515
-swap$ -- 168
+swap$ -- 170
 text.length$ -- 19
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 3
-while$ -- 53
-width$ -- 26
-write$ -- 262
-is.kanji.str$ -- 270
+while$ -- 54
+width$ -- 27
+write$ -- 272
+is.kanji.str$ -- 284
 (There were 2 error messages)

@@ -141,4 +141,10 @@ Sakaki, Takeshi, Sakae Mizuki, Naoyuki Gunji.
   corpus.
 \newblock 2019.
 
+\bibitem{optuna_2019}
+Takuya Akiba, Shotaro Sano, Toshihiko Yanase, Takeru Ohta, and Masanori Koyama.
+\newblock Optuna: A next-generation hyperparameter optimization framework.
+\newblock In {\em Proceedings of the 25rd {ACM} {SIGKDD} International
+  Conference on Knowledge Discovery and Data Mining}, 2019.
+
 \end{thebibliography}

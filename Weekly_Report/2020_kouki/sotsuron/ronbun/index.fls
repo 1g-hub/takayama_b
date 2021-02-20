@@ -30,6 +30,9 @@ INPUT ccaption.sty
 INPUT ccaption.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/multirow/multirow.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/multirow/multirow.sty
+INPUT c:/texlive/2020/texmf-dist/tex/generic/ulem/ulem.sty
+INPUT c:/texlive/2020/texmf-dist/tex/generic/ulem/ulem.sty
+INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/latex-fonts/lasy6.tfm
 INPUT c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
 INPUT c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
 INPUT index.aux
@@ -99,6 +102,10 @@ INPUT doc/figures/data_aug.png
 INPUT extractbb -B cropbox -O doc/figures/data_aug.png
 INPUT ./doc/experiment.tex
 INPUT ./doc/experiment.tex
+INPUT doc/figures/ex1_graph_hotto_gyagu.png
+INPUT extractbb -B cropbox -O doc/figures/ex1_graph_hotto_gyagu.png
+INPUT doc/figures/ex2_graph_hotto_gyagu.png
+INPUT extractbb -B cropbox -O doc/figures/ex2_graph_hotto_gyagu.png
 INPUT ./doc/conclusion.tex
 INPUT ./doc/conclusion.tex
 INPUT ./doc/shaji.tex
