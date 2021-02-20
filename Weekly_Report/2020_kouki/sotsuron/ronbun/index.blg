@@ -9,46 +9,47 @@ while executing---line 1216 of file junsrt.bst
 Name 1 in "Tomas Mikolov, Kai Chen, Greg Corrado, and Jeffrey Dean" has a comma at the end for entry word2vec
 while executing---line 1216 of file junsrt.bst
 Warning--empty journal in word_net_jp
-You've used 15 entries,
+Warning--empty journal in hottoSNS-bert
+You've used 24 entries,
             2270 wiz_defined-function locations,
-            621 strings with 6887 characters,
-and the built_in function-call counts, 4322 in all, are:
-= -- 318
-> -- 160
-< -- 10
-+ -- 63
-- -- 48
-* -- 193
-:= -- 570
-add.period$ -- 47
-call.type$ -- 15
-change.case$ -- 15
+            669 strings with 8315 characters,
+and the built_in function-call counts, 8343 in all, are:
+= -- 686
+> -- 235
+< -- 19
++ -- 94
+- -- 70
+* -- 363
+:= -- 1010
+add.period$ -- 77
+call.type$ -- 24
+change.case$ -- 24
 chr.to.int$ -- 0
-cite$ -- 17
-duplicate$ -- 271
-empty$ -- 406
-format.name$ -- 96
-if$ -- 1049
+cite$ -- 27
+duplicate$ -- 528
+empty$ -- 814
+format.name$ -- 140
+if$ -- 2094
 int.to.chr$ -- 0
-int.to.str$ -- 15
-missing$ -- 14
-newline$ -- 77
-num.names$ -- 17
-pop$ -- 94
+int.to.str$ -- 24
+missing$ -- 23
+newline$ -- 122
+num.names$ -- 26
+pop$ -- 182
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 219
+skip$ -- 444
 stack$ -- 0
-substring$ -- 156
-swap$ -- 62
-text.length$ -- 10
+substring$ -- 515
+swap$ -- 168
+text.length$ -- 19
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 2
-while$ -- 27
-width$ -- 17
-write$ -- 161
-is.kanji.str$ -- 172
+warning$ -- 3
+while$ -- 53
+width$ -- 26
+write$ -- 262
+is.kanji.str$ -- 270
 (There were 2 error messages)

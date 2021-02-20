@@ -13,13 +13,15 @@
 \contentsline {subsection}{\numberline {3.2}画像処理に関する要素技術}{9}%
 \contentsline {subsubsection}{\numberline {3.2.1}VGG}{9}%
 \contentsline {subsubsection}{\numberline {3.2.2}illustration2vec}{9}%
-\contentsline {section}{\numberline {4}提案手法}{11}%
-\contentsline {subsection}{\numberline {4.1}漫画のセリフのマルチモーダルな感情推定手法}{11}%
-\contentsline {subsection}{\numberline {4.2}Data Augmentation}{12}%
-\contentsline {section}{\numberline {5}数値実験}{13}%
-\contentsline {subsection}{\numberline {5.1}実験概要}{13}%
-\contentsline {subsection}{\numberline {5.2}使用データ}{13}%
-\contentsline {subsection}{\numberline {5.3}実験設定}{13}%
-\contentsline {section}{\numberline {6}結論}{15}%
-\contentsline {section}{謝辞}{16}%
-\contentsline {section}{参考文献}{17}%
+\contentsline {section}{\numberline {4}4 コマ漫画に関する従来研究}{11}%
+\contentsline {section}{\numberline {5}提案手法}{12}%
+\contentsline {subsection}{\numberline {5.1}漫画のセリフのマルチモーダルな感情推定手法}{12}%
+\contentsline {subsection}{\numberline {5.2}Data Augmentation}{13}%
+\contentsline {section}{\numberline {6}数値実験}{14}%
+\contentsline {subsection}{\numberline {6.1}概要}{14}%
+\contentsline {subsection}{\numberline {6.2}使用データ}{14}%
+\contentsline {subsection}{\numberline {6.3}実験設定}{14}%
+\contentsline {subsection}{\numberline {6.4}実験 1}{15}%
+\contentsline {section}{\numberline {7}結論}{17}%
+\contentsline {section}{謝辞}{18}%
+\contentsline {section}{参考文献}{19}%

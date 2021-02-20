@@ -37,7 +37,7 @@ Data Augmentation によって拡張されたセリフを用いて, 学習時に
 
 
 
-\begin{table}[t]
+\begin{table}[!ht]
 \begin{center}
 \caption{オリジナルデータ数} %タイトルをつける
 \label{table:data_ori} %ラベルをつけ図の参照を可能にする
@@ -57,7 +57,7 @@ UNK                    & 7                    & 3                   & 5         
 \end{center}
 \end{table}
 
-\begin{table}[b]
+\begin{table}[!ht]
 \begin{center}
 \caption{実験で用いたデータ数} %タイトルをつける
 \label{table:data_exp} %ラベルをつけ図の参照を可能にする
@@ -73,9 +73,18 @@ UNK                    & 7                    & 3                   & 5         
 \end{center}
 \end{table}
 
-\newpage
+
 \changeindent{0cm}
 \subsection{実験 1}
 \changeindent{2cm}
 
 実験 1 では, セリフ 1 文のみを入力とする感情推定を行った.
+まず, セリフ 1 文を BERT に入力し 768 次元のセリフベクトルを得る.
+それを識別器への入力として, ``喜楽" か ``その他" かを識別結果として推定した.
+識別器としては 3 層 MLP を用いた.
+
+本研究では, 各実験において Image Embedding 層には illustration2vec の筆者らによって公開されている事前学習済みモデルを用い, Text Embedding 層には 2 つの 事前学習済み BERT モデルを用いて精度を比較した.
+
+\newpage
+
+一つは, 京都大学が公開している日本語 Wikipedia より全 1800 万文を用いて事前学習させたモデル \cite{kyoto-bert} (以下, ``京大 BERT" と呼ぶ) , もう一つは hottolink 社が公開している大規模日本語 SNS コーパスを用いて事前学習させたモデル, hottoSNS-BERT \cite{hottoSNS-bert} を用いた.
