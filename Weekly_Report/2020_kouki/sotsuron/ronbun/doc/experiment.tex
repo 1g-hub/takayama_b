@@ -6,7 +6,7 @@
 本章では，数値実験について説明する.
 
 \changeindent{0cm}
-\subsection{概要}
+\subsection{実験概要}
 \changeindent{2cm}
 
 本研究では, 人工知能を用いた漫画の内容理解のために,
@@ -32,7 +32,7 @@
 訓練用データは各タッチの前半 1 話から 5 話までの
 Data Augmentation によって拡張されたセリフを用いて, 学習時には $20\%$ を検証用データとした.
 また, 評価用モデルは検証用データにおける正例の F 値が最大となるエポックでのパラメータを採用し,
-評価用データは後半 6 話から 10 話におけるオリジナルのセリフのみを用いた.
+評価用データは後半 6 話から 10 話におけるオリジナルのセリフのみを用いた. そして, 各タッチに対してモデルを作成し評価を行った.
 表 \ref{table:data_exp} に各実験で用いた正例と負例のデータ数を示す.
 
 
@@ -75,7 +75,7 @@ UNK                    & 7                    & 3                   & 5         
 
 
 \changeindent{0cm}
-\subsection{実験 1}
+\subsection{実験 1 : セリフ 1 文のみを入力とする感情推定}
 \changeindent{2cm}
 
 実験 1 では, セリフ 1 文のみを入力とする感情推定を行った.
@@ -87,4 +87,118 @@ UNK                    & 7                    & 3                   & 5         
 
 \newpage
 
-一つは, 京都大学が公開している日本語 Wikipedia より全 1800 万文を用いて事前学習させたモデル \cite{kyoto-bert} (以下, ``京大 BERT" と呼ぶ) , もう一つは hottolink 社が公開している大規模日本語 SNS コーパスを用いて事前学習させたモデル, hottoSNS-BERT \cite{hottoSNS-bert} を用いた.
+一つは, 京都大学が公開している日本語 Wikipedia より全 1800 万文を用いて事前学習させたモデル \cite{kyoto-bert} (以下, ``京大 BERT" と呼ぶ) , もう一つは hottolink 社が公開している大規模日本語 SNS コーパスを用いて事前学習させたモデル, hottoSNS-BERT \cite{hottoSNS-bert} を用いた. BERT モデルは最終層のみを fine-tuning した.
+
+表 \ref{table:mlp_para} に 3 層 MLP で用いたパラメータ, そして表 \ref{table:ex_para} に学習で用いたパラメータを示す. 学習率は Optuna \cite{optuna_2019} によって最適なパラメータを探索した.
+また, 多くのタッチにおいて, 正例は負例に対してデータ数が非常に少ない不均衡データを扱うことから, このまま学習してしまうと上手く学習できないという問題がある. 本研究ではこの解決策として, 損失関数のクラス重みとして, 訓練用データの各ラベルのデータ数の逆数を正規化したものを用いた.
+
+\begin{table}[htb]
+\caption{各実験における MLP のパラメータ}
+\label{table:mlp_para}
+\centering
+\scalebox{0.81}{
+\begin{tabular}{|c|c|c|}
+\hline
+parameters & 実験 1 & 実験 2 \\ \hline
+(入力次元,隠れ層次元,出力次元) & (768,30,2) & (4864,300,2) \\ \hline
+活性化関数 & \multicolumn{2}{c|}{tanh} \\ \hline
+ドロップアウト率 & \multicolumn{2}{c|}{0.5} \\ \hline
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[htb]
+\caption{学習パラメータ}
+\label{table:ex_para}
+\centering
+\begin{tabular}{|c||c|c|}
+\hline
+パラメータ & \multicolumn{2}{|c|}{実験 $1・2$} \\ \hline
+エポック数 & \multicolumn{2}{|c|}{50}  \\ \hline
+バッチサイズ & \multicolumn{2}{|c|}{16} \\ \hline
+損失関数 & \multicolumn{2}{|c|}{Cross Entropy Loss} \\ \hline
+最適化手法 & \multicolumn{2}{|c|}{Adam} \\ \hline
+\end{tabular}
+\end{table}
+
+\newpage
+\changeindent{0cm}
+\subsection{実験 1 : 結果}
+\changeindent{2cm}
+
+表 \ref{table:result_1} に評価用データに対する実験 1 の結果を示す. 表 \ref{table:result_1} における P-Recall, P-F1値はそれぞれ正例の再現率, F 値を表し, Acc は全体の精度を表している.
+本研究では, ベースラインは前述したように, 正例が負例に対してデータ数が
+非常に少ない不均衡データであることから, すべての予測値が負例の場合を設定した.
+また, 図 \ref{fig:ex1_graph} に Image Embedding 層に hottoSNS-BERT を用いた場合のギャグタッチにおける学習曲線を示す. (左から Acc, 正例の F 値, loss)
+
+表 \ref{table:result_1} より, Acc に関して BERT fine tuning のみがベースラインを超え, すべての評価指標において BERT fixed より BERT fine tuning の方が上だったことから, 本研究で扱っている 4 コマ画像におけるセリフの感情推定というタスクにおいても BERT の fine tuning が有用であることを確かめることができた.
+
+\begin{table*}[!hb]
+\begin{center}
+\caption{評価用データに対する実験 1 の結果}
+\label{table:result_1}
+\scalebox{0.42}{
+\begin{tabular}{lccccccccccccccc|ccc}
+\hline
+\multicolumn{1}{c}{\multirow{2}{*}{}} & \multicolumn{3}{c}{ギャグ}                            & \multicolumn{3}{c}{少女漫画}             & \multicolumn{3}{c}{少年漫画}             & \multicolumn{3}{c}{青年漫画}             & \multicolumn{3}{c|}{萌え}              & \multicolumn{3}{c|}{5 タッチ総合}         \\
+\multicolumn{1}{c}{}                  & Acc                       & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       \\ \hline
+京大 BERT                               & {\ul 0.818}               & 0.200    & 0.250       & 0.612       & 0.711    & 0.675       & 0.766       & 0.083    & 0.118       & {\ul 0.862} & 0.500    & 0.609       & 0.609       & 0.591    & 0.510       & 0.733       & 0.521    & 0.535       \\
+hottoSNS-BERT                         & {\ul 0.818}               & 0.300    & {\ul 0.333} & {\ul 0.627} & 0.816    & {\ul 0.713} & {\ul 0.813} & 0.167    & {\ul 0.250} & 0.846       & 0.643    & {\ul 0.643} & {\ul 0.688} & 0.500    & {\ul 0.524} & {\ul 0.758} & 0.583    & {\ul 0.586} \\ \hline
+ベースライン                                & \multicolumn{1}{l}{0.848} & -        & -           & 0.432       & -        & -           & 0.812       & -        & -           & 0.784       & -        & -           & 0.656       & -        & -           & 0.705       & -        & -
+\end{tabular}
+}
+\end{center}
+\end{table*}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\hsize]{doc/figures/ex1_graph_hotto_gyagu.png}
+  \caption{実験 1 における学習曲線の例}
+  \label{fig:ex1_graph}
+\end{figure}
+
+\newpage
+\changeindent{0cm}
+\subsection{実験 2 : マルチモーダルな感情推定の検討}
+\changeindent{2cm}
+
+実験 2 では提案手法に則って, マルチモーダルな感情推定の検討を行った.
+実験 1 と同様に BERT から得た 768 次元のセリフベクトルと, 入力したセリフが含まれているコマ全体の画像を illustration2vec に入力して得た 4096 次元のコマベクトルを単純に結合させた 4864 次元のベクトルを識別器である 3 層 MLP に入力することでマルチモーダルな感情推定をした.
+
+表 \ref{table:mlp_para} に 3 層 MLP で用いたパラメータ, そして表 \ref{table:ex_para} に学習で用いたパラメータを示す. その他の実験設定は実験 1 と同様にした.
+
+
+\changeindent{0cm}
+\subsection{実験 2 : 結果}
+\changeindent{2cm}
+
+表 \ref{table:result_2} に評価用データに対する実験 2 の結果を示す. また, 図 \ref{fig:ex1_graph} に Image Embedding 層に hottoSNS-BERT を用いた場合のギャグタッチにおける学習曲線を示す. (左から Acc, 正例の F 値, loss)
+
+\begin{table*}[!hb]
+\begin{center}
+\caption{評価用データに対する実験 2 の結果}
+\label{table:result_2}
+\scalebox{0.42}{
+\begin{tabular}{lccccccccccccccc|ccc}
+\hline
+\multicolumn{1}{c}{\multirow{2}{*}{}} & \multicolumn{3}{c}{ギャグ}                            & \multicolumn{3}{c}{少女漫画}             & \multicolumn{3}{c}{少年漫画}             & \multicolumn{3}{c}{青年漫画}             & \multicolumn{3}{c|}{萌え}              & \multicolumn{3}{c|}{5 タッチ総合}         \\
+\multicolumn{1}{c}{}                  & Acc                       & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       \\ \hline
+京大 BERT                               & 0.773                     & 0.200    & 0.211       & 0.687       & 0.763    & 0.734       & 0.703       & 0.417    & 0.345       & 0.769       & 0.643    & {\ul 0.545} & 0.641       & 0.500    & 0.489       & 0.715       & 0.583    & 0.546       \\
+hottoSNS-BERT                         & {\ul 0.818}               & 0.400    & {\ul 0.400} & {\ul 0.761} & 0.816    & {\ul 0.795} & {\ul 0.781} & 0.500    & {\ul 0.462} & {\ul 0.815} & 0.500    & 0.538       & {\ul 0.703} & 0.545    & {\ul 0.558} & {\ul 0.776} & 0.625    & {\ul 0.622} \\ \hline
+ベースライン                                & \multicolumn{1}{l}{0.848} & -        & -           & 0.432       & -        & -           & 0.812       & -        & -           & 0.784       & -        & -           & 0.656       & -        & -           & 0.705       & -        & -
+\end{tabular}
+}
+\end{center}
+\end{table*}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\hsize]{doc/figures/ex2_graph_hotto_gyagu.png}
+  \caption{実験 2 における学習曲線の例}
+  \label{fig:ex2_graph}
+\end{figure}
+
+\newpage
+\changeindent{0cm}
+\subsection{考察}
+\changeindent{2cm}

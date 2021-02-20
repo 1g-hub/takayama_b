@@ -3,3 +3,5 @@
 \contentsline {figure}{\numberline {3.3}{\ignorespaces BERT の事前学習と fine-tuning の概略図 : 文献 の図を参照}}{8}%
 \contentsline {figure}{\numberline {5.1}{\ignorespaces 提案手法の概要}}{12}%
 \contentsline {figure}{\numberline {5.2}{\ignorespaces Data Augmentation の概要}}{13}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces 実験 1 における学習曲線の例}}{17}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces 実験 2 における学習曲線の例}}{18}%
