@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.7.16)  20 FEB 2021 03:03
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.7.16)  20 FEB 2021 17:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -188,19 +188,19 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 3.
-)
+ [1])
 \tf@toc=\write3
 \openout3 = `index.toc'.
 
- [1] (./index.lof)
+ [2] (./index.lof)
 \tf@lof=\write4
 \openout4 = `index.lof'.
 
- [2] (./index.lot)
+ [3] (./index.lot)
 \tf@lot=\write5
 \openout5 = `index.lot'.
 
- [3] (./doc/introduction.tex) [1] (./doc/dataset.tex
+ [4] (./doc/introduction.tex) [1] (./doc/dataset.tex
 LaTeX Font Info:    Font shape `JT1/mc/b/n' in size <14.4> not available
 (Font)              Font shape `JT1/mc/bx/n' tried instead on input line 9.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
@@ -222,19 +222,21 @@ File: doc/figures/transformer.png Graphic file (type bmp)
  [7]
 File: doc/figures/bert_pre.png Graphic file (type bmp)
 <doc/figures/bert_pre.png>
- [8] [9]) [10] (./doc/method.tex
+ [8] [9]) [10] (./doc/relatedwork.tex) [11
+
+] (./doc/method.tex
 File: doc/figures/teian_2.png Graphic file (type bmp)
 <doc/figures/teian_2.png>
- [11
+ [12
 
 ]
 File: doc/figures/data_aug.png Graphic file (type bmp)
 <doc/figures/data_aug.png>
-) [12] (./doc/experiment.tex) [13
+) [13] (./doc/experiment.tex [14
 
-] [14] (./doc/conclusion.tex) [15
+] [15]) [16] (./doc/conclusion.tex) [17
 
-] (./doc/shaji.tex) [16
+] (./doc/shaji.tex) [18
 
 
 ] (./index.bbl
@@ -250,7 +252,7 @@ LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
 (Font)              No change on input line 46.
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
 (Font)              No change on input line 56.
- [17
+ [19
 
 ]
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
@@ -261,14 +263,19 @@ LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
 (Font)              No change on input line 77.
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
 (Font)              No change on input line 82.
-) [18] (./index.aux) ) 
+ [20]
+LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
+(Font)              No change on input line 105.
+LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
+(Font)              No change on input line 117.
+) [21] (./index.aux) ) 
 Here is how much of TeX's memory you used:
- 1333 strings out of 480982
- 18800 string characters out of 5915964
- 271874 words of memory out of 5000000
- 17524 multiletter control sequences out of 15000+600000
+ 1346 strings out of 480982
+ 19004 string characters out of 5915964
+ 272874 words of memory out of 5000000
+ 17534 multiletter control sequences out of 15000+600000
  545686 words of font info for 75 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  30i,9n,25p,830b,315s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on index.dvi (22 pages, 48596 bytes).
+Output written on index.dvi (26 pages, 56620 bytes).

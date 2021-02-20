@@ -82,11 +82,63 @@ Masaki Saito and Yusuke Matsui.
 \newblock In {\em SIGGRAPH Asia 2015 Technical Briefs}, SA ’15, New York, NY,
   USA, 2015. Association for Computing Machinery.
 
+\bibitem{ueno-emotion2016}
+上野未貴, 森直樹, 松本啓之亮.
+\newblock 漫画内の特徴的要素が与えるストーリーの印象についての検討.
+\newblock  第 30 回人工知能学会全国大会発表論文集, pp. 2J5--OS--08b--4in2,
+  2016.
+
+\bibitem{ueno-oti2017}
+上野未貴, 末長寿規, 井佐原均.
+\newblock 漫画中の表現獲得方法に基づくストーリー理解過程の解析.
+\newblock  第 31 回人工知能学会全国大会発表論文集, pp. 4F1--5in2, 2017.
+
+\bibitem{jsai18mukaeyama}
+迎山和司.
+\newblock 既存の漫画に基づいた 2 コマ漫画の自律生成.
+\newblock  人工知能学会全国大会論文集 2018 年度人工知能学会全国大会 (第 32 回)
+  論文集, pp. 1K1OS2a02--1K1OS2a02. 一般社団法人 人工知能学会, 2018.
+
+\bibitem{ueno:dcai2016}
+Miki Ueno.
+\newblock Computational interpretation of comic scenes.
+\newblock In {\em Advances in Intelligent Systems and Computing}, Vol. 474, pp.
+  387--393, 2016.
+
+\bibitem{GA4koma}
+野村俊太, 荒井幸代.
+\newblock 進化計算を用いた人間の感性理解のための遺伝子解析法.
+\newblock  第 31 回人工知能学会全国大会発表論文集, pp. 3H2--OS--04b--2, 2017.
+
+\bibitem{ueno2016estimation}
+Miki Ueno, Naoki Mori, Toshinori Suenaga, and Hitoshi Isahara.
+\newblock Estimation of structure of four-scene comics by convolutional neural
+  networks.
+\newblock In {\em Proceedings of the 1st International Workshop on coMics
+  ANalysis, Processing and Understanding}, p.~9. ACM, 2016.
+
+\bibitem{jsai18fujino}
+藤野紗耶, 森直樹, 松本啓之亮.
+\newblock 3 分岐型畳み込みニューラルネットワークによる 4 コマ漫画の順序識別.
+\newblock  人工知能学会全国大会論文集 2018 年度人工知能学会全国大会 (第 32 回)
+  論文集, pp. 1K1OS2a05--1K1OS2a05. 一般社団法人 人工知能学会, 2018.
+
 \bibitem{word_net_jp}
 Richard~Fothergill Francis~Bond, Timothy~Baldwin and Kiyotaka Uchimoto.
 \newblock Japanese semcor: A sense-tagged corpus of japanese in the 6th
   international conference of the global wordnet association (gwc-2012),
   matsue.
 \newblock 2012.
+
+\bibitem{kyoto-bert}
+黒橋~禎夫柴田~知秀.
+\newblock Bert による日本語構文解析の精度向上.
+\newblock 言語処理学会 第25回年次大会, pp. pp.205--208, 2019.
+
+\bibitem{hottoSNS-bert}
+Sakaki, Takeshi, Sakae Mizuki, Naoyuki Gunji.
+\newblock Bert pre-trained model trained on large-scale japanese social media
+  corpus.
+\newblock 2019.
 
 \end{thebibliography}
