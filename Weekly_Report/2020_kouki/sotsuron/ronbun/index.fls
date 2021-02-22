@@ -84,6 +84,8 @@ INPUT c:/texlive/2020/texmf-dist/fonts/tfm/ptex-fonts/standard/tgoth10.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm
+INPUT doc/figures/4koma_data.png
+INPUT extractbb -B cropbox -O doc/figures/4koma_data.png
 INPUT ./doc/elements.tex
 INPUT ./doc/elements.tex
 INPUT doc/figures/attention.png
@@ -106,6 +108,10 @@ INPUT doc/figures/ex1_graph_hotto_gyagu.png
 INPUT extractbb -B cropbox -O doc/figures/ex1_graph_hotto_gyagu.png
 INPUT doc/figures/ex2_graph_hotto_gyagu.png
 INPUT extractbb -B cropbox -O doc/figures/ex2_graph_hotto_gyagu.png
+INPUT doc/figures/multimodal_add_seikai.png
+INPUT extractbb -B cropbox -O doc/figures/multimodal_add_seikai.png
+INPUT doc/figures/cos_bert.png
+INPUT extractbb -B cropbox -O doc/figures/cos_bert.png
 INPUT ./doc/conclusion.tex
 INPUT ./doc/conclusion.tex
 INPUT ./doc/shaji.tex

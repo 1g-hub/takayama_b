@@ -1,6 +1,8 @@
-\contentsline {table}{\numberline {6.1}{\ignorespaces オリジナルデータ数}}{15}%
-\contentsline {table}{\numberline {6.2}{\ignorespaces 実験で用いたデータ数}}{15}%
-\contentsline {table}{\numberline {6.3}{\ignorespaces 各実験における MLP のパラメータ}}{16}%
-\contentsline {table}{\numberline {6.4}{\ignorespaces 学習パラメータ}}{16}%
-\contentsline {table}{\numberline {6.5}{\ignorespaces 評価用データに対する実験 1 の結果}}{17}%
-\contentsline {table}{\numberline {6.6}{\ignorespaces 評価用データに対する実験 2 の結果}}{18}%
+\contentsline {table}{\numberline {6.1}{\ignorespaces オリジナルデータ数}}{16}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces 実験で用いたデータ数}}{16}%
+\contentsline {table}{\numberline {6.3}{\ignorespaces 各実験における MLP のパラメータ}}{17}%
+\contentsline {table}{\numberline {6.4}{\ignorespaces 学習パラメータ}}{18}%
+\contentsline {table}{\numberline {6.5}{\ignorespaces 損失関数におけるクラス重み}}{18}%
+\contentsline {table}{\numberline {6.6}{\ignorespaces 評価用データに対する実験 1 の結果}}{19}%
+\contentsline {table}{\numberline {6.7}{\ignorespaces 評価用データに対する実験 2 の結果}}{21}%
+\contentsline {table}{\numberline {6.8}{\ignorespaces Data Augmentation による文法的齟齬}}{23}%

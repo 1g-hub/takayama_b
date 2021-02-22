@@ -90,35 +90,62 @@ UNK                    & 7                    & 3                   & 5         
 一つは, 京都大学が公開している日本語 Wikipedia より全 1800 万文を用いて事前学習させたモデル \cite{kyoto-bert} (以下, ``京大 BERT" と呼ぶ) , もう一つは hottolink 社が公開している大規模日本語 SNS コーパスを用いて事前学習させたモデル, hottoSNS-BERT \cite{hottoSNS-bert} を用いた. BERT モデルは最終層のみを fine-tuning した.
 
 表 \ref{table:mlp_para} に 3 層 MLP で用いたパラメータ, そして表 \ref{table:ex_para} に学習で用いたパラメータを示す. 学習率は Optuna \cite{optuna_2019} によって最適なパラメータを探索した.
-また, 多くのタッチにおいて, 正例は負例に対してデータ数が非常に少ない不均衡データを扱うことから, このまま学習してしまうと上手く学習できないという問題がある. 本研究ではこの解決策として, 損失関数のクラス重みとして, 訓練用データの各ラベルのデータ数の逆数を正規化したものを用いた.
+また, 多くのタッチにおいて, 正例は負例に対してデータ数が非常に少ない不均衡データを扱うことから, このまま学習してしまうと上手く学習できないという問題がある. 本研究ではこの解決策として, 損失関数のクラス重みとして, 訓練用データの各ラベルのデータ数の逆数を正規化したものを用いた. 表 \ref{table:ex_class_weight} に損失関数におけるタッチごとのクラス重みを示す.
 
-\begin{table}[htb]
+\begin{table}[!h]
+\vspace{20mm}
 \caption{各実験における MLP のパラメータ}
 \label{table:mlp_para}
 \centering
-\scalebox{0.81}{
-\begin{tabular}{|c|c|c|}
+\scalebox{1.35}{
+\begin{tabular}{c|cc}
 \hline
-parameters & 実験 1 & 実験 2 \\ \hline
-(入力次元,隠れ層次元,出力次元) & (768,30,2) & (4864,300,2) \\ \hline
-活性化関数 & \multicolumn{2}{c|}{tanh} \\ \hline
-ドロップアウト率 & \multicolumn{2}{c|}{0.5} \\ \hline
+パラメータ & 実験 1 & 実験 2 \\ \hline
+入力層次元 & 768 & 4864 \\
+隠れ層次元 & \multicolumn{2}{c}{30} \\
+出力層次元 & \multicolumn{2}{c}{2} \\ \hline
+活性化関数 & \multicolumn{2}{c}{tanh} \\ \hline
+ドロップアウト率 & \multicolumn{2}{c}{0.5}
 \end{tabular}
 }
 \end{table}
 
-\begin{table}[htb]
+\newpage
+
+\begin{table}[!h]
+\vspace{10mm}
 \caption{学習パラメータ}
 \label{table:ex_para}
 \centering
-\begin{tabular}{|c||c|c|}
+\scalebox{1.35}{
+\begin{tabular}{c|c|l}
 \hline
-パラメータ & \multicolumn{2}{|c|}{実験 $1・2$} \\ \hline
-エポック数 & \multicolumn{2}{|c|}{50}  \\ \hline
-バッチサイズ & \multicolumn{2}{|c|}{16} \\ \hline
-損失関数 & \multicolumn{2}{|c|}{Cross Entropy Loss} \\ \hline
-最適化手法 & \multicolumn{2}{|c|}{Adam} \\ \hline
+パラメータ  & \multicolumn{2}{c}{実験 $1・2$}           \\ \hline
+エポック数  & \multicolumn{2}{c}{50}                 \\ \hline
+バッチサイズ & \multicolumn{2}{c}{16}                 \\ \hline
+損失関数   & \multicolumn{2}{c}{Cross Entropy Loss\footnotetext[1]{出力層では softmax}} \\ \hline
+最適化手法  & \multicolumn{2}{c}{Adam}
 \end{tabular}
+}
+\vspace{10mm}
+\end{table}
+
+\begin{table}[!h]
+\vspace{10mm}
+\caption{損失関数におけるクラス重み}
+\label{table:ex_class_weight}
+\centering
+\scalebox{1.35}{
+\begin{tabular}{c|l|l}
+\hline
+タッチ                          & \multicolumn{1}{c|}{正例} & \multicolumn{1}{c}{負例} \\ \hline
+ギャグタッチ                       & 0.773                   & 0.227                  \\
+少女漫画タッチ                      & 0.272                   & 0.728                  \\
+\multicolumn{1}{l|}{少年漫画タッチ} & 0.831                   & 0.169                  \\
+青年漫画タッチ                      & 0.824                   & 0.176                  \\
+萌えタッチ                        & 0.594                   & 0.406
+\end{tabular}
+}
 \end{table}
 
 \newpage
@@ -126,21 +153,22 @@ parameters & 実験 1 & 実験 2 \\ \hline
 \subsection{実験 1 : 結果}
 \changeindent{2cm}
 
-表 \ref{table:result_1} に評価用データに対する実験 1 の結果を示す. 表 \ref{table:result_1} における P-Recall, P-F1値はそれぞれ正例の再現率, F 値を表し, Acc は全体の精度を表している.
+表 \ref{table:result_1} に評価用データに対する実験 1 の結果を示す. 表 \ref{table:result_1} における P-Recall, P-F 値はそれぞれ正例の再現率, F 値を表し, Acc は全体の精度を表している.
 本研究では, ベースラインは前述したように, 正例が負例に対してデータ数が
 非常に少ない不均衡データであることから, すべての予測値が負例の場合を設定した.
-また, 図 \ref{fig:ex1_graph} に Image Embedding 層に hottoSNS-BERT を用いた場合のギャグタッチにおける学習曲線を示す. (左から Acc, 正例の F 値, loss)
+また, 図 \ref{fig:ex1_graph} に Text Embedding 層に hottoSNS-BERT を用いた場合のギャグタッチにおける学習曲線を示す. (左から Acc, 正例の F 値, loss を表し, 青線が訓練用データ, オレンジの線が検証用データを表す.)
 
-表 \ref{table:result_1} より, Acc に関して BERT fine tuning のみがベースラインを超え, すべての評価指標において BERT fixed より BERT fine tuning の方が上だったことから, 本研究で扱っている 4 コマ画像におけるセリフの感情推定というタスクにおいても BERT の fine tuning が有用であることを確かめることができた.
+表 \ref{table:result_1} より, Acc に関してはどちらの BERT モデルを用いても
+ベースラインを超えることができた. また, すべての評価指標において京大 BERT よりも hottoSNS-BERT の方が上回った. 図 \ref{fig:ex1_graph} において, 訓練用データと検証用データの学習曲線の推移が酷似しているのは, データの切り分け方に問題があると推測される. 前述したように, 4 コマ漫画ストーリーデータセットには現状, 同一のストーリーを原則的に 4 コマ目がオチとなる ``一般" と逆に 1 コマ目にオチを持ってきた ``出オチ" の 2 つの構造のみからなっており, セリフや感情ラベルに大きな差はない. そのため, 検証用データをランダムにサンプリングしたことでデータの分布にも差が生まれなかったと考えられる.
 
-\begin{table*}[!hb]
+\begin{table}[!hb]
 \begin{center}
 \caption{評価用データに対する実験 1 の結果}
 \label{table:result_1}
-\scalebox{0.42}{
+\scalebox{0.45}{
 \begin{tabular}{lccccccccccccccc|ccc}
 \hline
-\multicolumn{1}{c}{\multirow{2}{*}{}} & \multicolumn{3}{c}{ギャグ}                            & \multicolumn{3}{c}{少女漫画}             & \multicolumn{3}{c}{少年漫画}             & \multicolumn{3}{c}{青年漫画}             & \multicolumn{3}{c|}{萌え}              & \multicolumn{3}{c|}{5 タッチ総合}         \\
+\multicolumn{1}{c}{\multirow{2}{*}{}} & \multicolumn{3}{c}{ギャグ}                            & \multicolumn{3}{c}{少女漫画}             & \multicolumn{3}{c}{少年漫画}             & \multicolumn{3}{c}{青年漫画}             & \multicolumn{3}{c|}{萌え}               & \multicolumn{3}{c}{5 タッチ総合}         \\
 \multicolumn{1}{c}{}                  & Acc                       & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       \\ \hline
 京大 BERT                               & {\ul 0.818}               & 0.200    & 0.250       & 0.612       & 0.711    & 0.675       & 0.766       & 0.083    & 0.118       & {\ul 0.862} & 0.500    & 0.609       & 0.609       & 0.591    & 0.510       & 0.733       & 0.521    & 0.535       \\
 hottoSNS-BERT                         & {\ul 0.818}               & 0.300    & {\ul 0.333} & {\ul 0.627} & 0.816    & {\ul 0.713} & {\ul 0.813} & 0.167    & {\ul 0.250} & 0.846       & 0.643    & {\ul 0.643} & {\ul 0.688} & 0.500    & {\ul 0.524} & {\ul 0.758} & 0.583    & {\ul 0.586} \\ \hline
@@ -148,7 +176,7 @@ hottoSNS-BERT                         & {\ul 0.818}               & 0.300    & {
 \end{tabular}
 }
 \end{center}
-\end{table*}
+\end{table}
 
 \begin{figure}[h]
   \centering
@@ -172,16 +200,24 @@ hottoSNS-BERT                         & {\ul 0.818}               & 0.300    & {
 \subsection{実験 2 : 結果}
 \changeindent{2cm}
 
-表 \ref{table:result_2} に評価用データに対する実験 2 の結果を示す. また, 図 \ref{fig:ex1_graph} に Image Embedding 層に hottoSNS-BERT を用いた場合のギャグタッチにおける学習曲線を示す. (左から Acc, 正例の F 値, loss)
+表 \ref{table:result_2} に評価用データに対する実験 2 の結果を示す. また, 図 \ref{fig:ex1_graph} に Text Embedding 層に hottoSNS-BERT を用いた場合のギャグタッチにおける学習曲線を示す. (左から Acc, 正例の F 値, loss を表し, 青線が訓練用データ, オレンジの線が検証用データを表す.)
 
-\begin{table*}[!hb]
+表 \ref{table:result_2} より, Acc に関してはどちらの BERT モデルを用いても
+同様にベースラインを超えることができ, 正例の識別率も上がった. また, すべての評価指標において京大 BERT よりも hottoSNS-BERT の方が上回り, 実験 1 および 実験 2 を通してそれぞれ最も高い値を示したことから, マルチモーダルな感情推定の有効性を定量的に確認した. 図 \ref{fig:ex2_graph} において, 訓練用データと検証用データの学習曲線の推移が実験 1 の学習曲線より急勾配で早期に収束しているのは単純に識別器への入力次元数が増えたことに起因すると考えられる. そして, 多くのタッチにおいて実験 1 ではほとんど識別できていなかった正例データが識別できていたことを確認した.
+
+図 \ref{fig:multimodal_add_seikai} にこれらの正例データを示す. 図 \ref{fig:multimodal_add_seikai} より, 文字だけでは人間の目で見ても判断が難しいが, 画像情報 (発話者の顔の表情) を加味することで喜楽寄りのセリフであると理解できるデータであることが分かる.
+
+\newpage
+
+\begin{table}[!ht]
+\vspace{10mm}
 \begin{center}
 \caption{評価用データに対する実験 2 の結果}
 \label{table:result_2}
-\scalebox{0.42}{
+\scalebox{0.45}{
 \begin{tabular}{lccccccccccccccc|ccc}
 \hline
-\multicolumn{1}{c}{\multirow{2}{*}{}} & \multicolumn{3}{c}{ギャグ}                            & \multicolumn{3}{c}{少女漫画}             & \multicolumn{3}{c}{少年漫画}             & \multicolumn{3}{c}{青年漫画}             & \multicolumn{3}{c|}{萌え}              & \multicolumn{3}{c|}{5 タッチ総合}         \\
+\multicolumn{1}{c}{\multirow{2}{*}{}} & \multicolumn{3}{c}{ギャグ}                            & \multicolumn{3}{c}{少女漫画}             & \multicolumn{3}{c}{少年漫画}             & \multicolumn{3}{c}{青年漫画}             & \multicolumn{3}{c|}{萌え}               & \multicolumn{3}{c}{5 タッチ総合}         \\
 \multicolumn{1}{c}{}                  & Acc                       & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       & Acc         & P-Recall & P-F 値       \\ \hline
 京大 BERT                               & 0.773                     & 0.200    & 0.211       & 0.687       & 0.763    & 0.734       & 0.703       & 0.417    & 0.345       & 0.769       & 0.643    & {\ul 0.545} & 0.641       & 0.500    & 0.489       & 0.715       & 0.583    & 0.546       \\
 hottoSNS-BERT                         & {\ul 0.818}               & 0.400    & {\ul 0.400} & {\ul 0.761} & 0.816    & {\ul 0.795} & {\ul 0.781} & 0.500    & {\ul 0.462} & {\ul 0.815} & 0.500    & 0.538       & {\ul 0.703} & 0.545    & {\ul 0.558} & {\ul 0.776} & 0.625    & {\ul 0.622} \\ \hline
@@ -189,16 +225,74 @@ hottoSNS-BERT                         & {\ul 0.818}               & 0.400    & {
 \end{tabular}
 }
 \end{center}
-\end{table*}
+\vspace{10mm}
+\end{table}
 
-\begin{figure}[h]
+\begin{figure}[!h]
   \centering
   \includegraphics[width=0.8\hsize]{doc/figures/ex2_graph_hotto_gyagu.png}
   \caption{実験 2 における学習曲線の例}
   \label{fig:ex2_graph}
 \end{figure}
 
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.75\hsize]{doc/figures/multimodal_add_seikai.png}
+  \caption{マルチモーダル化の精度への影響}
+  \label{fig:multimodal_add_seikai}
+\end{figure}
+
 \newpage
 \changeindent{0cm}
 \subsection{考察}
+\changeindent{2cm}
+
+\changeindent{0cm}
+\subsubsection{BERT モデルの合理性}
+\changeindent{2cm}
+
+実験結果から, 定量的に京大 BERT よりも hottoSNS-BERT の方が漫画のセリフの分散表現の獲得手法として優れていることが示せた. ここで, 別の視点から京大 BERT と hottoSNS-BERT のどちらがより合理的な分散表現を得られているかについて考察する.
+
+図 \ref{fig:cos_bert} に Data Augmentation によって拡張されたセリフとそれぞれに対応するオリジナルのセリフとのコサイン類似度を京大 BERT と hottoSNS-BERT を用いて計算したヒストグラムを示す. 横軸はコサイン類似度, 縦軸は区間内のデータ数を表している. また, 青色が hottoSNS-BERT, オレンジ色が京大 BERT を表す. ここで, コサイン類似度とは 2 本のベクトルがどれくらい同じ向きを向いているのかを表す指標であり, $-1$ から $1$ までの値を取る. まったく同じ文章同士であればコサイン類似度は $1$ であり, 似た文章であるほど高い値を示す.
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.8\hsize]{doc/figures/cos_bert.png}
+  \caption{拡張されたセリフと対応するオリジナルのセリフとのコサイン類似度}
+  \label{fig:cos_bert}
+\end{figure}
+
+\newpage
+図 \ref{fig:cos_bert} より, 一見して京大 BERT の方がコサイン類似度が高い区間に集まっていることから, 優れているようにも思えるが, これは Data Augmentation に大きな問題がないという前提でのみ成立する. 本研究で行った Data Augmentation 手法では, 文法的意味に齟齬が発生しているという問題がある. 例としては, 意味は通じるが形容詞であったものが名詞に置き換わっていたり, 文法的に間違ったものも含まれていた.
+
+表 \ref{table:sogo} に Data Augmentation によって文法的齟齬が生じているデータとこれらのコサイン類似度を京大 BERT と hottoSNS-BERT から出力されたセリフベクトルを用いて計算した結果を示す.
+
+\begin{table}[!h]
+\vspace{10mm}
+\caption{Data Augmentation による文法的齟齬}
+\label{table:sogo}
+\centering
+\scalebox{1.0}{
+\begin{tabular}{ll|cc}
+\multicolumn{1}{c}{オリジナルのセリフ} & \multicolumn{1}{c|}{拡張後のセリフ} & 京大 BERT & hottoSNS-BERT \\ \hline
+去年は私が着たやつ & 去年は私が着た若者 & 0.97 & -0.19 \\ \hline
+そうですか & 正しくですか & 0.89 & -0.19 \\ \hline
+\begin{tabular}[c]{@{}l@{}}僕はいいですけど、\\ 気をつけてくださいね\end{tabular} & \begin{tabular}[c]{@{}l@{}}僕はグーですけど、\\ 気をつけてくださいね\end{tabular} & 0.96 & -0.16 \\ \hline
+ & \begin{tabular}[c]{@{}l@{}}僕はいいですけど、\\ 真性をつけてくださいね\end{tabular} & 0.94 & 0.25
+\end{tabular}
+}
+\vspace{10mm}
+\end{table}
+
+\newpage
+\changeindent{0cm}
+\subsubsection{i2v でとれている情報は？}
+\changeindent{2cm}
+
+\changeindent{0cm}
+\subsubsection{結合ベクトルの最適化について}
+\changeindent{2cm}
+
+\changeindent{0cm}
+\subsubsection{補足 : 人手によるデータセット拡張}
 \changeindent{2cm}

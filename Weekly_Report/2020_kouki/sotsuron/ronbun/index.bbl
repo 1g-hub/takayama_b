@@ -82,6 +82,11 @@ Masaki Saito and Yusuke Matsui.
 \newblock In {\em SIGGRAPH Asia 2015 Technical Briefs}, SA ’15, New York, NY,
   USA, 2015. Association for Computing Machinery.
 
+\bibitem{imagenet_cvpr09}
+J.~Deng, W.~Dong, R.~Socher, L.-J. Li, K.~Li, and L.~Fei-Fei.
+\newblock {ImageNet: A Large-Scale Hierarchical Image Database}.
+\newblock In {\em CVPR09}, 2009.
+
 \bibitem{ueno-emotion2016}
 上野未貴, 森直樹, 松本啓之亮.
 \newblock 漫画内の特徴的要素が与えるストーリーの印象についての検討.
