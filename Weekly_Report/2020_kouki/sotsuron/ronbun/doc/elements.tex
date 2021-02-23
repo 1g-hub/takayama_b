@@ -22,7 +22,7 @@
 一方で, 日本語の文は単語間の区切りが英語ほど明確でないため,
 形態素への分割は困難かつ重要である.
 
-形態素解析器としては, MeCab \cite{mecab} や Juman++ \cite{jumanpp}, SentencePiece \cite{DBLP:journals/corr/abs-1808-06226} などが存在する.
+形態素解析器としては, MeCab \cite{mecab} や Juman++ \cite{jumanpp} などが存在する.
 
 \changeindent{0cm}
 \subsubsection{局所表現, 分散表現}
@@ -64,7 +64,7 @@ CBOW を拡張したモデルを Distributed Memory モデルといい, Skip-gra
 \subsubsection{Attention}
 \changeindent{2cm}
 
-機械翻訳のタスクに対して考案された, LSTM を用いる Encoder-Decoder モデルは
+機械翻訳のタスクに対して考案された, LSTM \cite{HochSchm97} に代表される Recurrent Neural Network (RNN) を用いる Encoder-Decoder モデルは
 可変長の文を固定長のベクトルにエンコードするため, 長い入力文になるほど隠れ層のノード数が不足し,
 学習が難しくなる問題がある. そこで Bahdanau らにより提案されたのが Encoder 側で入力文の各単語の荷重を決定してエンコードすべき場所を制御する Attention 機構 \cite{attention} である.
 Luong らはこの Bahdanau らによるモデルを単純化したモデルとして,
@@ -79,7 +79,7 @@ Luong らはこの Bahdanau らによるモデルを単純化したモデルと�
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.6\hsize]{doc/figures/attention.png}
-  \caption{Attention 機構の概略図 : 文献の図を参照}
+  \caption{Attention 機構の概略図 : 文献 \cite{attention} の図より引用}
   \label{fig:attention}
 \end{figure}
 
@@ -100,7 +100,7 @@ Attention 機構は Query と Key-Value へのマッピングとして表現す�
 \begin{figure}[!h]
   \centering
   \includegraphics[width=0.5\hsize]{doc/figures/transformer.png}
-  \caption{Transformer の概略図 (出典: Attention is All you Need)}
+  \caption{Transformer の概略図 : 文献 \cite{transformer} の図より引用}
   \label{fig:transformer}
 \end{figure}
 
@@ -110,7 +110,7 @@ Attention 機構は Query と Key-Value へのマッピングとして表現す�
 \changeindent{2cm}
 Bidirectional Encoder Representations from Transformers (BERT) \cite{devlin2018bert} は, 2018 年に
 Google が発表した言語モデルであり, 複数の双方向 Transformer に基づく汎用言語モデルである.
-これまでの言語モデルは特定の学習タスクに対して 1 つのモデルを用いてきたが, BERT は
+これまでの言語モデルは特定の学習タスクに対して 1 つのモデルを用いてきた. しかし BERT は
 大規模コーパスに対して事前学習を施して, 各タスクに対してfine-tuning をすることで,
 さまざまなタスクに柔軟に対応することができる. さらに, 以前はモデルごとに語彙を 1 から学習させるため, 非常に多くの時間とコストがかかって
 いたが, BERT ではオープンソースで公開されている文脈を既に学習させた Pre-Training BERT モデルを使用することで短時間で学習ができる.
@@ -123,7 +123,7 @@ BERT の 事前学習では，周囲の単語からある単語を予測するMa
 \begin{figure}[h]
   \begin{center}
     \includegraphics[width=0.8\hsize]{doc/figures/bert_pre.png}
-    \caption{BERT の事前学習と fine-tuning の概略図 : 文献 の図を参照}
+    \caption{BERT の事前学習と fine-tuning の概略図 : 文献 \cite{devlin2018bert} の図より引用}
     \label{fig:bert_pre}
   \end{center}
 \end{figure}
@@ -139,7 +139,7 @@ BERT の 事前学習では，周囲の単語からある単語を予測するMa
 \subsubsection{VGG}
 \changeindent{2cm}
 
-VGG \cite{brusilovsky:simonyan2014very} とは, ImageNet と呼ばれる大規模
+VGG \cite{brusilovsky:simonyan2014very} とは, ImageNet \cite{imagenet_cvpr09} と呼ばれる大規模
 画像データセットで学習済みの畳み込みニューラル
 ネットワーク (VGGNet) であり, 13 層の畳み込み層
 と3 層の全結合層の合計 16 層からなる. 構成する層の数に応じて, VGG11 や VGG16 などと呼ばれることが多い. VGGNet は Oxford 大学に提案された手法であり, 2014 年の
@@ -153,7 +153,7 @@ VGG \cite{brusilovsky:simonyan2014very} とは, ImageNet と呼ばれる大規�
 \subsubsection{illustration2vec}
 \changeindent{2cm}
 
-illustration2vec \cite{i2v} は Saito, Matsui らが提案した VGG をベースとした画像のベクトル化手法であり, 画像リンク集サイトである Danbooru と Safebooru から 100 万枚のイラストを用いて学習した事前学習済みモデルが公開されている. illustration2vec が扱った問題として, イラストに対する画像認識の難しさがあり, VGG などの既存の画像認識モデルのほとんどが ImageNet \cite{imagenet_cvpr09} などの実画像を評価対象にしており, アニメや漫画といったイラストに対して評価をしていなかった. illustration2vec はそれらと比較してイラストのより合理的なベクトル化が期待できる手法である. また, Danbooru と Safebooru でよく使われているタグを正解ラベルとして学習しているため, 簡単にイラストの特徴を検出でき, 大量の画像に対して類似画像を検索出来たり, 画像の意味における画像変換や応用例としてタグの特徴を満たす画像の生成などが可能となっている.
+illustration2vec \cite{i2v} は齋藤, 松井らが提案した VGG をベースとした画像のベクトル化手法であり, 画像リンク集サイトである Danbooru と Safebooru から 100 万枚のイラストを用いて学習した事前学習済みモデルが公開されている. illustration2vec が扱った問題として, イラストに対する画像認識の難しさがあり, VGG などの既存の画像認識モデルのほとんどが ImageNet などの実画像を評価対象にしており, アニメや漫画といったイラストに対して評価をしていなかった. illustration2vec はそれらの手法と比較して, より合理的なイラストのベクトル化が期待できる手法である. また, Danbooru と Safebooru でよく使われているタグを正解ラベルとして学習しているため, 簡単にイラストの特徴を検出でき, 大量の画像に対して類似画像を検索出来たり, 画像の意味における画像変換や応用例としてタグの特徴を満たす画像の生成などが可能となっている.
 \newpage
 illustration2vec では学習データを下記の要領で作成している.
 

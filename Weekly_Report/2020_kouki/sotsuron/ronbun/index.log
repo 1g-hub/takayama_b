@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.7.16)  24 FEB 2021 04:03
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.7.16)  24 FEB 2021 06:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -271,57 +271,57 @@ File: doc/figures/koma_tsne.png Graphic file (type bmp)
  [25]
 File: doc/figures/illustration2vec_tag.png Graphic file (type bmp)
 <doc/figures/illustration2vec_tag.png>
- [26] [27]
+ [26] [27] [28]
 File: doc/figures/shironuki.png Graphic file (type bmp)
 <doc/figures/shironuki.png>
- [28]) [29] (./doc/conclusion.tex) [30
+ [29]) [30] (./doc/conclusion.tex) [31
 
-] (./doc/shaji.tex) [31
+] (./doc/shaji.tex) [32
 
 
 ] (./index.bbl
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
 (Font)              No change on input line 13.
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
-(Font)              No change on input line 25.
+(Font)              No change on input line 20.
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
-(Font)              No change on input line 36.
+(Font)              No change on input line 32.
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
-(Font)              No change on input line 41.
+(Font)              No change on input line 44.
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
-(Font)              No change on input line 46.
-LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
-(Font)              No change on input line 56.
- [32
+(Font)              No change on input line 54.
+ [33
 
 ]
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
-(Font)              No change on input line 65.
+(Font)              No change on input line 59.
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
-(Font)              No change on input line 72.
+(Font)              No change on input line 64.
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
-(Font)              No change on input line 77.
+(Font)              No change on input line 69.
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
-(Font)              No change on input line 82.
+(Font)              No change on input line 76.
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
-(Font)              No change on input line 88.
- [33]
+(Font)              No change on input line 81.
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
-(Font)              No change on input line 110.
+(Font)              No change on input line 86.
+ [34]
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
-(Font)              No change on input line 122.
+(Font)              No change on input line 109.
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
-(Font)              No change on input line 152.
+(Font)              No change on input line 121.
 LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
-(Font)              No change on input line 158.
- [34]) [35] (./index.aux) ) 
+(Font)              No change on input line 151.
+LaTeX Font Info:    Kanji font shape `JY1/gt/m/it' undefined
+(Font)              No change on input line 157.
+ [35]) [36] (./index.aux) ) 
 Here is how much of TeX's memory you used:
- 1483 strings out of 480982
- 21244 string characters out of 5915964
+ 1484 strings out of 480982
+ 21229 string characters out of 5915964
  274773 words of memory out of 5000000
- 17657 multiletter control sequences out of 15000+600000
+ 17658 multiletter control sequences out of 15000+600000
  545792 words of font info for 76 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  30i,16n,25p,1277b,492s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on index.dvi (40 pages, 98192 bytes).
+Output written on index.dvi (41 pages, 100928 bytes).

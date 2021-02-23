@@ -1,7 +1,7 @@
 \contentsline {figure}{\numberline {2.1}{\ignorespaces 4 コマ漫画ストーリーデータセットのデータ例}}{4}%
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Attention 機構の概略図 : 文献の図を参照}}{7}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Transformer の概略図 (出典: Attention is All you Need)}}{8}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces BERT の事前学習と fine-tuning の概略図 : 文献 の図を参照}}{9}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Attention 機構の概略図 : 文献 \cite {attention} の図より引用}}{7}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Transformer の概略図 : 文献 \cite {transformer} の図より引用}}{8}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces BERT の事前学習と fine-tuning の概略図 : 文献 \cite {devlin2018bert} の図より引用}}{9}%
 \contentsline {figure}{\numberline {5.1}{\ignorespaces 提案手法の概要}}{13}%
 \contentsline {figure}{\numberline {5.2}{\ignorespaces Data Augmentation の概要}}{14}%
 \contentsline {figure}{\numberline {6.1}{\ignorespaces 実験 1 における学習曲線の例}}{19}%
@@ -11,4 +11,4 @@
 \contentsline {figure}{\numberline {6.5}{\ignorespaces $<$mention$>$ トークンの概要}}{24}%
 \contentsline {figure}{\numberline {6.6}{\ignorespaces コマベクトルの t-SNE による次元圧縮結果}}{25}%
 \contentsline {figure}{\numberline {6.7}{\ignorespaces illustration2vec による多クラスのラベル予測例}}{26}%
-\contentsline {figure}{\numberline {6.8}{\ignorespaces アノテーションのための白抜き 4 コマ画像の例}}{28}%
+\contentsline {figure}{\numberline {6.8}{\ignorespaces アノテーションのための白抜き 4 コマ画像の例}}{29}%
