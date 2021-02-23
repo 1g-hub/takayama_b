@@ -1,16 +1,16 @@
 # Fdb version 3
-["dvipdf"] 1614086809 "experiment.dvi" "experiment.pdf" "experiment" 1614086810
-  "experiment.dvi" 1614086807 34248 37fa04f150ba7315fd407f26537fa79c "latex"
+["dvipdf"] 1614117582 "experiment.dvi" "experiment.pdf" "experiment" 1614117583
+  "experiment.dvi" 1614117580 39688 995754cbc6948343b00f211e5c434a0b "latex"
   (generated)
   "experiment.pdf"
-["latex"] 1614086807 "experiment.tex" "experiment.dvi" "experiment" 1614086810
+["latex"] 1614117579 "experiment.tex" "experiment.dvi" "experiment" 1614117583
   "c:/texlive/2020/texmf-dist/fonts/map/fontname/texfonts.map" 1594894412 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1594893187 1328 c834bbb027764024c09d3d2bf908b5f0 ""
   "c:/texlive/2020/texmf-dist/web2c/texmf.cnf" 1594895296 39451 60d7debd9ef8ece44cbe965493576c2d ""
   "c:/texlive/2020/texmf-var/web2c/eptex/platex.fmt" 1594899526 2466539 ef00ba71607c1ae9e8ed400a258b246b ""
   "c:/texlive/2020/texmf.cnf" 1594899385 673 4ae7b2f49cee444c5343a45b5d0f169c ""
   "experiment.aux" 1613938948 9 a94a2480d3289e625eea47cd1b285758 ""
-  "experiment.tex" 1614086798 26528 1729d2e37062e69bce5137feb8eae93d ""
+  "experiment.tex" 1614117553 30980 3d766026d37e26e769500604a6a4b8d0 ""
   (generated)
-  "experiment.dvi"
   "experiment.log"
+  "experiment.dvi"

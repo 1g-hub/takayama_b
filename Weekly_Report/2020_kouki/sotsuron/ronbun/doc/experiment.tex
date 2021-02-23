@@ -340,7 +340,7 @@ hottoSNS-BERT                         & {\ul 0.818}               & 0.400    & {
 \subsection{補足 : 人手による新たなセリフデータの作成}
 \changeindent{2cm}
 
-本研究で行った実験には使用しなかったが, 4 コマ漫画ストーリーデータセットの大きな問題の一つであるデータの少なさを改善するために人手による新たなセリフデータの作成を現在行っている. 以下にセリフデータの作成手順を述べる.
+本研究で行った実験には使用しなかったが, 4 コマ漫画ストーリーデータセットの問題点であるデータの少なさを改善するために, 人手による新たなセリフデータの作成を現在行っている. 以下にセリフデータの作成手順を述べる.
 
 \begin{enumerate}
   \item データを拡張する対象のタッチを萌えタッチのみとし, また一部の 4 コマを除外する.
@@ -357,9 +357,8 @@ hottoSNS-BERT                         & {\ul 0.818}               & 0.400    & {
 
 現状は自分を含めた 2 人分のアノテートが完了している. これらを拡張萌えタッチ A, 拡張萌えタッチ B とする. 図 \ref{fig:shironuki} に白抜きされた 4 コマ画像の例, 表 \ref{table:aug_data} に, 図 \ref{fig:shironuki} に対応する拡張萌えタッチ A のデータ例を示す.
 
-\newpage
 \begin{figure}[!h]
-  \vspace{10mm}
+  \vspace{1mm}
   \centering
   \includegraphics[width=0.4\hsize]{doc/figures/shironuki.png}
   \caption{アノテーションのための白抜き 4 コマ画像の例}
@@ -367,11 +366,11 @@ hottoSNS-BERT                         & {\ul 0.818}               & 0.400    & {
 \end{figure}
 
 \begin{table}[!h]
-\vspace{10mm}
+\vspace{5mm}
 \caption{アノテートされたセリフと感情ラベルの例}
 \label{table:aug_data}
 \centering
-\scalebox{1.0}{
+\scalebox{0.8}{
 \begin{tabular}{c|l|c}
 id & \multicolumn{1}{c|}{セリフ (拡張萌えタッチ A)} & 感情ラベル  \\ \hline
 0  & 小池君 今週末の予定は？             & 喜楽     \\
