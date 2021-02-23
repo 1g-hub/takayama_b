@@ -17,9 +17,9 @@
 \contentsline {section}{\numberline {5}提案手法}{13}%
 \contentsline {subsection}{\numberline {5.1}漫画のセリフのマルチモーダルな感情推定手法}{13}%
 \contentsline {subsection}{\numberline {5.2}Data Augmentation}{14}%
-\contentsline {section}{\numberline {6}数値実験}{15}%
+\contentsline {section}{\numberline {6}実験と考察}{15}%
 \contentsline {subsection}{\numberline {6.1}実験概要}{15}%
-\contentsline {subsection}{\numberline {6.2}使用データ}{15}%
+\contentsline {subsection}{\numberline {6.2}実験に使用したデータ}{15}%
 \contentsline {subsection}{\numberline {6.3}実験設定}{15}%
 \contentsline {subsection}{\numberline {6.4}実験 1 : セリフ 1 文のみを入力とする感情推定}{16}%
 \contentsline {subsection}{\numberline {6.5}実験 1 : 結果}{19}%
@@ -29,7 +29,7 @@
 \contentsline {subsubsection}{\numberline {6.8.1}BERT モデルの合理性と Data Augmentation の問題について}{22}%
 \contentsline {subsubsection}{\numberline {6.8.2}illustration2vec モデルの合理性について}{25}%
 \contentsline {subsubsection}{\numberline {6.8.3}マルチモーダル特徴量の結合方法の問題}{27}%
-\contentsline {subsection}{\numberline {6.9}補足 : 人手によるデータセットの拡張}{27}%
-\contentsline {section}{\numberline {7}まとめと今後の課題}{30}%
-\contentsline {section}{謝辞}{31}%
-\contentsline {section}{参考文献}{32}%
+\contentsline {subsection}{\numberline {6.9}補足 : 人手による新たなセリフデータの作成}{27}%
+\contentsline {section}{\numberline {7}まとめと今後の課題}{31}%
+\contentsline {section}{謝辞}{32}%
+\contentsline {section}{参考文献}{33}%

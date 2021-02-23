@@ -1,4 +1,7 @@
 \relax 
+\citation{attention}
+\citation{transformer}
+\citation{devlin2018bert}
 \citation{comic}
 \@writefile{toc}{\contentsline {section}{\numberline {1}はじめに}{1}\protected@file@percent }
 \citation{mtap_matsui_2017}
@@ -10,7 +13,6 @@
 \newlabel{fig:4koma_data}{{2.1}{4}}
 \citation{mecab}
 \citation{jumanpp}
-\citation{DBLP:journals/corr/abs-1808-06226}
 \@writefile{toc}{\contentsline {section}{\numberline {3}要素技術}{5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}自然言語処理に関する要素技術}{5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}形態素解析}{5}\protected@file@percent }
@@ -18,22 +20,29 @@
 \citation{word2vec}
 \citation{DBLP:journals/corr/LeM14}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Word2Vec, Doc2Vec}{6}\protected@file@percent }
+\citation{HochSchm97}
 \citation{attention}
 \citation{attention_model}
+\citation{attention}
+\citation{attention}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.4}Attention}{7}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Attention 機構の概略図 : 文献の図を参照}}{7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Attention 機構の概略図 : 文献 \cite  {attention} の図より引用}}{7}\protected@file@percent }
 \newlabel{fig:attention}{{3.1}{7}}
 \citation{transformer}
+\citation{transformer}
+\citation{transformer}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.5}Transformer}{8}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Transformer の概略図 (出典: Attention is All you Need)}}{8}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Transformer の概略図 : 文献 \cite  {transformer} の図より引用}}{8}\protected@file@percent }
 \newlabel{fig:transformer}{{3.2}{8}}
 \citation{devlin2018bert}
+\citation{devlin2018bert}
+\citation{devlin2018bert}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.6}BERT}{9}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces BERT の事前学習と fine-tuning の概略図 : 文献 の図を参照}}{9}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces BERT の事前学習と fine-tuning の概略図 : 文献 \cite  {devlin2018bert} の図より引用}}{9}\protected@file@percent }
 \newlabel{fig:bert_pre}{{3.3}{9}}
 \citation{brusilovsky:simonyan2014very}
-\citation{i2v}
 \citation{imagenet_cvpr09}
+\citation{i2v}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}画像処理に関する要素技術}{10}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}VGG}{10}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}illustration2vec}{10}\protected@file@percent }
@@ -52,9 +61,9 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Data Augmentation}{14}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Data Augmentation の概要}}{14}\protected@file@percent }
 \newlabel{fig:data_aug}{{5.2}{14}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}数値実験}{15}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}実験と考察}{15}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.1}実験概要}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}使用データ}{15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}実験に使用したデータ}{15}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.3}実験設定}{15}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces オリジナルデータ数}}{16}\protected@file@percent }
 \newlabel{table:data_ori}{{6.1}{16}}
@@ -100,33 +109,33 @@
 \newlabel{fig:i2v_tag}{{6.7}{26}}
 \citation{DBLP:journals/corr/abs-1806-09055}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.3}マルチモーダル特徴量の結合方法の問題}{27}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.9}補足 : 人手によるデータセットの拡張}{27}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6.8}{\ignorespaces アノテーションのための白抜き 4 コマ画像の例}}{28}\protected@file@percent }
-\newlabel{fig:shironuki}{{6.8}{28}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.9}{\ignorespaces アノテートされたセリフと感情ラベルの例}}{28}\protected@file@percent }
-\newlabel{table:aug_data}{{6.9}{28}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.10}{\ignorespaces 拡張されたデータ数}}{29}\protected@file@percent }
-\newlabel{table:data_moe_aug}{{6.10}{29}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}まとめと今後の課題}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{謝辞}{31}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.9}補足 : 人手による新たなセリフデータの作成}{27}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.8}{\ignorespaces アノテーションのための白抜き 4 コマ画像の例}}{29}\protected@file@percent }
+\newlabel{fig:shironuki}{{6.8}{29}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.9}{\ignorespaces アノテートされたセリフと感情ラベルの例}}{29}\protected@file@percent }
+\newlabel{table:aug_data}{{6.9}{29}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.10}{\ignorespaces 拡張されたデータ数}}{30}\protected@file@percent }
+\newlabel{table:data_moe_aug}{{6.10}{30}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}まとめと今後の課題}{31}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{謝辞}{32}\protected@file@percent }
 \bibstyle{junsrt}
 \bibdata{reference}
-\bibcite{comic}{1}
-\bibcite{mtap_matsui_2017}{2}
-\bibcite{ueno_miki2018}{3}
-\bibcite{mecab}{4}
-\bibcite{jumanpp}{5}
-\bibcite{DBLP:journals/corr/abs-1808-06226}{6}
-\bibcite{word2vec}{7}
-\bibcite{DBLP:journals/corr/LeM14}{8}
-\bibcite{attention}{9}
-\bibcite{attention_model}{10}
-\@writefile{toc}{\contentsline {section}{参考文献}{32}\protected@file@percent }
-\bibcite{transformer}{11}
-\bibcite{devlin2018bert}{12}
+\bibcite{attention}{1}
+\bibcite{transformer}{2}
+\bibcite{devlin2018bert}{3}
+\bibcite{comic}{4}
+\bibcite{mtap_matsui_2017}{5}
+\bibcite{ueno_miki2018}{6}
+\bibcite{mecab}{7}
+\bibcite{jumanpp}{8}
+\bibcite{word2vec}{9}
+\@writefile{toc}{\contentsline {section}{参考文献}{33}\protected@file@percent }
+\bibcite{DBLP:journals/corr/LeM14}{10}
+\bibcite{HochSchm97}{11}
+\bibcite{attention_model}{12}
 \bibcite{brusilovsky:simonyan2014very}{13}
-\bibcite{i2v}{14}
-\bibcite{imagenet_cvpr09}{15}
+\bibcite{imagenet_cvpr09}{14}
+\bibcite{i2v}{15}
 \bibcite{ueno-emotion2016}{16}
 \bibcite{ueno-oti2017}{17}
 \bibcite{jsai18mukaeyama}{18}
