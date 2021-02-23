@@ -112,6 +112,14 @@ INPUT doc/figures/multimodal_add_seikai.png
 INPUT extractbb -B cropbox -O doc/figures/multimodal_add_seikai.png
 INPUT doc/figures/cos_bert.png
 INPUT extractbb -B cropbox -O doc/figures/cos_bert.png
+INPUT doc/figures/mention.png
+INPUT extractbb -B cropbox -O doc/figures/mention.png
+INPUT doc/figures/koma_tsne.png
+INPUT extractbb -B cropbox -O doc/figures/koma_tsne.png
+INPUT doc/figures/illustration2vec_tag.png
+INPUT extractbb -B cropbox -O doc/figures/illustration2vec_tag.png
+INPUT doc/figures/shironuki.png
+INPUT extractbb -B cropbox -O doc/figures/shironuki.png
 INPUT ./doc/conclusion.tex
 INPUT ./doc/conclusion.tex
 INPUT ./doc/shaji.tex

@@ -47,6 +47,7 @@ Data Augmentation によって拡張されたセリフを用いて, 学習時に
                        &                      &                     &                     &                     &                     &                     \\ \hline
 喜楽                     & 25                   & 77                  & 27                  & 33                  & 47                  & 209 (31.7\%)        \\ \hline
 ニュートラル                 & 43                   & 8                   & 55                  & 33                  & 30                  & 169 (25.6\%)        \\
+驚愕                     & 19                   & 16                  & 17                  & 29                  & 20                  & 101 (15.3\%)        \\
 悲哀                     & 25                   & 12                  & 13                  & 16                  & 13                  & 79 (11.9\%)         \\
 恐怖                     & 6                    & 11                  & 8                   & 8                   & 9                   & 42 (6.3\%)          \\
 憤怒                     & 4                    & 5                   & 2                   & 7                   & 2                   & 20 (3.0\%)          \\
@@ -248,7 +249,7 @@ hottoSNS-BERT                         & {\ul 0.818}               & 0.400    & {
 \changeindent{2cm}
 
 \changeindent{0cm}
-\subsubsection{BERT モデルの合理性}
+\subsubsection{BERT モデルの合理性と Data Augmentation の問題について}
 \changeindent{2cm}
 
 実験結果から, 定量的に京大 BERT よりも hottoSNS-BERT の方が漫画のセリフの分散表現の獲得手法として優れていることが示せた. ここで, 別の視点から京大 BERT と hottoSNS-BERT のどちらがより合理的な分散表現を得られているかについて考察する.
@@ -263,12 +264,12 @@ hottoSNS-BERT                         & {\ul 0.818}               & 0.400    & {
 \end{figure}
 
 \newpage
-図 \ref{fig:cos_bert} より, 一見して京大 BERT の方がコサイン類似度が高い区間に集まっていることから, 優れているようにも思えるが, これは Data Augmentation に大きな問題がないという前提でのみ成立する. 本研究で行った Data Augmentation 手法では, 文法的意味に齟齬が発生しているという問題がある. 例としては, 意味は通じるが形容詞であったものが名詞に置き換わっていたり, 文法的に間違ったものも含まれていた.
+図 \ref{fig:cos_bert} より, 一見して京大 BERT の方がコサイン類似度が高い区間に集まっていることから, 優れているように考えられるが, これは Data Augmentation に大きな問題が無いという前提でのみ成立する. 本研究で行った Data Augmentation 手法では, 文法的意味に齟齬が発生しているという問題がある. 例としては, 意味は通じるが形容詞であったものが名詞に置き換わっていたり, 文法的に間違ったものも含まれていた.
 
-表 \ref{table:sogo} に Data Augmentation によって文法的齟齬が生じているデータとこれらのコサイン類似度を京大 BERT と hottoSNS-BERT から出力されたセリフベクトルを用いて計算した結果を示す.
+表 \ref{table:sogo} に Data Augmentation によって文法的齟齬が生じているデータに対するコサイン類似度を京大 BERT と hottoSNS-BERT から出力されたセリフベクトルを用いて計算した結果を示す. 表 \ref{table:sogo} より, 人間の目で見てもオリジナルのセリフから意味が遠いように思えたり, 文法的齟齬があるセリフに対して, 京大 BERT は高いコサイン類似度を示している一方で, hottoSNS-BERT は $0.8$ 付近にある一番大きな山には属さず, マイナスの値を取っている. このことから, 定性的にも京大 BERT よりも hottoSNS-BERT の方が漫画のセリフの分散表現の獲得手法として優れていると推測できる.
 
 \begin{table}[!h]
-\vspace{10mm}
+\vspace{20mm}
 \caption{Data Augmentation による文法的齟齬}
 \label{table:sogo}
 \centering
@@ -285,14 +286,151 @@ hottoSNS-BERT                         & {\ul 0.818}               & 0.400    & {
 \end{table}
 
 \newpage
+
+また, Data Augmentation による文法的齟齬に関する問題の解決策としては, 拡張
+されたセリフの分散表現とそれぞれに対応するオリジナルのセリフの分散表現とのコサイン類似度から閾値未満のデータを除外したり, 拡張する品詞を限定するといったことが考えられる.
+
+そして, hottoSNS-BERT には特殊なトークンとして ``$<$mention$>$" が存在する. これは, 事前学習で用いた日本語 SNS コーパスの中で, リプライ (返信) に該当するデータの文頭に付与されるトークンである. 図 \ref{fig:mention} に $<$mention$>$ トークンの例を示す. 人手によってアノテートする必要はあるが, このトークンを付与することによって, より会話の流れを汲んだ学習ができるようになると考えられる. 応用例としては, 会話破綻の検出や人工知能を用いた会話の自動生成などが考えられる.
+
+\begin{figure}[!h]
+  \vspace{20mm}
+  \centering
+  \includegraphics[width=1.0\hsize]{doc/figures/mention.png}
+  \caption{$<$mention$>$ トークンの概要}
+  \label{fig:mention}
+\end{figure}
+
+\newpage
 \changeindent{0cm}
-\subsubsection{i2v でとれている情報は？}
+\subsubsection{illustration2vec モデルの合理性について}
 \changeindent{2cm}
 
-\changeindent{0cm}
-\subsubsection{結合ベクトルの最適化について}
-\changeindent{2cm}
+次に, 本研究で用いた illustration2vec モデルの合理性について考察する. 実験結果よりマルチモーダルな感情推定の有効性を定量的に確認したが, どのような情報が取れているのかについては不明瞭である. そこで, t-SNE (t-distribution Stochastic Neighbor Embedding) \cite{vanDerMaaten2008} を用いてコマベクトルを 2 次元に圧縮し, 可視化した. 図 \ref{fig:koma_tsne} にその結果を示す.
+
+\begin{figure}[!h]
+  \vspace{10mm}
+  \centering
+  \includegraphics[width=0.9\hsize]{doc/figures/koma_tsne.png}
+  \caption{コマベクトルの t-SNE による次元圧縮結果}
+  \label{fig:koma_tsne}
+\end{figure}
+
+\newpage
+図 \ref{fig:koma_tsne} より, 少年漫画タッチ, 青年漫画タッチ, 萌えタッチではタッチごとに大きくまとまっていることが確認できる. ギャグタッチと少女漫画タッチについてもいくつかのまとまりが確認できることから, illustration2vec によって得られたコマベクトルはタッチの情報をうまく反映していると言える.
+
+また, 本研究では illustration2vec をコマベクトルを得るためのエンコーダとしてのみ用いたが, illustration2vec では多クラスのラベル予測が可能である. 図 \ref{fig:i2v_tag} にその例を示す. ラベル予測の結果はラベル名とその確率で与えられる. 図 \ref{fig:i2v_tag} より, ``モノクローム", ``1 人の女の子", ``1 人の男の子", ``眼鏡", ``ショートヘア", といったようにコマ画像に含まれるものをよくとらえていることが分かる. このことから, より精度の高いマルチモーダルな感情推定を行うためにはコマベクトルの fine-tuning が有効であると考えられる. illustration2vec のラベルには ``smile", ``angry", ``surprised", といった感情に関係するものも含まれている. よって, 1 コマの中にどのような感情が含まれているか, といったメタ情報を付加し学習させることによって, より合理的なコマベクトルを得られると考えられる. また, 漫画では一般に読者にキャラクタの感情をより分かりやすく説明するための方法として, オノマトペやスクリーントーンの活用, 効果線, 吹き出しの形状などが挙げられる. 実際に, 上野らの研究 \cite{ueno-emotion2016} によってキャラクタ間の感情をキャラクタの表情と吹き出しの形状から理解することが有用である可能性が高いことが示されていることから, コマ画像の特徴的要素を付加したマルチモーダルな感情推定についても有用であると考えられ, これは今後の課題とする.
+
+\begin{figure}[!h]
+  \vspace{10mm}
+  \centering
+  \includegraphics[width=0.9\hsize]{doc/figures/illustration2vec_tag.png}
+  \caption{illustration2vec による多クラスのラベル予測例}
+  \label{fig:i2v_tag}
+\end{figure}
+
+\newpage
 
 \changeindent{0cm}
-\subsubsection{補足 : 人手によるデータセット拡張}
+\subsubsection{マルチモーダル特徴量の結合方法の問題}
 \changeindent{2cm}
+
+本研究では, セリフベクトルとコマベクトルを単純に結合させることでマルチモーダルな感情推定を行ったが, それが最も良いという確証はない. この問題の解決策としては, Differentiable Architecture Search (DARTS) \cite{DBLP:journals/corr/abs-1806-09055} をはじめとしたニューラルネットワークの設計を自動化する手法, Neural Architecture Search (NAS) を用いて最適なマルチモーダル特徴量の結合構造を探索することが考えられる.
+
+\changeindent{0cm}
+\subsection{補足 : 人手によるデータセットの拡張}
+\changeindent{2cm}
+
+本研究での実験には使用しなかったが, 4 コマ漫画ストーリーデータセットの大きな問題の一つであるデータの少なさを改善するために人手によるデータセットの拡張を現在行っている. 以下にデータセットの拡張手順を述べる.
+
+\begin{enumerate}
+  \item データを拡張する対象のタッチを萌えタッチのみとし, また一部の 4 コマを除外した.
+  \item 使用するデータのセリフの吹き出しを白抜きし, 順番にセリフに対して固有の id を与えた.
+  \item id に加え, 発話者の情報などをまとめた csv ファイルを用意し, 研究室内のメンバーに各セリフと対応する感情ラベルをアノテートしてもらった.
+\end{enumerate}
+
+また, 4 コマ漫画ストーリーデータセットの大きな特徴である ``作者によるセリフの感情アノテーション" を担保するために以下の条件を付け加えた.
+
+\begin{itemize}
+  \item 1 つの 4 コマ内での物語の一貫性を保つ.
+  \item 登場人物の名前を独自に付ける. \\ (オリジナルデータでは ``A くん", ``B さん" といった抽象的な名前が付けられている.)
+\end{itemize}
+
+現状は自分を含めた 2 人分のアノテートが完了している. これらを拡張萌えタッチ A, 拡張萌えタッチ B とする. 図 \ref{fig:shironuki} に白抜きされた 4 コマ画像の例, 表 \ref{table:aug_data} に, 図 \ref{fig:shironuki} に対応する拡張萌えタッチ A のデータ例を示す.
+
+\newpage
+\begin{figure}[!h]
+  \vspace{10mm}
+  \centering
+  \includegraphics[width=0.4\hsize]{doc/figures/shironuki.png}
+  \caption{アノテーションのための白抜き 4 コマ画像の例}
+  \label{fig:shironuki}
+\end{figure}
+
+\begin{table}[!h]
+\vspace{10mm}
+\caption{アノテートされたセリフと感情ラベルの例}
+\label{table:aug_data}
+\centering
+\scalebox{1.0}{
+\begin{tabular}{c|l|c}
+id & \multicolumn{1}{c|}{セリフ (拡張萌えタッチ A)} & 感情ラベル  \\ \hline
+0  & 小池君 今週末の予定は？             & 喜楽     \\
+1  & 研究の進捗を生みますよ              & ニュートラル \\
+2  & 本当かなぁ？                      & ニュートラル \\
+3  & 百合子さん こんにちは              & ニュートラル \\
+4  & 週末は随分と楽しんだみたいね           & 嫌悪     \\
+5  & 研究しないと留年するよ？             & 悲哀     \\
+6  & 分かってはいるのですが・・・           & 悲哀     \\
+7  & 一緒に卒業しようね！               & 喜楽
+\end{tabular}
+}
+\vspace{1mm}
+\end{table}
+
+\newpage
+また, 表 \ref{table:data_moe_aug} に拡張萌えタッチ A, 拡張萌えタッチ B それぞれの感情ラベルごとのデータ数を示す. また, アノテートされたセリフの感情ラベルが一致した割合は $num \%$ であった. この結果と表 \ref{table:data_moe_aug} から, この手法を用いることで多様なデータセットの拡張が可能であると言える. これらのデータを活用することでより汎化性能の向上が期待でき, 今後の課題とする.
+
+
+\begin{table}[!h]
+\vspace{20mm}
+\begin{center}
+\caption{拡張されたデータ数} %タイトルをつける
+\label{table:data_moe_aug} %ラベルをつけ図の参照を可能にする
+\begin{tabular}{lcc}
+\hline
+\multirow{2}{*}{感情ラベル} & \multirow{2}{*}{拡張萌えタッチ A} & \multirow{2}{*}{拡張萌えタッチ B} \\
+ &  &  \\ \hline
+喜楽 & 33 & - \\ \hline
+ニュートラル & 26 & - \\
+驚愕 & 11 & - \\
+悲哀 & 18 & - \\
+恐怖 & 1 & - \\
+憤怒 & 3 & - \\
+嫌悪 & 7 & - \\ \hline
+合計 & 99 & 99
+\end{tabular}
+\end{center}
+\vspace{10mm}
+\end{table}
+
+% \begin{table}[!h]
+% \vspace{20mm}
+% \begin{center}
+% \caption{拡張されたデータ数} %タイトルをつける
+% \label{table:data_moe_aug} %ラベルをつけ図の参照を可能にする
+% \begin{tabular}{lcc}
+% \hline
+% \multirow{2}{*}{感情ラベル} & \multirow{2}{*}{拡張萌えタッチ A} & \multirow{2}{*}{拡張萌えタッチ B} \\
+%  &  &  \\ \hline
+% 喜楽 & 33 & 27 \\ \hline
+% ニュートラル & 26 & 33 \\
+% 驚愕 & 11 & 13 \\
+% 悲哀 & 18 & 5 \\
+% 恐怖 & 1 & 9 \\
+% 憤怒 & 3 & 11 \\
+% 嫌悪 & 7 & 1 \\ \hline
+% 合計 & 99 & 99
+% \end{tabular}
+% \end{center}
+% \vspace{10mm}
+% \end{table}

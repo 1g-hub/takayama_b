@@ -24,7 +24,7 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Attention 機構の概略図 : 文献の図を参照}}{7}\protected@file@percent }
 \newlabel{fig:attention}{{3.1}{7}}
 \citation{transformer}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.5}Transformers}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.5}Transformer}{8}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Transformer の概略図 (出典: Attention is All you Need)}}{8}\protected@file@percent }
 \newlabel{fig:transformer}{{3.2}{8}}
 \citation{devlin2018bert}
@@ -84,16 +84,31 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces マルチモーダル化の精度への影響}}{21}\protected@file@percent }
 \newlabel{fig:multimodal_add_seikai}{{6.3}{21}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.8}考察}{22}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.1}BERT モデルの合理性}{22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.1}BERT モデルの合理性と Data Augmentation の問題について}{22}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces 拡張されたセリフと対応するオリジナルのセリフとのコサイン類似度}}{22}\protected@file@percent }
 \newlabel{fig:cos_bert}{{6.4}{22}}
 \@writefile{lot}{\contentsline {table}{\numberline {6.8}{\ignorespaces Data Augmentation による文法的齟齬}}{23}\protected@file@percent }
 \newlabel{table:sogo}{{6.8}{23}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.2}i2v でとれている情報は？}{23}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.3}結合ベクトルの最適化について}{23}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.4}補足 : 人手によるデータセット拡張}{23}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}まとめと今後の課題}{24}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{謝辞}{25}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces $<$mention$>$ トークンの概要}}{24}\protected@file@percent }
+\newlabel{fig:mention}{{6.5}{24}}
+\citation{vanDerMaaten2008}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.2}illustration2vec モデルの合理性について}{25}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.6}{\ignorespaces コマベクトルの t-SNE による次元圧縮結果}}{25}\protected@file@percent }
+\newlabel{fig:koma_tsne}{{6.6}{25}}
+\citation{ueno-emotion2016}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.7}{\ignorespaces illustration2vec による多クラスのラベル予測例}}{26}\protected@file@percent }
+\newlabel{fig:i2v_tag}{{6.7}{26}}
+\citation{DBLP:journals/corr/abs-1806-09055}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6.8.3}マルチモーダル特徴量の結合方法の問題}{27}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.9}補足 : 人手によるデータセットの拡張}{27}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6.8}{\ignorespaces アノテーションのための白抜き 4 コマ画像の例}}{28}\protected@file@percent }
+\newlabel{fig:shironuki}{{6.8}{28}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.9}{\ignorespaces アノテートされたセリフと感情ラベルの例}}{28}\protected@file@percent }
+\newlabel{table:aug_data}{{6.9}{28}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.10}{\ignorespaces 拡張されたデータ数}}{29}\protected@file@percent }
+\newlabel{table:data_moe_aug}{{6.10}{29}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}まとめと今後の課題}{30}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{謝辞}{31}\protected@file@percent }
 \bibstyle{junsrt}
 \bibdata{reference}
 \bibcite{comic}{1}
@@ -106,7 +121,7 @@
 \bibcite{DBLP:journals/corr/LeM14}{8}
 \bibcite{attention}{9}
 \bibcite{attention_model}{10}
-\@writefile{toc}{\contentsline {section}{参考文献}{26}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{参考文献}{32}\protected@file@percent }
 \bibcite{transformer}{11}
 \bibcite{devlin2018bert}{12}
 \bibcite{brusilovsky:simonyan2014very}{13}
@@ -123,3 +138,5 @@
 \bibcite{kyoto-bert}{24}
 \bibcite{hottoSNS-bert}{25}
 \bibcite{optuna_2019}{26}
+\bibcite{vanDerMaaten2008}{27}
+\bibcite{DBLP:journals/corr/abs-1806-09055}{28}

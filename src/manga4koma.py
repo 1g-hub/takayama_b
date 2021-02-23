@@ -229,7 +229,7 @@ class manga4koma():
 
     def make_5touch_concat(self):
         data_columns = ['id', 'original', 'story_main_num', 'story_sub_num', 'koma', 'who', 'inner', 'speaker', 'what',
-                        'wakati', 'emotion', 'kakimoji', 'self_anotated', 'alter_emotion', 'wakati_sp', 'touch']
+                        'wakati', 'emotion', 'kakimoji', 'self_anotated', 'alter_emotion', 'wakati_sp', 'koma_vec', 'touch']
         data = pd.DataFrame(columns=data_columns)
 
         for touch_name in self.TOUCH_NAME_ENG:
