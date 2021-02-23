@@ -30,6 +30,6 @@
 \contentsline {subsubsection}{\numberline {6.8.2}illustration2vec モデルの合理性について}{25}%
 \contentsline {subsubsection}{\numberline {6.8.3}マルチモーダル特徴量の結合方法の問題}{27}%
 \contentsline {subsection}{\numberline {6.9}補足 : 人手による新たなセリフデータの作成}{27}%
-\contentsline {section}{\numberline {7}まとめと今後の課題}{31}%
-\contentsline {section}{謝辞}{32}%
-\contentsline {section}{参考文献}{33}%
+\contentsline {section}{\numberline {7}まとめと今後の課題}{30}%
+\contentsline {section}{謝辞}{31}%
+\contentsline {section}{参考文献}{32}%
