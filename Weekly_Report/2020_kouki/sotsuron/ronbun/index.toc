@@ -8,7 +8,7 @@
 \contentsline {subsubsection}{\numberline {3.1.2}局所表現, 分散表現}{5}%
 \contentsline {subsubsection}{\numberline {3.1.3}Word2Vec, Doc2Vec}{6}%
 \contentsline {subsubsection}{\numberline {3.1.4}Attention}{7}%
-\contentsline {subsubsection}{\numberline {3.1.5}Transformers}{8}%
+\contentsline {subsubsection}{\numberline {3.1.5}Transformer}{8}%
 \contentsline {subsubsection}{\numberline {3.1.6}BERT}{9}%
 \contentsline {subsection}{\numberline {3.2}画像処理に関する要素技術}{10}%
 \contentsline {subsubsection}{\numberline {3.2.1}VGG}{10}%
@@ -26,10 +26,10 @@
 \contentsline {subsection}{\numberline {6.6}実験 2 : マルチモーダルな感情推定の検討}{20}%
 \contentsline {subsection}{\numberline {6.7}実験 2 : 結果}{20}%
 \contentsline {subsection}{\numberline {6.8}考察}{22}%
-\contentsline {subsubsection}{\numberline {6.8.1}BERT モデルの合理性}{22}%
-\contentsline {subsubsection}{\numberline {6.8.2}i2v でとれている情報は？}{23}%
-\contentsline {subsubsection}{\numberline {6.8.3}結合ベクトルの最適化について}{23}%
-\contentsline {subsubsection}{\numberline {6.8.4}補足 : 人手によるデータセット拡張}{23}%
-\contentsline {section}{\numberline {7}まとめと今後の課題}{24}%
-\contentsline {section}{謝辞}{25}%
-\contentsline {section}{参考文献}{26}%
+\contentsline {subsubsection}{\numberline {6.8.1}BERT モデルの合理性と Data Augmentation の問題について}{22}%
+\contentsline {subsubsection}{\numberline {6.8.2}illustration2vec モデルの合理性について}{25}%
+\contentsline {subsubsection}{\numberline {6.8.3}マルチモーダル特徴量の結合方法の問題}{27}%
+\contentsline {subsection}{\numberline {6.9}補足 : 人手によるデータセットの拡張}{27}%
+\contentsline {section}{\numberline {7}まとめと今後の課題}{30}%
+\contentsline {section}{謝辞}{31}%
+\contentsline {section}{参考文献}{32}%

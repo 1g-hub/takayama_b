@@ -152,4 +152,15 @@ Takuya Akiba, Shotaro Sano, Toshihiko Yanase, Takeru Ohta, and Masanori Koyama.
 \newblock In {\em Proceedings of the 25rd {ACM} {SIGKDD} International
   Conference on Knowledge Discovery and Data Mining}, 2019.
 
+\bibitem{vanDerMaaten2008}
+Laurens van~der Maaten and Geoffrey Hinton.
+\newblock Visualizing data using {t-SNE}.
+\newblock {\em Journal of Machine Learning Research}, Vol.~9, pp. 2579--2605,
+  2008.
+
+\bibitem{DBLP:journals/corr/abs-1806-09055}
+Hanxiao Liu, Karen Simonyan, and Yiming Yang.
+\newblock {DARTS:} differentiable architecture search.
+\newblock Vol. abs/1806.09055, , 2018.
+
 \end{thebibliography}

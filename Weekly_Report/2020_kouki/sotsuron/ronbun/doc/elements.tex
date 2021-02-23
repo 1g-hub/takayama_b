@@ -85,7 +85,7 @@ Luong らはこの Bahdanau らによるモデルを単純化したモデルと�
 
 \newpage
 \changeindent{0cm}
-\subsubsection{Transformers}
+\subsubsection{Transformer}
 \changeindent{2cm}
 
 Transformer \cite{transformer} は 他モデルで頻繁に用いられてきた RNN を用いずに
@@ -158,14 +158,14 @@ illustration2vec \cite{i2v} は Saito, Matsui らが提案した VGG をベー�
 illustration2vec では学習データを下記の要領で作成している.
 
 \begin{enumerate}
-  \item Danbooru と Safebooru から画像とメタデータを収集
-  \item メタデータを 4 つのカテゴリに分類する
+  \item Danbooru と Safebooru から画像とメタデータを収集する.
+  \item メタデータを 4 つのカテゴリに分類する.
         \begin{itemize}
-          \item general : 一般的な属性 (例 : "smile", "short hair")
+          \item general : 一般的な属性 (例 : ``smile", ``short hair")
           \item copyright : 著作権名
           \item character : キャラクタ名
-          \item rating : X レーティング ("safe", "questionable", "explicit")
+          \item rating : X レーティング (``safe", ``questionable", ``explicit")
         \end{itemize}
-  \item general, copyright, character から最も使われている 512 個のタグをそれぞれ抽出
-  \item 3 で抽出したタグと rating を連結させた 1539 個のタグをラベルとする
+  \item general, copyright, character から最も使われている 512 個のタグをそれぞれ抽出する.
+  \item 3 で抽出したタグと rating を連結させた 1539 個のタグをラベルとする.
 \end{enumerate}
