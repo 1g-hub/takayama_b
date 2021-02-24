@@ -85,10 +85,10 @@
  \addcontentsline{toc}{section}{付録}
  \@appendixtrue
  \def\@sect##1##2##3##4##5##6[##7]##8{\ifnum ##2>\c@secnumdepth
-     \def\@svsec{}\else 
+     \def\@svsec{}\else
      \refstepcounter{##1}\edef\@svsec{\csname the##1\endcsname\hskip 1em }\fi
      \@tempskipa ##5\relax
-      \ifdim \@tempskipa>\z@ 
+      \ifdim \@tempskipa>\z@
         \begingroup ##6\relax
           \@hangfrom{\hskip ##3\relax\ifnum##2=1 付録\fi\@svsec}{\interlinepenalty \@M ##8\par}%
         \endgroup
@@ -227,7 +227,7 @@
   \hskip22mm\vbox to 5mm{\hbox to 97mm{ 指~導~教~員\hfil\@shidou\hfil}%
     \hrule height1pt width97mm}\par\vskip24mm
   \hskip21mm\vbox{\hbox to 89mm{%
-      \mbox{平~成}\ifnum\nendo=0 元\else\number\nendo\fi 年
+      \mbox{令~和}\ifnum\nendo=0 元\else\number\nendo\fi 年
       （ \number\nendoad 年）\mbox{度~卒~業~}}}\par\vskip10mm
   \hskip5mm\vbox to 5mm{\hbox to132mm{%
       \hbox to60mm{（No. \hfil\@gakuseki\hfil ）}\hfil
@@ -292,7 +292,7 @@
 \def\@mathlspace{\@offsetmath\mathoffset}
 \def\@mathrspace{\@offsetmath{-\mathoffset}}
 
-\def\[{\relax\ifmmode\@badmath\else 
+\def\[{\relax\ifmmode\@badmath\else
          \ifvmode \nointerlineskip \makebox[.6\linewidth]\fi$$\openup-1\jot
          \@mathlspace\relax %%$$ BRACE MATCH HACK
          \fi}
@@ -587,4 +587,3 @@ $$\openup-1\jot\halign to \displaywidth\bgroup\@eqnsel\@mathlspace\hskip\@center
          ----------------------------------------------
               e-mail:maeda@ss.cs.osakafu-u.ac.jp
        **************************************************
-
