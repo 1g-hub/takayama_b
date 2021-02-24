@@ -4,7 +4,7 @@
 %
 % このファイルの最後にドキュメントがついています．
 %
-% MODIFIED for pLaTeX2e, 2004.3.4 
+% MODIFIED for pLaTeX2e, 2004.3.4
 %
 \typeout{論文スタイル ver 1.0.4 1997.3.1 (C) L&D SOFT - modified}
 
@@ -87,10 +87,10 @@
  \addcontentsline{toc}{section}{付録}
  \@appendixtrue
  \def\@sect##1##2##3##4##5##6[##7]##8{\ifnum ##2>\c@secnumdepth
-     \def\@svsec{}\else 
+     \def\@svsec{}\else
      \refstepcounter{##1}\edef\@svsec{\csname the##1\endcsname\hskip 1em }\fi
      \@tempskipa ##5\relax
-      \ifdim \@tempskipa>\z@ 
+      \ifdim \@tempskipa>\z@
         \begingroup ##6\relax
           \@hangfrom{\hskip ##3\relax\ifnum##2=1 付録\fi\@svsec}{\interlinepenalty \@M ##8\par}%
         \endgroup
@@ -162,11 +162,11 @@
   \def\@oddfoot{\vbox{\hrule width\textwidth height1pt\vskip1pt%
     \hbox to\textwidth{\hfil\katu%
       \if@master 大阪府立大学大学院工学研究科電気・情報系専攻知能情報工学分野\else
-      大阪府立大学工学部知能情報工学科\fi}}}%
+      大阪府立大学工学域電気電子系学類情報工学課程\fi}}}%
   \def\@evenfoot{\vbox{\hrule width\textwidth height1pt\vskip1pt%
     \hbox to\textwidth{\katu%
       \if@master 大阪府立大学大学院工学研究科電気・情報系専攻知能情報工学分野\else
-      大阪府立大学工学部知能情報工学科\fi}}}%
+      大阪府立大学工学域電気電子系学類情報工学課程\fi}}}%
   \def\sectionmark##1{\markright{{\@sectmarkfont%
     \ifnum\c@secnumdepth>\z@\if@appendix 付録\fi\thesection\hskip1em\relax\fi
    \if@head@upper\uppercase{##1}\else##1\fi}}}}
@@ -185,7 +185,7 @@
 
 \newcount\nendoad\nendoad\year
 \ifcase\number\month\or\advance\nendoad-1\or\advance\nendoad-1\or\advance\nendoad-1\fi
-\newcount\nendo\nendo\nendoad\advance\nendo-1988
+\newcount\nendo\nendo\nendoad\advance\nendo-2018
 
 \def\maketitle{\begin{titlepage}
   \if@master \vbox to 210mm{
@@ -210,8 +210,8 @@
     \@author\hfil}}\par\vskip-5mm
   \hskip4mm\vbox{\hrule height1pt width132mm}
   \vskip19mm
-  \hskip23mm\vbox to12mm{\hbox to 84mm{大阪府立大学大学院工学研究科}\vskip-2mm
-    \hbox to 84mm{電気・情報系専攻 知能情報工学分野}}
+  \hskip23mm\vbox to12mm{\hbox to 84mm{大阪府立大学工学域電気電子系学類情報工学}\vskip-2mm
+    \hbox to 84mm{大阪府立大学工学域電気電子系学類情報工学}}
 }
 \else %B4用 Masaki Onishi
 \vbox to 210mm{
@@ -227,14 +227,14 @@
   \hskip22mm\vbox to 5mm{\hbox to 97mm{ 指~導~教~員\hfil\@shidou}%
     \hrule height1pt width97mm}\par\vskip24mm
   \hskip21mm\vbox{\hbox to 89mm{%
-      \mbox{平~成}\ifnum\nendo=0 元\else\number\nendo\fi 年
+      \mbox{令~和}\ifnum\nendo=0 元\else\number\nendo\fi 年
       （ \number\nendoad 年）\mbox{度~卒~業~}}}\par\vskip10mm
   \hskip5mm\vbox to 5mm{\hbox to132mm{%
       \hbox to60mm{（No. \hfil\@gakuseki\hfil ）}\hfil
     \@author\hfil}}\par\vskip-5mm
   \hskip4mm\vbox{\hrule height1pt width132mm}
   \vskip24mm
-  \hskip22mm\vbox to12mm{\hbox to 97mm{大阪府立大学工学部知能情報工学科}}
+  \hskip22mm\vbox to12mm{\hbox to 97mm{大阪府立大学工学域電気電子系学類情報工学}}
 }\fi
 \end{titlepage}
 \setcounter{footnote}{0}       % Footnotes start at zero again.
@@ -297,21 +297,17 @@
 \def\@mathlspace{\@offsetmath\mathoffset}
 \def\@mathrspace{\@offsetmath{-\mathoffset}}
 
-\def\[{\relax\ifmmode\@badmath\else 
+\def\[{\relax\ifmmode\@badmath\else
          \ifvmode \nointerlineskip \makebox[.6\linewidth]\fi$$\openup-1\jot
          \@mathlspace\relax %%$$ BRACE MATCH HACK
          \fi}
-
 \def\]{\relax\ifmmode\ifinner\@badmath\else\@mathrspace $$\fi%%$$ BRACE MATCH HACK
         \else \@badmath \fi\ignorespaces}
-
 \def\equation{\relax
  $$\openup-1\jot\@mathlspace \relax % $$ BRACE MATCHING HACK
  \refstepcounter{equation}}
-
 \def\endequation{\@mathrspace\eqno \@eqnnum % $$ BRACE MATCHING HACK
 $$\global\@ignoretrue}
-
 \def\eqnarray{\stepcounter{equation}\let\@currentlabel=\theequation
 \global\@eqnswtrue
 \global\@eqcnt\z@\tabskip\@centering\let\\=\@eqncr
@@ -320,49 +316,36 @@ $$\openup-1\jot\halign to \displaywidth\bgroup\@eqnsel\@mathlspace\hskip\@center
   \hskip 2\arraycolsep \hfil${##}$\hfil
   &\global\@eqcnt\tw@ \hskip 2\arraycolsep $\displaystyle\tabskip\z@{##}$\hfil
    \tabskip\@centering&\llap{##}\tabskip\z@\cr}
-
 \def\endeqnarray{\@mathrspace\@@eqncr\egroup
       \global\advance\c@equation\m@ne$$\global\@ignoretrue}
-
 \long\def\wholepage#1{\vbox to .9\textheight{\vfill #1\vfill}}
-
 % 字下げ処理を行うfigure, table, center環境の設定
 \newdimen\@tmpindentlen
-
 \def\ifigure{\@ifnextchar [{\@ifigure}{\@ifig}}
-
 \def\@ifig{\@tmpindentlen\textwidth \advance\@tmpindentlen by-\indentlength%
 \begin{figure}\hskip\indentlength\begin{minipage}{\@tmpindentlen}}
 \def\endifigure{\end{minipage}\end{figure}}
-
 \def\@ifigure[#1]{%
 \@tmpindentlen\textwidth \advance\@tmpindentlen by-\indentlength%
 \begin{figure}[#1]\hskip\indentlength\begin{minipage}{\@tmpindentlen}}
 \def\endifigure{\end{minipage}\end{figure}}
-
 \def\itable{\@ifnextchar [{\@itable}{\@itab}}
-
 \def\@itab{\@tmpindentlen\textwidth \advance\@tmpindentlen by-\indentlength%
 \begin{table}\hskip\indentlength\begin{minipage}{\@tmpindentlen}}
 \def\enditable{\end{minipage}\end{table}}
-
 \def\@itable[#1]{%
 \@tmpindentlen\textwidth \advance\@tmpindentlen by-\indentlength%
 \begin{table}[#1]\hskip\indentlength\begin{minipage}{\@tmpindentlen}}
 \def\enditable{\end{minipage}\end{table}}
-
 \def\icenter{\@tmpindentlen\textwidth \advance\@tmpindentlen by-\indentlength%
 \begin{minipage}{\@tmpindentlen}\leftmargin\indentlength\begin{center}}
 \def\endicenter{\end{center}\end{minipage}}
-
 \endinput
 %%%%%[ README 必ずお読み下さい ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 ○  はじめに
         平成8年度大阪府立大学工学部情報工学科修士及び卒業論文を執筆す
       るためのものです．ASCII版LaTeX(ver 2.09)用であり，NTT版LaTeXでの
       動作の保証はありません．
-
 ○  使用許諾条件について
         以下の事項に該当する者を除き，本スタイルファイルの使用を許諾し
       ます．
@@ -375,14 +358,12 @@ $$\openup-1\jot\halign to \displaywidth\bgroup\@eqnsel\@mathlspace\hskip\@center
             とする者．
           ・フリーウェア != PDSを理解していない者．
           ・このファイルを無断複製し使用する者．
-
 ○  著作権について
       ・本スタイルファイルは，フリーウェアであり，著作権を放棄しており
         ませんので，誤解なきようお願いします．
       ・本スタイルファイルの著作権は森 隆司が保有します．
       ・本スタイルファイルの卒論用中表紙の著作権は大西 正輝が保有します．
       ・本スタイルファイル及びこの文章中の著作権表示は消さないで下さい．
-
 ○  再配布について
         本スタイルファイルの再配布を行う場合は，次の事項を必ず守るよう
       よろしくお願いします．
@@ -395,18 +376,15 @@ $$\openup-1\jot\halign to \displaywidth\bgroup\@eqnsel\@mathlspace\hskip\@center
             所などが明確にわかるようにして下さい．そして，この文章を改
             変せずに必ず添付し，配布を行う前に配布者が著作権者に必ず連
             絡して下さい．
-
 ○  使用上の注意
         本スタイルファイルは無保証です．本スタイルファイルの使用によっ
       て生じた如何なるトラブル，損害の責も著作権者は負わないものとしま
       す．必ずご自身の判断，責任のもとにご使用下さい．
         バグレポート，ご意見，ご感想，わからないことがありましたら，作
       者までお知らせ下さい．
-
 ○  スタイルファイルの使用法
         まず，スタイルファイルをパスの通っているディレクトリに置きます．
       次に，TeXファイルの書き方の一例を示します．
-
           %%%%%  読み込むスタイルファイルを指定します．
           %%%%%  他に必要なスタイルファイルは各自で指定してください．
           %%%%%  但し，a4j, twocolumn, twoside等の指定はしないで下さい．
@@ -437,17 +415,13 @@ $$\openup-1\jot\halign to \displaywidth\bgroup\@eqnsel\@mathlspace\hskip\@center
           \appendix
           \section{}
           \end{document}
-
       後はコンパイルして印刷して終りです．
-
 ○  追加及び修正されたコマンド及びパラメータの利用法
-
 %◆  \caption[1st_entry]{japanese_headings}{english_headings}
 %        日本語と英語のタイトルを指定するようになっています．省略はでき
 %      ません．
 %      1st_entry はオリジナルの \caption と同じものです．
 %      図や表の番号は，(セクション番号).(図や表の番号)となります．
-
 ◆  \indentlength
         \indentlengthだけ字下げした領域を本文の領域にします．但し，
       セクション名は字下げを行いません．
@@ -467,12 +441,10 @@ $$\openup-1\jot\halign to \displaywidth\bgroup\@eqnsel\@mathlspace\hskip\@center
           |<--------->|                           |
           |           |                           |
           |           |                           |
-
 ◆  \mathoffset
         数式のテキストの中心からのオフセットを指定します．パラメータの
       変更は\setlengthを使用します．
           \setlength{\mathoffset}{\indentlength}
-
           |                     | \mathoffset = 0     |
           |                     v                     |
           |                   X = a                   |
@@ -480,36 +452,27 @@ $$\openup-1\jot\halign to \displaywidth\bgroup\@eqnsel\@mathlspace\hskip\@center
           |         |<--------->|<----------->|       |
           |         |           |             |       |
           |       X = a                     X = a     |
-
 ◆  \sectionmarkfont{fontsize}
         柱のセクションを書く際に用いるフォントサイズを指定します．
           \sectionmarkfont{\normalsize}
-
 ◆  \wholepage{figure or table}
         1つの図や表を1ページにいれるときに，垂直方向にセンタリングを行
       います．
           \begin{figure}
           \wholepage{epsfile{file=sample.pstex}\caption{foo}{bar}}
           \end{figure}
-
 ◆  \ifigure, \itable, \icenter
         横方向に\indentlengthスキップした位置からセンタリングを行う．
-
 ここから後は，私が修正を加えたものです．
-
 ◆  \acknowledgements
         謝辞を書くときに使います．セクション番号なしで`謝辞'と表示し，
       目次の方にも同様にセクション番号なしで`謝辞'と表示します．
-
 ◆  \acknowledgename{title}
         謝辞と書かずに title に置き換えます．
-
 ◆  \refname{title}
         参考文献と書かずに title に置き換えます．
-
 ◆  \roundbracket
         参考文献の番号を()で括る．デフォルトは[]です．
-
 ◆  \appendix
         付録を書きはじめる前に指定します．セクション番号は英大文字でA
       から始まります．本文では次のようになります．
@@ -524,10 +487,8 @@ $$\openup-1\jot\halign to \displaywidth\bgroup\@eqnsel\@mathlspace\hskip\@center
           A 計算のフォロー
              A.1
           B
-
 ◆  \changecontentsname{name}
         目次を`name'に置き換えます．
-
 ○  参考
         付録を書く時の \appendixの位置について，現在わかっていることに
       ついて書いておきます(益本氏の報告による)．
@@ -544,16 +505,13 @@ $$\openup-1\jot\halign to \displaywidth\bgroup\@eqnsel\@mathlspace\hskip\@center
           2. \appendixをメインのファイルに書かずに\includeで読み込む
              ファイルに書いておく．
       付録を書くときの参考にして下さい．
-
 ○  謝辞
         本スタイルファイルを作成するに当たり，オリジナルをスタイルファ
       イル(A4.tex, eepaper.sty, ultracit.sty)を作成されましたtks@leda氏
       及び卒業計画報告書用中表紙を作成していただいた大西 正輝氏，バグ報
       告を頂いた渡辺 浩司氏，貴重な情報を頂いた益本 昌幸氏に感謝致します．
-
 ○  改変履歴
         * は未公開版です．
-
       version 1.0.0 1997.2.27
         ・eepaper2.sty, ultracit.sty, aa4.texを1つのファイルにまとめて
           パラメータ及びコマンドの微調整．
@@ -568,15 +526,12 @@ $$\openup-1\jot\halign to \displaywidth\bgroup\@eqnsel\@mathlspace\hskip\@center
           (A.1)となるように修正(渡辺 浩司氏のバグ報告による)．
       version 1.0.4 1997.3.1
         ・中表紙で年度の計算に誤りがあったのを直した．
-
 ○  作者・著作権者連絡先
                        mori@com.cs.osakafu-u.ac.jp (1997年3月まで有効)
                                                               L&D SOFT
                        onishi@com.cs.osakafu-u.ac.jp
                                                          Masaki Onishi
-
 ○  おまけ
         最近ペンネームの由来を知りたがっている人が多いような. . .
       (片目をつむり，人指し指を唇にあてながら)それは秘密です．(by謎の獣神官)
-
 %%%%%[ ファイルの終りです ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
