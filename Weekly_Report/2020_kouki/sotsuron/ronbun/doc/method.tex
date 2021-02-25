@@ -26,13 +26,13 @@
 
 \newpage
 \changeindent{0cm}
-\subsection{Data Augmentation}
+\subsection{シソーラスを用いたデータ拡張}
 \changeindent{2cm}
 
 4 コマ漫画ストーリーデータセットの問題点として, データ数が少ないことがあげられる.
 そこで, 本研究では日本語 WordNet \cite{word_net_jp} のシソーラスを用いてテキストデータを拡張する.
 
-図 \ref{fig:data_aug} に Data Augmentation の概要を示す.
+図 \ref{fig:data_aug} にシソーラスを用いたデータ拡張の概要を示す.
 分かち書きされたオリジナルのセリフに対して, 日本語 WordNet で類似語を持つ単語について類似語に置き換え, 文を生成することでテキストデータを拡張する. ただし, 文の中に類義語を持つ単語が
 複数あった場合, 類似語に置き換える単語は同時に 1 つまでとし, 英数字・記号のみで表されている類似語は除外する. 例えば, 5 つの単語からなる文章があり,
 各単語が 5 つの類似語を持っている場合, その文からは新しく 25 文が生成されることとなる.
@@ -40,6 +40,6 @@
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.8\hsize]{doc/figures/data_aug.png}
-  \caption{Data Augmentation の概要}
+  \caption{シソーラスを用いたデータ拡張の概要}
   \label{fig:data_aug}
 \end{figure}
