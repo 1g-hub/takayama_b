@@ -1,10 +1,10 @@
-\contentsline {table}{\numberline {6.1}{\ignorespaces オリジナルデータ数}}{16}%
-\contentsline {table}{\numberline {6.2}{\ignorespaces 実験で用いたデータ数}}{16}%
-\contentsline {table}{\numberline {6.3}{\ignorespaces 各実験における MLP のパラメータ}}{17}%
-\contentsline {table}{\numberline {6.4}{\ignorespaces 学習パラメータ}}{18}%
-\contentsline {table}{\numberline {6.5}{\ignorespaces 損失関数におけるクラス重み}}{18}%
-\contentsline {table}{\numberline {6.6}{\ignorespaces 評価用データに対する実験 1 の結果}}{20}%
-\contentsline {table}{\numberline {6.7}{\ignorespaces 評価用データに対する実験 2 の結果}}{22}%
-\contentsline {table}{\numberline {6.8}{\ignorespaces シソーラスを用いたデータ拡張による文法的齟齬}}{25}%
-\contentsline {table}{\numberline {6.9}{\ignorespaces アノテートされたセリフと感情ラベルの例}}{30}%
-\contentsline {table}{\numberline {6.10}{\ignorespaces アノテートされたデータ数}}{31}%
+\contentsline {table}{\numberline {5.1}{\ignorespaces オリジナルデータ数}}{15}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces 実験で用いたデータ数}}{15}%
+\contentsline {table}{\numberline {5.3}{\ignorespaces 各実験における MLP のパラメータ}}{16}%
+\contentsline {table}{\numberline {5.4}{\ignorespaces 学習パラメータ}}{17}%
+\contentsline {table}{\numberline {5.5}{\ignorespaces 損失関数におけるクラス重み}}{17}%
+\contentsline {table}{\numberline {5.6}{\ignorespaces 評価用データに対する実験 1 の結果}}{20}%
+\contentsline {table}{\numberline {5.7}{\ignorespaces 評価用データに対する実験 2 の結果}}{22}%
+\contentsline {table}{\numberline {5.8}{\ignorespaces シソーラスを用いたデータ拡張による文法的齟齬}}{25}%
+\contentsline {table}{\numberline {5.9}{\ignorespaces アノテートされたセリフと感情ラベルの例}}{30}%
+\contentsline {table}{\numberline {5.10}{\ignorespaces アノテートされたデータ数}}{31}%

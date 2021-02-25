@@ -152,15 +152,16 @@ UNK                    & 7                    & 3                   & 5         
 表 \ref{table:result_1} に評価用データに対する実験 1 の結果を示す. 表 \ref{table:result_1} における P-Recall, P-F 値はそれぞれ正例の再現率, F 値を表し, Acc は全体の精度を表している. また, 5 タッチ総合の結果は各タッチの結果における混合行列の和から算出している.
 本研究では, ベースラインは前述のように, 正例が負例に対してデータ数が
 非常に少ない不均衡データであることから, すべての予測値が負例の場合を設定した.
-図 \ref{fig:ex1_graph} に Text Embedding 層に hottoSNS-BERT を用いた場合のギャグタッチにおける学習曲線を示す. 左の図から Acc, 正例の F 値, loss を表し, 青線は訓練用データ, オレンジの線は検証用データを表す.
+図 \ref{fig:ex1_graph} に Text Embedding 層に hottoSNS-BERT を用いた場合のギャグタッチにおける学習曲線を示す. 上の図から Acc, P-F 値, loss を表し, 青線は訓練用データ, オレンジの線は検証用データを表す.
 
 表 \ref{table:result_1} より, Acc に関してはどちらの BERT モデルを用いても
 ベースラインを超えた. また, ほとんどの評価指標において京大 BERT よりも hottoSNS-BERT の方が優れた結果を示した. 図 \ref{fig:ex1_graph} において, 訓練用データと検証用データの学習曲線の推移が酷似しているのは, データの切り分け方に問題があると推測される. 前述のように, 4 コマ漫画ストーリーデータセットには現状, 同一のストーリーを原則的に 4 コマ目がオチとなる ``一般" と逆に 1 コマ目にオチを持ってきた ``出オチ" の 2 種類の構造のみからなっており, セリフやその感情ラベルに大きな差はない. つまり, 似たセリフデータが 2 つずつ存在している場合が多い. そのため, 検証用データをランダムにサンプリングしたことでデータの分布にも差が生まれず, 訓練用データと検証用データの学習曲線の推移が酷似したと考えられる.
 
+\newpage
 \begin{figure}[!h]
   \vspace{5mm}
   \centering
-  \includegraphics[width=1.0\hsize]{doc/figures/ex1_graph_hotto_gyagu.png}
+  \includegraphics[width=0.5\hsize]{doc/figures/ex1_graph_hotto_gyagu_big.png}
   \caption{実験 1 における学習曲線の例}
   \label{fig:ex1_graph}
 \end{figure}
@@ -171,7 +172,7 @@ UNK                    & 7                    & 3                   & 5         
 \begin{center}
 \caption{評価用データに対する実験 1 の結果}
 \label{table:result_1}
-\scalebox{1.0}{
+\scalebox{0.9}{
 \begin{tabular}{lcccccc}
 \hline
 \multicolumn{1}{c}{\multirow{2}{*}{}} & \multicolumn{3}{c}{ギャグタッチ} & \multicolumn{3}{c}{少女漫画タッチ} \\
@@ -213,7 +214,7 @@ hottoSNS-BERT & {\ul 0.688} & 0.500 & {\ul 0.524} & {\ul 0.758} & 0.583 & {\ul 0
 \subsection{実験 2 : 結果}
 \changeindent{2cm}
 
-表 \ref{table:result_2} に評価用データに対する実験 2 の結果を示す. また, 図 \ref{fig:ex1_graph} に Text Embedding 層に hottoSNS-BERT を用いた場合のギャグタッチにおける学習曲線を示す. 実験 1 と同様に左の図から Acc, 正例の F 値, loss を表し, 青線は訓練用データ, オレンジの線は検証用データを表す. また, 5 タッチ総合の結果は各タッチの結果における混合行列の和から算出している.
+表 \ref{table:result_2} に評価用データに対する実験 2 の結果を示す. また, 図 \ref{fig:ex2_graph} に Text Embedding 層に hottoSNS-BERT を用いた場合のギャグタッチにおける学習曲線を示す. 実験 1 と同様に上の図から Acc, P-F 値, loss を表し, 青線は訓練用データ, オレンジの線は検証用データを表す. また, 5 タッチ総合の結果は各タッチの結果における混合行列の和から算出している.
 
 表 \ref{table:result_2} より, Acc に関してはどちらの BERT モデルを用いても
 同様にベースラインを超えた. ほとんどの評価指標において京大 BERT よりも hottoSNS-BERT の方が上回り, 実験 1 および 実験 2 を通してそれぞれ最も高い値を示したことから, 京大 BERT よりも hottoSNS-BERT の方が漫画のセリフの分散表現の獲得手法として有効であると定量的に確認した. そして, 5 タッチ総合の結果より実験 1 よりも正例の識別率も向上したことから, マルチモーダルな感情推定の有効性を定量的に確認した. 図 \ref{fig:ex2_graph} において, 訓練用データと検証用データの学習曲線の推移が実験 1 の学習曲線より急勾配で早期に収束している. これは単純に識別器への入力次元数が増えたことに起因すると考えられる. そして, 多くのタッチにおいて実験 1 ではほとんど識別できていなかった正例データが識別できていたことを確認した.
@@ -221,11 +222,10 @@ hottoSNS-BERT & {\ul 0.688} & 0.500 & {\ul 0.524} & {\ul 0.758} & 0.583 & {\ul 0
 
 \newpage
 \begin{table}[!ht]
-\vspace{15mm}
 \begin{center}
 \caption{評価用データに対する実験 2 の結果}
 \label{table:result_2}
-\scalebox{1.0}{
+\scalebox{0.9}{
 \begin{tabular}{lcccccc}
 \hline
 \multicolumn{1}{c}{\multirow{2}{*}{}} & \multicolumn{3}{c}{ギャグタッチ} & \multicolumn{3}{c}{少女漫画タッチ} \\
@@ -250,25 +250,25 @@ hottoSNS-BERT & {\ul 0.703} & 0.545 & {\ul 0.558} & {\ul 0.776} & 0.625 & {\ul 0
 \end{tabular}
 }
 \end{center}
-\vspace{10mm}
 \end{table}
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.56\hsize]{doc/figures/multimodal_add_seikai.png}
+  \caption{マルチモーダル化の精度への影響}
+  \label{fig:multimodal_add_seikai}
+\end{figure}
 
 \newpage
 
 \begin{figure}[!h]
   \centering
-  \includegraphics[width=1.0\hsize]{doc/figures/ex2_graph_hotto_gyagu.png}
+  \includegraphics[width=0.5\hsize]{doc/figures/ex2_graph_hotto_gyagu_big.png}
   \caption{実験 2 における学習曲線の例}
   \label{fig:ex2_graph}
 \end{figure}
 
-\begin{figure}[!h]
-  \vspace{15mm}
-  \centering
-  \includegraphics[width=0.8\hsize]{doc/figures/multimodal_add_seikai.png}
-  \caption{マルチモーダル化の精度への影響}
-  \label{fig:multimodal_add_seikai}
-\end{figure}
+
 
 \newpage
 \changeindent{0cm}
