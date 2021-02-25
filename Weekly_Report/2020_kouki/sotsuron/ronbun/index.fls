@@ -94,8 +94,6 @@ INPUT doc/figures/transformer.png
 INPUT extractbb -B cropbox -O doc/figures/transformer.png
 INPUT doc/figures/bert_pre.png
 INPUT extractbb -B cropbox -O doc/figures/bert_pre.png
-INPUT ./doc/relatedwork.tex
-INPUT ./doc/relatedwork.tex
 INPUT ./doc/method.tex
 INPUT ./doc/method.tex
 INPUT doc/figures/teian_2.png
@@ -104,12 +102,12 @@ INPUT doc/figures/data_aug.png
 INPUT extractbb -B cropbox -O doc/figures/data_aug.png
 INPUT ./doc/experiment.tex
 INPUT ./doc/experiment.tex
-INPUT doc/figures/ex1_graph_hotto_gyagu.png
-INPUT extractbb -B cropbox -O doc/figures/ex1_graph_hotto_gyagu.png
-INPUT doc/figures/ex2_graph_hotto_gyagu.png
-INPUT extractbb -B cropbox -O doc/figures/ex2_graph_hotto_gyagu.png
+INPUT doc/figures/ex1_graph_hotto_gyagu_big.png
+INPUT extractbb -B cropbox -O doc/figures/ex1_graph_hotto_gyagu_big.png
 INPUT doc/figures/multimodal_add_seikai.png
 INPUT extractbb -B cropbox -O doc/figures/multimodal_add_seikai.png
+INPUT doc/figures/ex2_graph_hotto_gyagu_big.png
+INPUT extractbb -B cropbox -O doc/figures/ex2_graph_hotto_gyagu_big.png
 INPUT doc/figures/cos_bert.png
 INPUT extractbb -B cropbox -O doc/figures/cos_bert.png
 INPUT doc/figures/mention.png

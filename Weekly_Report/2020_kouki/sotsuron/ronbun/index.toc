@@ -2,7 +2,7 @@
 \contentsline {section}{\numberline {2}コミック工学に関連するデータセット}{2}%
 \contentsline {subsection}{\numberline {2.1}Manga109}{2}%
 \contentsline {subsection}{\numberline {2.2}4 コマ漫画ストーリーデータセット}{2}%
-\contentsline {section}{\numberline {3}要素技術}{5}%
+\contentsline {section}{\numberline {3}要素技術と 4 コマ漫画に関する従来研究}{5}%
 \contentsline {subsection}{\numberline {3.1}自然言語処理に関する要素技術}{5}%
 \contentsline {subsubsection}{\numberline {3.1.1}形態素解析}{5}%
 \contentsline {subsubsection}{\numberline {3.1.2}局所表現, 分散表現}{5}%
@@ -13,22 +13,22 @@
 \contentsline {subsection}{\numberline {3.2}画像処理に関する要素技術}{10}%
 \contentsline {subsubsection}{\numberline {3.2.1}VGG}{10}%
 \contentsline {subsubsection}{\numberline {3.2.2}illustration2vec}{10}%
-\contentsline {section}{\numberline {4}4 コマ漫画に関する従来研究}{12}%
-\contentsline {section}{\numberline {5}提案手法}{13}%
-\contentsline {subsection}{\numberline {5.1}漫画のセリフのマルチモーダルな感情推定手法}{13}%
-\contentsline {subsection}{\numberline {5.2}シソーラスを用いたデータ拡張}{14}%
-\contentsline {section}{\numberline {6}実験と考察}{15}%
-\contentsline {subsection}{\numberline {6.1}実験に使用したデータ}{15}%
-\contentsline {subsection}{\numberline {6.2}実験設定}{15}%
-\contentsline {subsection}{\numberline {6.3}実験 1 : セリフ 1 文のみを入力とする感情推定}{16}%
-\contentsline {subsection}{\numberline {6.4}実験 1 : 結果}{19}%
-\contentsline {subsection}{\numberline {6.5}実験 2 : マルチモーダルな感情推定の検討}{21}%
-\contentsline {subsection}{\numberline {6.6}実験 2 : 結果}{21}%
-\contentsline {subsection}{\numberline {6.7}考察}{24}%
-\contentsline {subsubsection}{\numberline {6.7.1}BERT モデルの合理性とシソーラスを用いたデータ拡張の問題}{24}%
-\contentsline {subsubsection}{\numberline {6.7.2}illustration2vec モデルの合理性について}{27}%
-\contentsline {subsubsection}{\numberline {6.7.3}マルチモーダル特徴量の結合方法の問題}{29}%
-\contentsline {subsection}{\numberline {6.8}補足 : 人手による新たなセリフデータの作成}{29}%
-\contentsline {section}{\numberline {7}まとめと今後の課題}{32}%
+\contentsline {subsection}{\numberline {3.3}4 コマ漫画に関する従来研究}{11}%
+\contentsline {section}{\numberline {4}提案手法}{12}%
+\contentsline {subsection}{\numberline {4.1}漫画のセリフのマルチモーダルな感情推定手法}{12}%
+\contentsline {subsection}{\numberline {4.2}シソーラスを用いたデータ拡張}{13}%
+\contentsline {section}{\numberline {5}実験と考察}{14}%
+\contentsline {subsection}{\numberline {5.1}実験に使用したデータ}{14}%
+\contentsline {subsection}{\numberline {5.2}実験設定}{14}%
+\contentsline {subsection}{\numberline {5.3}実験 1 : セリフ 1 文のみを入力とする感情推定}{15}%
+\contentsline {subsection}{\numberline {5.4}実験 1 : 結果}{18}%
+\contentsline {subsection}{\numberline {5.5}実験 2 : マルチモーダルな感情推定の検討}{21}%
+\contentsline {subsection}{\numberline {5.6}実験 2 : 結果}{21}%
+\contentsline {subsection}{\numberline {5.7}考察}{24}%
+\contentsline {subsubsection}{\numberline {5.7.1}BERT モデルの合理性とシソーラスを用いたデータ拡張の問題}{24}%
+\contentsline {subsubsection}{\numberline {5.7.2}illustration2vec モデルの合理性について}{27}%
+\contentsline {subsubsection}{\numberline {5.7.3}マルチモーダル特徴量の結合方法の問題}{29}%
+\contentsline {subsection}{\numberline {5.8}補足 : 人手による新たなセリフデータの作成}{29}%
+\contentsline {section}{\numberline {6}まとめと今後の課題}{32}%
 \contentsline {section}{謝辞}{33}%
 \contentsline {section}{参考文献}{34}%
