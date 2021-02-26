@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.7.16)  26 FEB 2021 04:43
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2020.7.16)  26 FEB 2021 11:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -161,6 +161,11 @@ Underfull \vbox (badness 10000) detected at line 41
  []
 
 
+Overfull \hbox (18.33798pt too wide) detected at line 41
+\JY1/mc/m/n/14.4 大阪府立大学工学域電気電子系学類情報工学課程
+ []
+
+
 Underfull \vbox (badness 10000) detected at line 41
  []
 
@@ -318,4 +323,4 @@ Here is how much of TeX's memory you used:
  929 hyphenation exceptions out of 8191
  30i,16n,25p,1267b,492s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on index.dvi (42 pages, 103032 bytes).
+Output written on index.dvi (42 pages, 103036 bytes).
