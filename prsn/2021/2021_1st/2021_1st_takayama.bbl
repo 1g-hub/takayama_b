@@ -1,0 +1,39 @@
+\begin{thebibliography}{1}
+
+\bibitem{DBLP:journals/corr/abs-1712-01393}
+Yipin Zhou, Zhaowen Wang, Chen Fang, Trung Bui, and Tamara~L. Berg.
+\newblock Visual to sound: Generating natural sound for videos in the wild.
+\newblock {\em CoRR}, abs/1712.01393, 2017.
+
+\bibitem{yoshikawa2018stair}
+Yuya Yoshikawa, Jiaqing Lin, and Akikazu Takeuchi.
+\newblock Stair actions: A video dataset of everyday home actions, 2018.
+
+\bibitem{Park_2019}
+Daniel~S. Park, William Chan, Yu~Zhang, Chung-Cheng Chiu, Barret Zoph, Ekin~D.
+  Cubuk, and Quoc~V. Le.
+\newblock Specaugment: A simple data augmentation method for automatic speech
+  recognition.
+\newblock {\em Interspeech 2019}, Sep 2019.
+
+\bibitem{DBLP:journals/corr/HeZRS15}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock Deep residual learning for image recognition.
+\newblock {\em CoRR}, abs/1512.03385, 2015.
+
+\bibitem{word2vec}
+Greg~Corrado Tomas~Mikolov, Kai~Chen and Jeffrey Dean.
+\newblock Efficient estimation of word rep-resentations in vector space.
+\newblock {\em arXiv preprint arXiv:1301.3781}, 2013.
+
+\bibitem{DBLP:journals/corr/LeM14}
+Quoc~V. Le and Tom{\'{a}}s Mikolov.
+\newblock Distributed representations of sentences and documents.
+\newblock {\em CoRR}, abs/1405.4053, 2014.
+
+\bibitem{130007854954}
+Arseny Tolmachev, Daisuke Kawahara, and Sadao Kurohashi.
+\newblock Design and structure of the juman++ morphological analyzer toolkit.
+\newblock {\em 自然言語処理}, 27(1):89--132, 2020.
+
+\end{thebibliography}

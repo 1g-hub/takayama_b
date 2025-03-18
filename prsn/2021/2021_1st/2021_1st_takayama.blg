@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2020/W32TeX)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: 2021_1st_takayama.aux
+The style file: unsrt.bst
+Database file #1: sankou.bib
+Name 1 in "Tomas Mikolov, Kai Chen, Greg Corrado, and Jeffrey Dean" has a comma at the end for entry word2vec
+while executing---line 944 of file unsrt.bst
+You've used 7 entries,
+            1791 wiz_defined-function locations,
+            489 strings with 4827 characters,
+and the built_in function-call counts, 1282 in all, are:
+= -- 92
+> -- 92
+< -- 0
++ -- 33
+- -- 26
+* -- 81
+:= -- 238
+add.period$ -- 20
+call.type$ -- 7
+change.case$ -- 7
+chr.to.int$ -- 0
+cite$ -- 7
+duplicate$ -- 54
+empty$ -- 112
+format.name$ -- 26
+if$ -- 270
+int.to.chr$ -- 0
+int.to.str$ -- 7
+missing$ -- 6
+newline$ -- 37
+num.names$ -- 7
+pop$ -- 17
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 27
+stack$ -- 0
+substring$ -- 18
+swap$ -- 7
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 8
+width$ -- 8
+write$ -- 74
+(There was 1 error message)
